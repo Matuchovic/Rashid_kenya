@@ -60,7 +60,7 @@ export function ContactMenu({ children, style, className }: ContactMenuProps) {
       <div style={{
         position:'absolute',
         bottom:'calc(100% + 12px)',
-        left:'50%', transform:'translateX(-50%)',
+        left:'50%',
         zIndex:9999,
         background:'rgba(8,5,2,0.97)',
         backdropFilter:'blur(40px)', WebkitBackdropFilter:'blur(40px)',
