@@ -1,19 +1,21 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 
 export function HeroSection() {
   const contentRef = useRef<HTMLDivElement>(null)
   const particlesRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
+  const [isSafari, setIsSafari] = useState(false)
 
   useEffect(() => {
-    const v = videoRef.current
-    if (!v) return
-    v.muted = true
-    v.defaultMuted = true
-    v.play().catch(() => {})
+    const safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
+    setIsSafari(safari)
+    if (!safari && videoRef.current) {
+      videoRef.current.muted = true
+      videoRef.current.play().catch(() => {})
+    }
   }, [])
 
   useEffect(() => {
@@ -53,40 +55,56 @@ export function HeroSection() {
       className="relative w-full overflow-hidden flex items-end justify-between"
       style={{ height: '100vh', minHeight: 680 }}
     >
-      {/* Photo fallback — always visible */}
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: "url('/hero.jpg')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center 35%',
-        }}
-      />
+      {/* SAFARI: YouTube autoplay background */}
+      {isSafari && (
+        <div className="absolute inset-0 overflow-hidden" style={{ zIndex: 0 }}>
+          <iframe
+            src="https://www.youtube.com/embed/ZinOAnCqmks?autoplay=1&mute=1&loop=1&playlist=ZinOAnCqmks&controls=0&showinfo=0&rel=0&disablekb=1&modestbranding=1&playsinline=1&enablejsapi=0"
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              width: '177.78vh',
+              height: '100vh',
+              minWidth: '100%',
+              minHeight: '56.25vw',
+              transform: 'translate(-50%, -50%)',
+              border: 'none',
+              pointerEvents: 'none',
+              opacity: 0.9,
+            }}
+            allow="autoplay; fullscreen"
+          />
+        </div>
+      )}
 
-      {/* Video — plays on Chrome, overlays photo on Safari when allowed */}
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        className="absolute inset-0 w-full h-full object-cover"
-      >
-        <source src="/hero.mp4" type="video/mp4" />
-      </video>
+      {/* CHROME: local video */}
+      {!isSafari && (
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ zIndex: 0 }}
+        >
+          <source src="/hero.mp4" type="video/mp4" />
+        </video>
+      )}
 
       {/* Overlay */}
-      <div className="absolute inset-0" style={{ background: `linear-gradient(0deg, #050505 0%, rgba(5,5,5,0.72) 28%, rgba(5,5,5,0.10) 55%, rgba(15,8,0,0.30) 100%), linear-gradient(90deg, rgba(5,5,5,0.40) 0%, transparent 55%, rgba(5,5,5,0.15) 100%)` }} />
+      <div className="absolute inset-0" style={{ zIndex: 1, background: `linear-gradient(0deg, #050505 0%, rgba(5,5,5,0.72) 28%, rgba(5,5,5,0.10) 55%, rgba(15,8,0,0.30) 100%), linear-gradient(90deg, rgba(5,5,5,0.40) 0%, transparent 55%, rgba(5,5,5,0.15) 100%)` }} />
 
       {/* Sun */}
-      <div className="absolute left-1/2 sun-orb pointer-events-none" style={{ top: '10%', width: 100, height: 100, borderRadius: '50%', background: 'radial-gradient(circle, #FFEF99 0%, #FFD040 28%, rgba(255,160,20,0.35) 60%, transparent 100%)', boxShadow: '0 0 60px 30px rgba(255,180,40,0.30), 0 0 180px 80px rgba(255,130,0,0.18)' }} />
+      <div className="absolute left-1/2 sun-orb pointer-events-none" style={{ zIndex: 2, top: '10%', width: 100, height: 100, borderRadius: '50%', background: 'radial-gradient(circle, #FFEF99 0%, #FFD040 28%, rgba(255,160,20,0.35) 60%, transparent 100%)', boxShadow: '0 0 60px 30px rgba(255,180,40,0.30), 0 0 180px 80px rgba(255,130,0,0.18)' }} />
 
       {/* Particles */}
-      <div ref={particlesRef} className="absolute inset-0 pointer-events-none" />
+      <div ref={particlesRef} className="absolute inset-0 pointer-events-none" style={{ zIndex: 2 }} />
 
       {/* Content */}
-      <div ref={contentRef} className="relative z-10 flex items-end justify-between w-full gap-10" style={{ padding: '0 72px 88px', transition: 'transform 0.05s linear' }}>
+      <div ref={contentRef} className="relative flex items-end justify-between w-full gap-10" style={{ zIndex: 10, padding: '0 72px 88px', transition: 'transform 0.05s linear' }}>
         <div className="max-w-[600px]">
           <div className="eyebrow mb-[18px] reveal visible">Kenya · East Africa · Since 1997</div>
           <h1 className="text-white reveal visible" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 'clamp(56px, 7vw, 90px)', fontWeight: 300, lineHeight: 0.92, letterSpacing: '-0.01em' }}>
@@ -124,8 +142,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll cue */}
-      <div className="absolute bottom-9 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
+      <div className="absolute bottom-9 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" style={{ zIndex: 10 }}>
         <div style={{ width: 1, height: 44, background: 'linear-gradient(180deg, transparent, rgba(255,255,255,0.4), transparent)' }} />
         <span className="text-[9px] text-dim tracking-[0.18em] uppercase">Scroll</span>
       </div>
