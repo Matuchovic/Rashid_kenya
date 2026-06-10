@@ -100,6 +100,21 @@ export function SafarisSection() {
               position: 'relative', overflow: 'hidden',
               minHeight: 'clamp(400px,55vh,540px)',
               cursor: 'pointer',
+              transformStyle: 'preserve-3d',
+              willChange: 'transform',
+            }}
+            onMouseMove={e => {
+              const el = e.currentTarget
+              const rect = el.getBoundingClientRect()
+              const x = (e.clientX - rect.left) / rect.width - 0.5
+              const y = (e.clientY - rect.top) / rect.height - 0.5
+              el.style.transform = `perspective(800px) rotateY(${x * 10}deg) rotateX(${-y * 8}deg) scale(1.02)`
+              el.style.transition = 'transform 0.1s ease'
+            }}
+            onMouseLeave={e => {
+              const el = e.currentTarget
+              el.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg) scale(1)'
+              el.style.transition = 'transform 0.6s cubic-bezier(0.25,1,0.5,1)'
             }}
           >
             <div className="safari-photo" style={{
