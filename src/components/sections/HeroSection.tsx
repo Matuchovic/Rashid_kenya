@@ -8,6 +8,7 @@ export function HeroSection() {
   const bgRef     = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const particlesRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   // Parallax on mouse move
   useEffect(() => {
@@ -58,6 +59,7 @@ export function HeroSection() {
         style={{ willChange: 'transform' }}
       >
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
@@ -65,7 +67,7 @@ export function HeroSection() {
           preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ opacity: 0.9 }}
-          onEnded={(e) => { const v = e.target as HTMLVideoElement; v.currentTime = 0; v.play(); }}
+          onCanPlay={() => { videoRef.current?.play() }}
         >
           <source src="/hero.mp4" type="video/mp4" />
         </video>
