@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { useLang } from '@/context/LanguageContext'
+import { ContactMenu } from '@/components/ui/ContactMenu'
 
 const STEPS = [
   {
@@ -259,7 +260,7 @@ export function TransferSection() {
 
       {/* CTA */}
       <div style={{ textAlign:'center', marginTop:'clamp(28px,4vh,40px)', padding:'0 clamp(20px,5vw,48px)' }}>
-        <a href="https://wa.me/254700000000" target="_blank" rel="noopener noreferrer" style={{
+        <a href="https://wa.me/254718930587" target="_blank" rel="noopener noreferrer" style={{
           display:'inline-flex', alignItems:'center', justifyContent:'center', gap:8,
           fontSize:9, letterSpacing:'0.2em', textTransform:'uppercase',
           color:'#050505', background:'#D4A75F',

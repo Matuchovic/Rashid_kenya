@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { useLang } from '@/context/LanguageContext'
+import { ContactMenu } from '@/components/ui/ContactMenu'
 import { Lang } from '@/lib/translations'
 
 export function Navigation() {
@@ -96,7 +97,7 @@ export function Navigation() {
           </div>
 
           {/* Desktop CTA */}
-          <a href="https://wa.me/254700000000" target="_blank" rel="noopener noreferrer"
+          <a href="https://wa.me/254718930587" target="_blank" rel="noopener noreferrer"
             className="nav-cta-desktop"
             style={{ display:'none', fontSize:9, letterSpacing:'0.14em', color:'#050505', background:'#D4A75F', padding:'9px 18px', borderRadius:100, textDecoration:'none', textTransform:'uppercase', fontWeight:500, transition:'all 0.2s' }}
           >{t('nav_book')}</a>
@@ -152,7 +153,7 @@ export function Navigation() {
           ))}
         </div>
 
-        <a href="https://wa.me/254700000000" onClick={() => setOpen(false)} target="_blank" rel="noopener noreferrer" style={{
+        <a href="https://wa.me/254718930587" onClick={() => setOpen(false)} target="_blank" rel="noopener noreferrer" style={{
           marginTop:'clamp(20px,4vh,32px)',
           display:'inline-flex', alignItems:'center', justifyContent:'center', gap:8,
           fontSize:10, letterSpacing:'0.22em', color:'#050505',

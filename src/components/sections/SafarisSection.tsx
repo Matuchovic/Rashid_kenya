@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useRef } from 'react'
+import { ContactMenu } from '@/components/ui/ContactMenu'
 import { useLang } from '@/context/LanguageContext'
 
 export function SafarisSection() {
@@ -49,9 +50,9 @@ export function SafarisSection() {
                   <span key={tag} style={{ fontSize:7, letterSpacing:'0.12em', color:'rgba(212,167,95,0.55)', textTransform:'uppercase', padding:'3px 8px', border:'0.5px solid rgba(212,167,95,0.18)', borderRadius:100 }}>{tag}</span>
                 ))}
               </div>
-              <a href="https://wa.me/254700000000" target="_blank" rel="noopener noreferrer" className="safari-btn" style={{ display:'inline-flex', alignItems:'center', justifyContent:'center', gap:8, fontSize:8, letterSpacing:'0.2em', textTransform:'uppercase', color:'#050505', background:'#D4A75F', padding:'12px 20px', borderRadius:100, textDecoration:'none', transition:'all 0.3s cubic-bezier(0.25,1,0.5,1)', width:'100%' }}>
+              <ContactMenu><div className="safari-btn" style={{ display:'inline-flex', alignItems:'center', justifyContent:'center', gap:8, fontSize:8, letterSpacing:'0.2em', textTransform:'uppercase', color:'#050505', background:'#D4A75F', padding:'12px 20px', borderRadius:100, textDecoration:'none', transition:'all 0.3s cubic-bezier(0.25,1,0.5,1)', width:'100%' }}>
                 {t('saf_contact')} <span>&#8594;</span>
-              </a>
+              </div></ContactMenu>
             </div>
           </div>
         ))}

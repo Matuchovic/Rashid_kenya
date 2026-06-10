@@ -1,5 +1,6 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
+import { ContactMenu } from '@/components/ui/ContactMenu'
 import { useLang } from '@/context/LanguageContext'
 
 type Pkg = {
@@ -101,9 +102,7 @@ export function PackagesSection() {
       {/* Cards grid */}
       <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(min(100%,300px),1fr))', gap:'clamp(8px,2vw,12px)', padding:'0 clamp(12px,4vw,48px)', maxWidth:1200, margin:'0 auto' }}>
         {filtered.map((pkg, idx) => (
-          <a key={pkg.id}
-            href="https://wa.me/254700000000"
-            target="_blank" rel="noopener noreferrer"
+          <ContactMenu key={pkg.id}
             style={{
               position:'relative', overflow:'hidden',
               borderRadius:'clamp(10px,2vw,16px)',
@@ -174,7 +173,7 @@ export function PackagesSection() {
                 <span style={{ fontSize:12, color:'rgba(212,167,95,0.5)', transition:'transform 0.3s ease' }} className="pkg-arrow">→</span>
               </div>
             </div>
-          </a>
+          </ContactMenu>
         ))}
       </div>
 
@@ -187,16 +186,11 @@ export function PackagesSection() {
         <p style={{ fontSize:'clamp(12px,1.6vw,14px)', color:'rgba(242,230,208,0.25)', letterSpacing:'0.06em', marginBottom:24 }}>
           All prices on request · Fully customisable · Private & group options
         </p>
-        <a href="https://wa.me/254700000000" target="_blank" rel="noopener noreferrer" style={{
-          display:'inline-flex', alignItems:'center', justifyContent:'center', gap:8,
-          fontSize:'clamp(8px,1.8vw,10px)', letterSpacing:'0.2em', textTransform:'uppercase',
-          color:'#050505', background:'#D4A75F',
-          padding:'clamp(12px,2vw,14px) clamp(24px,4vw,36px)',
-          borderRadius:100, textDecoration:'none',
-          minHeight:48, minWidth:200,
-        }}>
-          Plan My Kenya Experience →
-        </a>
+        <ContactMenu>
+          <div style={{ display:'inline-flex', alignItems:'center', justifyContent:'center', gap:8, fontSize:'clamp(8px,1.8vw,10px)', letterSpacing:'0.2em', textTransform:'uppercase', color:'#050505', background:'#D4A75F', padding:'clamp(12px,2vw,14px) clamp(24px,4vw,36px)', borderRadius:100, cursor:'pointer', minHeight:48, minWidth:200 }}>
+            Plan My Kenya Experience →
+          </div>
+        </ContactMenu>
       </div>
 
       <style>{`
