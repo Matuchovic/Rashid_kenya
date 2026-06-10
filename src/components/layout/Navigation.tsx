@@ -43,7 +43,7 @@ export function Navigation() {
         zIndex: 1000,
         width: 'calc(100% - clamp(12px,4vw,32px))',
         maxWidth: 1180,
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between', verticalAlign: 'middle',
         padding: 'clamp(10px,3vw,14px) clamp(14px,4vw,24px)',
         borderRadius: 100,
         background: scrolled ? 'rgba(5,5,5,0.95)' : 'rgba(5,5,5,0.6)',
@@ -104,7 +104,7 @@ export function Navigation() {
           {/* Mobile burger */}
           <button onClick={() => setOpen(o => !o)}
             className="nav-burger"
-            style={{ background:'none', border:'none', cursor:'pointer', display:'flex', flexDirection:'column', gap:5, padding:'8px 4px' }}
+            style={{ background:'none', border:'none', cursor:'pointer', display:'flex', flexDirection:'column', gap:5, padding:'8px 4px', alignSelf:'center' }}
             aria-label="Menu"
           >
             <span style={{ display:'block', width:22, height:'0.5px', background:'#D4A75F', transform:open?'rotate(45deg) translate(3.5px,3.5px)':'none', transition:'all 0.3s' }} />

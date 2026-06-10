@@ -20,7 +20,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
 
   return (
     <div style={{ position:'fixed', inset:0, zIndex:9999, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', background:'#000', opacity:leaving?0:1, transition:leaving?'opacity 1s ease':'none', overflow:'hidden' }}>
-      <div style={{ position:'absolute', inset:0, backgroundImage:"url('/bigfive.jpg')", backgroundSize:'cover', backgroundPosition:'center 20%', animation:'ldrKen 9s ease-in-out infinite alternate' }} />
+      <div style={{ position:'absolute', inset:0, backgroundImage:"url('/bigfive.jpg')", backgroundSize:'150%', backgroundPosition:'center 28%', animation:'ldrKen 9s ease-in-out infinite alternate' }} />
       <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 90% 60% at 50% 25%,rgba(255,120,0,0.1) 0%,transparent 65%)', animation:'ldrEmber 5s ease-in-out infinite' }} />
       <div style={{ position:'absolute', inset:0, background:'linear-gradient(0deg,rgba(0,0,0,0.97) 0%,rgba(0,0,0,0.7) 22%,rgba(0,0,0,0.1) 50%,rgba(0,0,0,0.4) 100%)' }} />
       <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 75% 75% at 50% 50%,transparent 30%,rgba(0,0,0,0.75) 100%)' }} />
@@ -32,7 +32,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         <div style={{ fontFamily:"'Cormorant Garamond',Georgia,serif", fontSize:'clamp(10px,2vw,13px)', fontWeight:200, fontStyle:'italic', letterSpacing:'0.1em', color:'rgba(242,230,208,0.3)' }}>Into the Heart of Africa</div>
       </div>
 
-      <div style={{ position:'relative', zIndex:10, width:'min(480px,88vw)', marginTop:'clamp(32px,6vh,56px)', display:'flex', flexDirection:'column', gap:10 }}>
+      <div style={{ position:'relative', zIndex:10, width:'min(480px,88vw)', marginTop:'clamp(24px,4vh,40px)', display:'flex', flexDirection:'column', gap:10 }}>
         <div style={{ width:'100%', height:'0.5px', background:'rgba(255,255,255,0.05)', position:'relative', overflow:'visible' }}>
           <div style={{ position:'absolute', top:0, left:0, height:'100%', width:pct+'%', background:'linear-gradient(90deg,transparent,#D4A75F,#F0D080,#D4A75F)', backgroundSize:'200% auto', boxShadow:'0 0 10px rgba(212,167,95,0.7),0 0 20px rgba(212,167,95,0.3)', transition:'width 0.08s ease', animation:'ldrShimmer 1.5s linear infinite' }} />
           <div style={{ position:'absolute', top:-3, height:7, width:14, borderRadius:'50%', background:'rgba(240,208,120,0.9)', boxShadow:'0 0 12px 4px rgba(212,167,95,0.8)', left:'calc('+pct+'% - 7px)', transition:'left 0.08s ease' }} />
