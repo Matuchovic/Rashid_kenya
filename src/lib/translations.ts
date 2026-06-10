@@ -48,6 +48,7 @@ export const translations = {
     soc_profile_cta: 'Follow Rashid',
     soc_tagline: 'Real stories from the wild',
     // Footer
+    earth_earth: 'Earth', earth_africa: 'Africa', earth_kenya: 'Kenya', earth_diani: 'Diani Beach',
     footer_copy: '© 2026 Rashid Adventures Kenya',
   },
   cs: {
@@ -89,6 +90,7 @@ export const translations = {
     soc_profile_desc: 'Sledujte Rashida osobně. Zákulisí života v Keni, setkání se zvěří a opravdová nedotčená Afrika.',
     soc_profile_cta: 'Sledovat Rashida',
     soc_tagline: 'Skutečné příběhy z divočiny',
+    earth_earth: 'Svět', earth_africa: 'Afrika', earth_kenya: 'Keňa', earth_diani: 'Diani Beach',
     footer_copy: '© 2026 Rashid Adventures Kenya',
   },
   de: {
@@ -130,6 +132,7 @@ export const translations = {
     soc_profile_desc: 'Folgen Sie Rashid persönlich. Hinter den Kulissen in Kenia, lebendige Wildtierbegegnungen und das echte unberührte Afrika.',
     soc_profile_cta: 'Rashid folgen',
     soc_tagline: 'Echte Geschichten aus der Wildnis',
+    earth_earth: 'Welt', earth_africa: 'Afrika', earth_kenya: 'Kenia', earth_diani: 'Diani Beach',
     footer_copy: '© 2026 Rashid Adventures Kenya',
   }
 } as const
