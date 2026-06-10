@@ -52,13 +52,13 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       {/* Dark bottom vignette */}
       <div style={{
         position: 'absolute', inset: 0,
-        background: 'linear-gradient(0deg, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.7) 22%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.5) 100%)',
+        background: 'linear-gradient(0deg, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.88) 18%, rgba(0,0,0,0.55) 35%, rgba(0,0,0,0.15) 55%, rgba(0,0,0,0.5) 100%)',
       }} />
 
       {/* Side vignette */}
       <div style={{
         position: 'absolute', inset: 0,
-        background: 'radial-gradient(ellipse 80% 80% at 50% 50%, transparent 40%, rgba(0,0,0,0.65) 100%)',
+        background: 'radial-gradient(ellipse 75% 75% at 50% 50%, transparent 25%, rgba(0,0,0,0.75) 100%)',
       }} />
 
       {/* Loading UI — bottom */}
