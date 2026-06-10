@@ -3,6 +3,7 @@ import { HeroSection } from '@/components/sections/HeroSection'
 import { BigFiveSection } from '@/components/sections/BigFiveSection'
 import { EarthSection } from '@/components/sections/EarthSection'
 import { SafarisSection } from '@/components/sections/SafarisSection'
+import { TransferSection } from '@/components/sections/TransferSection'
 import { ExperienceSection } from '@/components/sections/ExperienceSection'
 import { SocialSection } from '@/components/sections/SocialSection'
 import { Footer } from '@/components/layout/Footer'
@@ -15,6 +16,7 @@ export default function Home() {
       <EarthSection />
       <BigFiveSection />
       <SafarisSection />
+      <TransferSection />
       <ExperienceSection />
       <SocialSection />
       <Footer />
