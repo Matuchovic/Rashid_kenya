@@ -95,7 +95,24 @@ export function PackagesSection() {
     'Beach Guide': t('inc_beach_guide'),
     'Starfish Village Visit': t('inc_starfish'),
   }
-  const [filter, setFilter] = useState<'all' | 'safari' | 'excursion'>('all')
+  const nameMap: Record<string,string> = {
+    'One Day Tsavo East Safari': t('name_tsavo1'),
+    'One Day Ngutuni Safari': t('name_ngutuni1'),
+    '2 Days / 1 Night Tsavo East': t('name_tsavo2'),
+    '2 Days / 1 Night Ngutuni': t('name_ngutuni2'),
+    '2 Days Salt Lick Lodge': t('name_saltlick'),
+    '3 Days Tsavo East & Amboseli': t('name_amboseli'),
+    '3 Days Tsavo East & Salt Lick': t('name_tsavo3combo'),
+    '3 Days Tsavo East & West': t('name_tsavoboth'),
+    'Mombasa City Tour': t('name_mombasa'),
+    'Wasini Island & Dolphins': t('name_wasini'),
+    'Funzi Island & Village Tour': t('name_funzi'),
+    'Shimba Hills National Reserve': t('name_shimba'),
+    'Congo River Sunset Excursion': t('name_congo'),
+    'African Pool & Starfish Beach Tour': t('name_pool'),
+  }
+
+    const [filter, setFilter] = useState<'all' | 'safari' | 'excursion'>('all')
   const [visible, setVisible] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
@@ -197,7 +214,7 @@ export function PackagesSection() {
                 fontFamily:"'Cormorant Garamond',Georgia,serif",
                 fontSize:'clamp(16px,4vw,24px)', fontWeight:200,
                 color:'#F2E6D0', lineHeight:1.1, marginBottom:10,
-              }}>{pkg.name}</h3>
+              }}>{nameMap[pkg.name] ?? pkg.name}</h3>
 
               {/* Includes */}
               <div style={{ display:'flex', flexWrap:'wrap', gap:4, marginBottom:14 }}>

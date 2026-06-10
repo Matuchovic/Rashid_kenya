@@ -51,6 +51,22 @@ export const translations = {
 
 
 
+
+    pkg_h_every: 'Every Experience',
+    name_tsavo1: 'One Day Tsavo East Safari',
+    name_ngutuni1: 'One Day Ngutuni Safari',
+    name_tsavo2: '2 Days / 1 Night Tsavo East',
+    name_ngutuni2: '2 Days / 1 Night Ngutuni',
+    name_saltlick: '2 Days Salt Lick Lodge',
+    name_amboseli: '3 Days Tsavo East & Amboseli',
+    name_tsavo3combo: '3 Days Tsavo East & Salt Lick',
+    name_tsavoboth: '3 Days Tsavo East & West',
+    name_mombasa: 'Mombasa City Tour',
+    name_wasini: 'Wasini Island & Dolphins',
+    name_funzi: 'Funzi Island & Village Tour',
+    name_shimba: 'Shimba Hills National Reserve',
+    name_congo: 'Congo River Sunset Excursion',
+    name_pool: 'African Pool & Starfish Beach Tour',
     inc_jeep: '4×4 Jeep & Guide', inc_park: 'Park Entry Fees', inc_water: 'Drinking Water',
     inc_acc: 'Accommodation', inc_meals: 'All Meals', inc_salt: 'Salt Lick Lodge',
     inc_acc2: '2× Accommodation', inc_kili: 'Kilimanjaro Views',
@@ -138,6 +154,22 @@ export const translations = {
 
 
 
+
+    pkg_h_every: 'Každý zážitek',
+    name_tsavo1: 'Jednodenní safari Tsavo East',
+    name_ngutuni1: 'Jednodenní safari Ngutuni',
+    name_tsavo2: '2 dny / 1 noc Tsavo East',
+    name_ngutuni2: '2 dny / 1 noc Ngutuni',
+    name_saltlick: '2 dny Salt Lick Lodge',
+    name_amboseli: '3 dny Tsavo East & Amboseli',
+    name_tsavo3combo: '3 dny Tsavo East & Salt Lick',
+    name_tsavoboth: '3 dny Tsavo East & Tsavo West',
+    name_mombasa: 'Prohlídka města Mombasa',
+    name_wasini: 'Ostrov Wasini & delfíni',
+    name_funzi: 'Ostrov Funzi & vesnice',
+    name_shimba: 'Národní rezervace Shimba Hills',
+    name_congo: 'Západ slunce na řece Congo',
+    name_pool: 'African Pool & prohlídka Starfish',
     inc_jeep: '4×4 Jeep & průvodce', inc_park: 'Vstupné do parku', inc_water: 'Pitná voda',
     inc_acc: 'Ubytování', inc_meals: 'Všechna jídla', inc_salt: 'Salt Lick Lodge',
     inc_acc2: '2× ubytování', inc_kili: 'Výhled na Kilimandžáro',
@@ -225,6 +257,22 @@ export const translations = {
 
 
 
+
+    pkg_h_every: 'Every Experience',
+    name_tsavo1: 'One Day Tsavo East Safari',
+    name_ngutuni1: 'One Day Ngutuni Safari',
+    name_tsavo2: '2 Days / 1 Night Tsavo East',
+    name_ngutuni2: '2 Days / 1 Night Ngutuni',
+    name_saltlick: '2 Days Salt Lick Lodge',
+    name_amboseli: '3 Days Tsavo East & Amboseli',
+    name_tsavo3combo: '3 Days Tsavo East & Salt Lick',
+    name_tsavoboth: '3 Days Tsavo East & West',
+    name_mombasa: 'Mombasa City Tour',
+    name_wasini: 'Wasini Island & Dolphins',
+    name_funzi: 'Funzi Island & Village Tour',
+    name_shimba: 'Shimba Hills National Reserve',
+    name_congo: 'Congo River Sunset Excursion',
+    name_pool: 'African Pool & Starfish Beach Tour',
     inc_jeep: '4×4 Jeep & Guide', inc_park: 'Parkeintrittsgebühren', inc_water: 'Trinkwasser',
     inc_acc: 'Unterkunft', inc_meals: 'Alle Mahlzeiten', inc_salt: 'Salt Lick Lodge',
     inc_acc2: '2× Unterkunft', inc_kili: 'Kilimandscharo-Aussicht',
