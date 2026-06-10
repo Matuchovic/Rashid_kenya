@@ -42,7 +42,7 @@ export function SocialSection() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,280px),1fr))', gap: 14, maxWidth: 680, margin: '0 auto' }}>
 
         {/* GROUP CARD */}
-        
+        <a
           className="ssi social-card"
           href="https://www.facebook.com/share/g/1EWSvuCo4V/?mibextid=wwXIfr"
           target="_blank" rel="noopener noreferrer"
@@ -84,7 +84,7 @@ export function SocialSection() {
         </a>
 
         {/* PROFILE CARD */}
-        
+        <a
           className="ssi social-card"
           href="https://www.facebook.com/share/1FBMYTAVux/?mibextid=wwXIfr"
           target="_blank" rel="noopener noreferrer"
