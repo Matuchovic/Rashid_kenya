@@ -10,6 +10,17 @@ export function HeroSection() {
   const particlesRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
 
+  // Force video autoplay on mount
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+    video.muted = true
+    video.play().catch(() => {
+      const unlock = () => { video.play().catch(() => {}); document.removeEventListener('click', unlock) }
+      document.addEventListener('click', unlock)
+    })
+  }, [])
+
   // Parallax on mouse move
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
