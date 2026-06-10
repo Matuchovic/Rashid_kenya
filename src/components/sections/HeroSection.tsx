@@ -72,8 +72,9 @@ export function HeroSection() {
           className="absolute inset-0"
           style={{
             background: `
-              linear-gradient(0deg, #050505 0%, rgba(5,5,5,0.45) 25%, rgba(5,5,5,0.05) 60%, transparent 100%),
-              linear-gradient(90deg, rgba(5,5,5,0.30) 0%, transparent 60%)
+              radial-gradient(ellipse 60% 40% at 52% 18%, rgba(255,170,30,0.50) 0%, rgba(220,100,10,0.28) 35%, transparent 65%),
+              linear-gradient(0deg, #050505 0%, rgba(5,5,5,0.70) 28%, rgba(5,5,5,0.12) 55%, rgba(15,8,0,0.35) 100%),
+              linear-gradient(90deg, rgba(5,5,5,0.38) 0%, transparent 50%, rgba(5,5,5,0.18) 100%)
             `,
           }}
         />
