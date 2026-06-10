@@ -185,7 +185,7 @@ export function EarthSection() {
       {/* Earth photo */}
       <div style={{ position:'absolute', inset:0, backgroundImage:"url('/img-earth-kenya.jpg')", backgroundSize:'cover', backgroundPosition:'center', animation:'earthKen 30s ease-in-out infinite alternate' }} />
       <div style={{ position:'absolute', inset:0, background:'linear-gradient(180deg,rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.05) 40%,rgba(0,0,0,0.55) 100%)' }} />
-      <div style={{ position:'absolute', inset:0, background:'linear-gradient(90deg,transparent 20%,rgba(0,0,0,0.88) 100%)' }} />
+      <div style={{ position:'absolute', inset:0, background:'linear-gradient(135deg,rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.2) 60%,transparent 100%)' }} />
 
       {/* Canvas overlay — cities + flights */}
       <canvas
@@ -194,7 +194,7 @@ export function EarthSection() {
       />
 
       {/* Right content */}
-      <div style={{ position:'relative', zIndex:10, marginLeft:'auto', padding:'clamp(60px,8vh,100px) clamp(20px,6vw,60px)', maxWidth:480, width:'100%' }}>
+      <div style={{ position:'absolute', bottom:'clamp(40px,6vh,72px)', left:'clamp(20px,4vw,56px)', zIndex:10, maxWidth:420 }}>
         <div className="ei" style={{ opacity:0, transform:'translateY(24px)', transition:'all 0.8s cubic-bezier(0.25,1,0.5,1)', fontSize:7, letterSpacing:'0.22em', color:'rgba(212,167,95,0.5)', textTransform:'uppercase', marginBottom:14 }}>Our Home</div>
         <h2 className="ei" style={{ opacity:0, transform:'translateY(30px)', transition:'all 0.9s cubic-bezier(0.25,1,0.5,1)', fontFamily:"'Cormorant Garamond',Georgia,serif", fontSize:'clamp(36px,6vw,64px)', fontWeight:200, color:'#F2E6D0', lineHeight:0.92, marginBottom:22 }}>
           Rooted in<br /><em style={{ color:'#D4A75F', fontStyle:'italic' }}>Kenya.</em>
