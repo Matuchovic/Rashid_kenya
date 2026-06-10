@@ -43,8 +43,9 @@ export function HeroSection() {
 
       <style>{`@keyframes heroKen{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.06) translate(-1%,0.5%)}}
         @keyframes rashidGlow{
-          0%,100%{text-shadow:0 0 30px rgba(212,167,95,0.0),0 0 0px rgba(212,167,95,0.0)}
-          50%{text-shadow:0 0 60px rgba(212,167,95,0.5),0 0 120px rgba(212,167,95,0.2),0 0 200px rgba(212,167,95,0.08)}
+          0%{text-shadow:0 0 40px rgba(212,167,95,0.2),0 0 80px rgba(212,167,95,0.08)}
+          50%{text-shadow:0 0 80px rgba(212,167,95,1.0),0 0 160px rgba(212,167,95,0.6),0 0 280px rgba(212,167,95,0.3),0 0 400px rgba(212,167,95,0.12)}
+          100%{text-shadow:0 0 40px rgba(212,167,95,0.2),0 0 80px rgba(212,167,95,0.08)}
         }`}</style>
     </section>
   )
