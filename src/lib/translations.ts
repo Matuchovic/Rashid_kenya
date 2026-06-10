@@ -50,6 +50,18 @@ export const translations = {
     // Footer
 
 
+
+    inc_jeep: '4×4 Jeep & Guide', inc_park: 'Park Entry Fees', inc_water: 'Drinking Water',
+    inc_acc: 'Accommodation', inc_meals: 'All Meals', inc_salt: 'Salt Lick Lodge',
+    inc_acc2: '2× Accommodation', inc_kili: 'Kilimanjaro Views',
+    inc_transport: 'Transport', inc_guide: 'Professional Guide',
+    inc_boat: 'Boat Ride', inc_snorkel: 'Snorkeling Equipment',
+    inc_instructor: 'Instructor', inc_lunch: 'Lunch',
+    inc_boat_exc: 'Boat Excursion', inc_village: 'Village Visit',
+    inc_seafood: 'Seafood Lunch', inc_park_fees: 'Park Fees',
+    inc_game_drive: 'Game Drive', inc_waterfall: 'Waterfall Hike',
+    inc_ranger: 'Armed Ranger', inc_sunset_views: 'Sunset Views',
+    inc_beach_guide: 'Beach Guide', inc_starfish: 'Starfish Village Visit',
     pkg_label: 'Kenya Safari & Excursions',
     pkg_title: 'Every Experience', pkg_title_em: 'Tailored for You.',
     pkg_desc: 'From dawn game drives in Tsavo to dolphin encounters in Wasini — Rashid designs every detail around you.',
@@ -125,6 +137,18 @@ export const translations = {
     soc_tagline: 'Skutečné příběhy z divočiny',
 
 
+
+    inc_jeep: '4×4 Jeep & průvodce', inc_park: 'Vstupné do parku', inc_water: 'Pitná voda',
+    inc_acc: 'Ubytování', inc_meals: 'Všechna jídla', inc_salt: 'Salt Lick Lodge',
+    inc_acc2: '2× ubytování', inc_kili: 'Výhled na Kilimandžáro',
+    inc_transport: 'Doprava', inc_guide: 'Profesionální průvodce',
+    inc_boat: 'Plavba lodí', inc_snorkel: 'Šnorchlovací vybavení',
+    inc_instructor: 'Instruktor', inc_lunch: 'Oběd',
+    inc_boat_exc: 'Výlet lodí', inc_village: 'Návštěva vesnice',
+    inc_seafood: 'Oběd s mořskými plody', inc_park_fees: 'Poplatky za park',
+    inc_game_drive: 'Safari výjezd', inc_waterfall: 'Túra k vodopádu',
+    inc_ranger: 'Ozbrojený ranger', inc_sunset_views: 'Výhledy na západ slunce',
+    inc_beach_guide: 'Průvodce po pláži', inc_starfish: 'Návštěva vesnice Starfish',
     pkg_label: 'Kenya Safari & Výlety',
     pkg_title: 'Každý zážitek', pkg_title_em: 'šitý na míru.',
     pkg_desc: 'Od ranních výjezdů v Tsavo po setkání s delfíny ve Wasini — Rashid navrhuje každý detail kolem vás.',
@@ -200,6 +224,18 @@ export const translations = {
     soc_tagline: 'Echte Geschichten aus der Wildnis',
 
 
+
+    inc_jeep: '4×4 Jeep & Guide', inc_park: 'Parkeintrittsgebühren', inc_water: 'Trinkwasser',
+    inc_acc: 'Unterkunft', inc_meals: 'Alle Mahlzeiten', inc_salt: 'Salt Lick Lodge',
+    inc_acc2: '2× Unterkunft', inc_kili: 'Kilimandscharo-Aussicht',
+    inc_transport: 'Transport', inc_guide: 'Professioneller Guide',
+    inc_boat: 'Bootsfahrt', inc_snorkel: 'Schnorchelausrüstung',
+    inc_instructor: 'Instructor', inc_lunch: 'Mittagessen',
+    inc_boat_exc: 'Bootsausflug', inc_village: 'Dorfbesuch',
+    inc_seafood: 'Meeresfrüchte-Mittagessen', inc_park_fees: 'Parkgebühren',
+    inc_game_drive: 'Pirschfahrt', inc_waterfall: 'Wasserfall-Wanderung',
+    inc_ranger: 'Bewaffneter Ranger', inc_sunset_views: 'Sonnenuntergangs-Aussicht',
+    inc_beach_guide: 'Strand-Guide', inc_starfish: 'Starfish-Dorfbesuch',
     pkg_label: 'Kenia Safari & Ausflüge',
     pkg_title: 'Jedes Erlebnis', pkg_title_em: 'nach Maß.',
     pkg_desc: 'Von Morgenpirschfahrten in Tsavo bis zu Delfin-Begegnungen in Wasini — Rashid plant jedes Detail für Sie.',

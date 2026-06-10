@@ -47,6 +47,54 @@ const PACKAGES: Pkg[] = [
 
 export function PackagesSection() {
   const { t } = useLang()
+
+  const tagMap: Record<string,string> = {
+    'Day Safari': t('pkg_tag_day'),
+    'Overnight': t('pkg_tag_overnight'),
+    'Luxury Lodge': t('pkg_tag_lodge'),
+    'Premium': t('pkg_tag_premium'),
+    'City': t('pkg_tag_city'),
+    'Ocean': t('pkg_tag_ocean'),
+    'Island': t('pkg_tag_island'),
+    'Nature': t('pkg_tag_nature'),
+    'Sunset': t('pkg_tag_sunset'),
+    'Beach': t('pkg_tag_beach'),
+  }
+
+  const durMap: Record<string,string> = {
+    '1 Day': t('pkg_dur_1day'),
+    '2 Days': t('pkg_dur_2days'),
+    '3 Days': t('pkg_dur_3days'),
+    'Full Day': t('pkg_dur_fullday'),
+    'Half Day': t('pkg_dur_halfday'),
+  }
+
+  const incMap: Record<string,string> = {
+    '4×4 Jeep & Guide': t('inc_jeep'),
+    'Park Entry Fees': t('inc_park'),
+    'Drinking Water': t('inc_water'),
+    'Accommodation': t('inc_acc'),
+    'All Meals': t('inc_meals'),
+    'Salt Lick Lodge': t('inc_salt'),
+    '2× Accommodation': t('inc_acc2'),
+    'Kilimanjaro Views': t('inc_kili'),
+    'Transport': t('inc_transport'),
+    'Professional Guide': t('inc_guide'),
+    'Boat Ride': t('inc_boat'),
+    'Snorkeling Equipment': t('inc_snorkel'),
+    'Instructor': t('inc_instructor'),
+    'Lunch': t('inc_lunch'),
+    'Boat Excursion': t('inc_boat_exc'),
+    'Village Visit': t('inc_village'),
+    'Seafood Lunch': t('inc_seafood'),
+    'Park Fees': t('inc_park_fees'),
+    'Game Drive': t('inc_game_drive'),
+    'Waterfall Hike': t('inc_waterfall'),
+    'Armed Ranger': t('inc_ranger'),
+    'Sunset Views': t('inc_sunset_views'),
+    'Beach Guide': t('inc_beach_guide'),
+    'Starfish Village Visit': t('inc_starfish'),
+  }
   const [filter, setFilter] = useState<'all' | 'safari' | 'excursion'>('all')
   const [visible, setVisible] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
@@ -136,10 +184,10 @@ export function PackagesSection() {
             {/* Tag + duration */}
             <div style={{ position:'absolute', top:16, left:16, right:16, display:'flex', justifyContent:'space-between', alignItems:'center' }}>
               <span style={{ fontSize:'clamp(7px,1.5vw,8px)', letterSpacing:'0.16em', color:'rgba(212,167,95,0.8)', textTransform:'uppercase', padding:'4px 10px', borderRadius:100, border:'0.5px solid rgba(212,167,95,0.2)', background:'rgba(0,0,0,0.5)', backdropFilter:'blur(8px)' }}>
-                {pkg.tag}
+                {tagMap[pkg.tag] ?? pkg.tag}
               </span>
               <span style={{ fontSize:'clamp(7px,1.5vw,8px)', letterSpacing:'0.12em', color:'rgba(242,230,208,0.5)', textTransform:'uppercase' }}>
-                {pkg.duration}
+                {durMap[pkg.duration] ?? pkg.duration}
               </span>
             </div>
 
@@ -154,8 +202,8 @@ export function PackagesSection() {
               {/* Includes */}
               <div style={{ display:'flex', flexWrap:'wrap', gap:4, marginBottom:14 }}>
                 {pkg.includes.slice(0,3).map(inc => (
-                  <span key={inc} style={{ fontSize:'clamp(7px,1.4vw,8px)', letterSpacing:'0.08em', color:'rgba(212,167,95,0.5)', textTransform:'uppercase', padding:'3px 8px', border:'0.5px solid rgba(212,167,95,0.15)', borderRadius:100 }}>
-                    {inc}
+                  <span key={incMap[inc] ?? inc} style={{ fontSize:'clamp(7px,1.4vw,8px)', letterSpacing:'0.08em', color:'rgba(212,167,95,0.5)', textTransform:'uppercase', padding:'3px 8px', border:'0.5px solid rgba(212,167,95,0.15)', borderRadius:100 }}>
+                    {incMap[inc] ?? inc}
                   </span>
                 ))}
                 {pkg.includes.length > 3 && (
