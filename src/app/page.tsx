@@ -4,6 +4,7 @@ import { BigFiveSection } from '@/components/sections/BigFiveSection'
 import { EarthSection } from '@/components/sections/EarthSection'
 import { SafarisSection } from '@/components/sections/SafarisSection'
 import { ExperienceSection } from '@/components/sections/ExperienceSection'
+import { SocialSection } from '@/components/sections/SocialSection'
 import { Footer } from '@/components/layout/Footer'
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <BigFiveSection />
       <SafarisSection />
       <ExperienceSection />
+      <SocialSection />
       <Footer />
     </>
   )
