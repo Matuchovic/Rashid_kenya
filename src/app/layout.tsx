@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { LenisProvider } from '@/components/ui/LenisProvider'
 import { FilmGrain } from '@/components/ui/FilmGrain'
 import { LoadingScreen } from '@/components/ui/LoadingScreen'
 import { NextFont } from 'next/dist/compiled/@next/font'
@@ -10,6 +11,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
+        <LenisProvider />
         <FilmGrain />
         {!loaded && <LoadingScreen onComplete={() => setLoaded(true)} />}
         <div style={{ opacity: loaded ? 1 : 0, transition: 'opacity 0.8s ease' }}>
