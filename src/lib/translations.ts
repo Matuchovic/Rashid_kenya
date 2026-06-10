@@ -317,7 +317,7 @@ export const translations = {
     tr_cta: 'Transfer planen',
     earth_earth: 'Welt', earth_africa: 'Afrika', earth_kenya: 'Kenia', earth_diani: 'Diani Beach',
     footer_copy: '© 2026 Rashid Adventures Kenya',
-  }
+  },
 
   ar: {
     nav_safaris: 'سفاري', nav_bigfive: 'الخمسة الكبار', nav_packages: 'الباقات',
