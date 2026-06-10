@@ -26,11 +26,6 @@ export function HeroSection() {
         opacity:0, transform:'translateY(20px)',
         transition:'all 1.4s cubic-bezier(0.16,1,0.3,1)',
       }}>
-        <div style={{ fontSize:'clamp(7px,1.8vw,9px)', letterSpacing:'0.28em', color:'rgba(212,167,95,0.5)', textTransform:'uppercase', marginBottom:'clamp(12px,2vh,20px)', display:'flex', alignItems:'center', gap:10 }}>
-          <span style={{ display:'block', width:'clamp(16px,3vw,28px)', height:'0.5px', background:'rgba(212,167,95,0.4)' }} />
-          Est. 1997 · Private Luxury Safaris
-          <span style={{ display:'block', width:'clamp(16px,3vw,28px)', height:'0.5px', background:'rgba(212,167,95,0.4)' }} />
-        </div>
 
         <h1 style={{
           fontFamily:"'Cormorant Garamond',Georgia,serif",
