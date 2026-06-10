@@ -320,9 +320,14 @@ export function Navigation() {
         <a href="https://wa.me/254718930587" onClick={() => setOpen(false)} target="_blank" rel="noopener noreferrer" style={{
           marginTop:'clamp(20px,4vh,32px)',
           display:'inline-flex', alignItems:'center', justifyContent:'center', gap:8,
-          fontSize:10, letterSpacing:'0.22em', color:'#050505',
-          background:'#D4A75F', padding:'16px 32px', borderRadius:100,
-          textDecoration:'none', textTransform:'uppercase', fontWeight:500,
+          fontSize:10, letterSpacing:'0.22em', color:'#F2E6D0',
+          background:'rgba(255,255,255,0.04)',
+          padding:'16px 32px', borderRadius:100,
+          border:'0.5px solid rgba(242,230,208,0.18)',
+          backdropFilter:'blur(12px)', WebkitBackdropFilter:'blur(12px)',
+          boxShadow:'0 0 16px rgba(212,167,95,0.12), inset 0 0.5px 0 rgba(255,255,255,0.08)',
+          textDecoration:'none', textTransform:'uppercase', fontWeight:400,
+          position:'relative', overflow:'hidden',
           opacity:open?1:0, transform:open?'translateY(0)':'translateY(16px)',
           transition:'all 0.5s cubic-bezier(0.16,1,0.3,1) 0.45s',
         }}>{t('nav_book')} →</a>
