@@ -20,31 +20,6 @@ export function EarthSection() {
       <div style={{ position:'absolute', inset:0, background:'linear-gradient(180deg,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0.08) 40%,rgba(0,0,0,0.6) 100%)' }} />
       <div style={{ position:'absolute', inset:0, background:'linear-gradient(90deg,transparent 20%,rgba(0,0,0,0.92) 100%)', display:'var(--earth-grad, block)' }} className="earth-grad-desktop" />
 
-      {/* Kenya SVG */}
-      <svg style={{ position:'absolute', inset:0, width:'100%', height:'100%', pointerEvents:'none' }} viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="kglow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="0.18" result="b"/>
-            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <filter id="kglow2" x="-60%" y="-60%" width="220%" height="220%">
-            <feGaussianBlur stdDeviation="0.4" result="b"/>
-            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-        </defs>
-        <path d={K} fill="rgba(212,167,95,0.06)" stroke="none" style={{ animation:'kBreath 4s ease-in-out 2.5s infinite' }}/>
-        <path d={K} fill="none" stroke="rgba(212,167,95,0.7)" strokeWidth="0.18" filter="url(#kglow)" strokeDasharray="60" strokeDashoffset="60" style={{ animation:'kDraw 2s cubic-bezier(0.25,1,0.5,1) 0.6s forwards' }}/>
-        <path d={K} fill="none" stroke="rgba(255,248,180,0.95)" strokeWidth="0.55" strokeLinecap="round" strokeDasharray="4 56" filter="url(#kglow2)" style={{ animation:'kPill 3.5s cubic-bezier(0.4,0,0.2,1) 2.8s infinite' }}/>
-        <circle cx="54.55" cy="66.82" r="0.55" fill="rgba(212,167,95,0.25)" style={{ animation:'nRing 2.5s ease-out 3s infinite' }}/>
-        <circle cx="54.55" cy="66.82" r="0.55" fill="rgba(212,167,95,0.15)" style={{ animation:'nRing 2.5s ease-out 3.4s infinite' }}/>
-        <circle cx="54.55" cy="66.82" r="0.22" fill="#D4A75F" filter="url(#kglow2)" style={{ animation:'nCore 2.5s ease-in-out 3s infinite' }}/>
-        <circle cx="53.04" cy="67.19" r="0.16" fill="rgba(212,167,95,0.5)" style={{ animation:'mPulse 3s ease-in-out 3.5s infinite' }}/>
-        <line x1="60.4" y1="57.5" x2="63.5" y2="54.5" stroke="rgba(212,167,95,0.22)" strokeWidth="0.06" strokeDasharray="0.5 0.8"/>
-        <text x="63.8" y="54.2" style={{ fontFamily:'Inter,sans-serif', fontSize:'1.15px', letterSpacing:'0.06em', fill:'rgba(212,167,95,0.8)', textTransform:'uppercase' }}>KENYA</text>
-        <text x="55.0" y="67.3" style={{ fontFamily:'Inter,sans-serif', fontSize:'0.75px', fill:'rgba(212,167,95,0.4)' }}>Nairobi</text>
-        <text x="50.8" y="68.2" style={{ fontFamily:'Inter,sans-serif', fontSize:'0.65px', fill:'rgba(212,167,95,0.3)' }}>Maasai Mara</text>
-      </svg>
-
       {/* Right content — bottom on mobile */}
       <div style={{ position:'relative', zIndex:10, marginLeft:'auto', padding:'clamp(60px,8vh,100px) clamp(20px,6vw,60px)', maxWidth:480, width:'100%' }}>
         <div className="ei" style={{ opacity:0, transform:'translateY(24px)', transition:'all 0.8s cubic-bezier(0.25,1,0.5,1)', fontSize:7, letterSpacing:'0.22em', color:'rgba(212,167,95,0.5)', textTransform:'uppercase', marginBottom:14 }}>Our Home</div>
