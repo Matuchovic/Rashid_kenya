@@ -11,7 +11,7 @@ function LionLogo() {
   const canvasRef = React.useRef<HTMLCanvasElement>(null)
   React.useEffect(() => {
     const cv = canvasRef.current; if (!cv) return
-    const ctx = cv.getContext('2d'); if (!ctx) return
+    const ctx = cv.getContext('2d') as CanvasRenderingContext2D; if (!ctx) return
     const CX=32,CY=32; let f=0
     const pts = Array.from({length:40},(_,i)=>({
       a:(i/40)*Math.PI*2, spd:(Math.random()>.5?1:-1)*(0.002+Math.random()*0.005),
