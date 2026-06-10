@@ -258,7 +258,7 @@ export const translations = {
 
 
 
-    pkg_h_every: 'Every Experience',
+    pkg_h_every: 'Jedes Erlebnis',
     name_tsavo1: 'Eintägige Safari Tsavo East',
     name_ngutuni1: 'Eintägige Safari Ngutuni',
     name_tsavo2: '2 Tage / 1 Nacht Tsavo East',
