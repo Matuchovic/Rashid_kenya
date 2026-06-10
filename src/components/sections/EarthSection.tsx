@@ -171,7 +171,7 @@ export function EarthSection() {
       ctx.fillText('KENYA', kx+kr1+4, ky-3)
       ctx.fillStyle='rgba(212,167,95,0.55)'
       ctx.font='400 8px Inter,sans-serif'
-      ctx.fillText('Diani Beach', kx+kr1+4, ky+8)
+      ctx.fillText(t('earth_diani'), kx+kr1+4, ky+8)
     }
 
     draw()
@@ -197,16 +197,16 @@ export function EarthSection() {
 
       {/* Right content */}
       <div style={{ position:'absolute', bottom:'clamp(40px,6vh,72px)', left:'clamp(20px,4vw,56px)', zIndex:10, maxWidth:420 }}>
-        <div className="ei" style={{ opacity:0, transform:'translateY(24px)', transition:'all 0.8s cubic-bezier(0.25,1,0.5,1)', fontSize:7, letterSpacing:'0.22em', color:'rgba(212,167,95,0.5)', textTransform:'uppercase', marginBottom:14 }}>Our Home</div>
+        <div className="ei" style={{ opacity:0, transform:'translateY(24px)', transition:'all 0.8s cubic-bezier(0.25,1,0.5,1)', fontSize:7, letterSpacing:'0.22em', color:'rgba(212,167,95,0.5)', textTransform:'uppercase', marginBottom:14 }}>{t('earth_home')}</div>
         <h2 className="ei" style={{ opacity:0, transform:'translateY(30px)', transition:'all 0.9s cubic-bezier(0.25,1,0.5,1)', fontFamily:"'Cormorant Garamond',Georgia,serif", fontSize:'clamp(36px,6vw,64px)', fontWeight:200, color:'#F2E6D0', lineHeight:0.92, marginBottom:22 }}>
-          Rooted in<br /><em style={{ color:'#D4A75F', fontStyle:'italic' }}>Kenya.</em>
+          {t('earth_title')}<br /><em style={{ color:'#D4A75F', fontStyle:'italic' }}>{t('earth_title_em')}</em>
         </h2>
         <div className="ei" style={{ opacity:0, transform:'translateY(20px)', transition:'all 0.8s cubic-bezier(0.25,1,0.5,1)', width:36, height:'0.5px', background:'linear-gradient(90deg,#D4A75F,transparent)', marginBottom:20 }} />
         <p className="ei" style={{ opacity:0, transform:'translateY(20px)', transition:'all 0.8s cubic-bezier(0.25,1,0.5,1)', fontSize:'clamp(12px,1.5vw,14px)', lineHeight:1.8, color:'rgba(242,230,208,0.45)', marginBottom:28 }}>
-          From the vast savannahs of the Maasai Mara to the foot of Kilimanjaro. Guests travel from across the world to experience Kenya with Rashid.
+          {t('earth_desc')}
         </p>
         <div className="ei" style={{ opacity:0, transform:'translateY(20px)', transition:'all 0.8s cubic-bezier(0.25,1,0.5,1)', display:'flex', flexDirection:'column', gap:8, marginBottom:28 }}>
-          {([['Earth',false],['Africa',false],['Kenya',true],['Diani Beach',false]] as [string,boolean][]).map(([l,a]) => (
+          {([[t('earth_earth'),false],[t('earth_africa'),false],[t('earth_kenya'),true],[t('earth_diani'),false]] as [string,boolean][]).map(([l,a]) => (
             <div key={l} style={{ display:'flex', alignItems:'center', gap:10 }}>
               <div style={{ width:5, height:5, borderRadius:'50%', flexShrink:0, background:a?'#D4A75F':'rgba(212,167,95,0.2)', boxShadow:a?'0 0 8px rgba(212,167,95,0.6)':'none' }} />
               <span style={{ fontSize:8, letterSpacing:'0.16em', textTransform:'uppercase', color:a?'rgba(212,167,95,0.8)':'rgba(242,230,208,0.2)' }}>{l}</span>
@@ -214,7 +214,7 @@ export function EarthSection() {
           ))}
         </div>
         <div className="ei" style={{ opacity:0, transform:'translateY(20px)', transition:'all 0.8s cubic-bezier(0.25,1,0.5,1)', display:'flex', alignItems:'center', gap:12, cursor:'pointer' }}>
-          <span style={{ fontSize:8, letterSpacing:'0.22em', color:'rgba(212,167,95,0.5)', textTransform:'uppercase' }}>Begin Journey</span>
+          <span style={{ fontSize:8, letterSpacing:'0.22em', color:'rgba(212,167,95,0.5)', textTransform:'uppercase' }}>{t('earth_begin')}</span>
           <div style={{ height:'0.5px', width:32, background:'rgba(212,167,95,0.4)' }} />
         </div>
       </div>
