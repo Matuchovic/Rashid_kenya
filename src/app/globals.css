@@ -249,3 +249,55 @@
 @media (hover: none) {
   .btn-primary:hover { transform: none !important; }
 }
+
+
+/* ══ FULL MOBILE OPTIMIZATION ═══════════════ */
+@media (max-width: 768px) {
+
+  /* Touch tap highlight off */
+  * { -webkit-tap-highlight-color: transparent; }
+
+  /* Prevent horizontal overflow */
+  body { overflow-x: hidden; }
+
+  /* Navigation */
+  .nav-burger { display: flex !important; }
+  .nav-desktop { display: none !important; }
+  .nav-cta-desktop { display: none !important; }
+
+  /* Buttons */
+  .btn-primary, .btn-ghost {
+    padding: 14px 22px !important;
+    font-size: 10px !important;
+    min-height: 48px;
+    min-width: 44px;
+  }
+
+  /* Eyebrow */
+  .eyebrow { font-size: 7px !important; }
+
+  /* Safari cards mobile */
+  .safari-card { min-height: 380px !important; }
+  .safari-btn {
+    padding: 12px 18px !important;
+    font-size: 8px !important;
+    min-height: 44px;
+  }
+
+  /* Big Five mobile */
+  .bf-desktop { display: none !important; }
+  .bf-mobile { display: block !important; }
+}
+
+/* Hover effects only on devices that support it */
+@media (hover: none) {
+  .btn-primary:hover,
+  .btn-ghost:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  .safari-card:hover .safari-photo {
+    filter: brightness(0.4) !important;
+    transform: none !important;
+  }
+}
