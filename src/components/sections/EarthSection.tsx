@@ -1,7 +1,9 @@
 'use client'
 import { useEffect, useRef } from 'react'
+import { useLang } from '@/context/LanguageContext'
 
 export function EarthSection() {
+  const { t } = useLang()
   const ref = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
