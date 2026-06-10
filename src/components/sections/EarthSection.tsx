@@ -171,7 +171,7 @@ export function EarthSection() {
       ctx.fillText('KENYA', kx+kr1+4, ky-3)
       ctx.fillStyle='rgba(212,167,95,0.55)'
       ctx.font='400 8px Inter,sans-serif'
-      ctx.fillText(t('earth_diani'), kx+kr1+4, ky+8)
+      ctx.fillText(tRef.current('earth_diani'), kx+kr1+4, ky+8)
     }
 
     draw()
