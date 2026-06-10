@@ -12,7 +12,7 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section style={{ position:'relative', width:'100%', height:'100svh', minHeight:560, overflow:'hidden', background:'#000' }}>
+    <section id="hero" style={{ position:'relative', width:'100%', height:'100svh', minHeight:560, overflow:'hidden', background:'#000' }}>
       <div style={{ position:'absolute', inset:0, backgroundImage:"url('/img-lion.jpg')", backgroundSize:'cover', backgroundPosition:'center 25%', animation:'heroKen 20s ease-in-out infinite alternate' }} />
       <div style={{ position:'absolute', inset:0, background:'linear-gradient(0deg,rgba(0,0,0,0.95) 0%,rgba(0,0,0,0.4) 35%,rgba(0,0,0,0.1) 60%,rgba(0,0,0,0.55) 100%)' }} />
       <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 80% 80% at 50% 50%,transparent 25%,rgba(0,0,0,0.75) 100%)' }} />

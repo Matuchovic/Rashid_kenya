@@ -13,7 +13,7 @@ export function BigFiveSection() {
   const [active, setActive] = useState(0)
 
   return (
-    <section style={{ background:'#050505', overflow:'hidden' }}>
+    <section id="bigfive" style={{ background:'#050505', overflow:'hidden' }}>
 
       {/* Header */}
       <div style={{ padding:'clamp(40px,6vh,80px) clamp(20px,5vw,48px) clamp(20px,3vh,40px)', display:'flex', alignItems:'flex-end', justifyContent:'space-between' }}>

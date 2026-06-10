@@ -20,7 +20,7 @@ export function SocialSection() {
   }, [])
 
   return (
-    <section ref={ref} style={{ background: '#050505', padding: 'clamp(60px,8vh,100px) clamp(20px,5vw,48px)', position: 'relative', overflow: 'hidden' }}>
+    <section id="contact" ref={ref} style={{ background: '#050505', padding: 'clamp(60px,8vh,100px) clamp(20px,5vw,48px)', position: 'relative', overflow: 'hidden' }}>
 
       {/* Background glow */}
       <div style={{ position: 'absolute', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle,rgba(212,167,95,0.04) 0%,transparent 70%)', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', pointerEvents: 'none' }} />

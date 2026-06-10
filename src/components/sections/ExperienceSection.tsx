@@ -13,7 +13,7 @@ export function ExperienceSection() {
   }, [])
 
   return (
-    <section ref={ref} style={{ position:'relative', minHeight:'80svh', overflow:'hidden', display:'flex', alignItems:'center' }}>
+    <section id="experience" ref={ref} style={{ position:'relative', minHeight:'80svh', overflow:'hidden', display:'flex', alignItems:'center' }}>
       <div style={{ position:'absolute', inset:0, backgroundImage:"url('/img-savanna.jpg')", backgroundSize:'cover', backgroundPosition:'center 40%', animation:'expKen 25s ease-in-out infinite alternate' }} />
       <div style={{ position:'absolute', inset:0, background:'rgba(0,0,0,0.55)' }} />
       <div style={{ position:'absolute', inset:0, background:'linear-gradient(90deg,rgba(0,0,0,0.75) 0%,transparent 70%)' }} />

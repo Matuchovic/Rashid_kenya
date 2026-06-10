@@ -180,7 +180,7 @@ export function EarthSection() {
   }, [])
 
   return (
-    <section ref={ref} style={{ position:'relative', minHeight:'100svh', background:'#000', overflow:'hidden', display:'flex', alignItems:'center' }}>
+    <section id="earth" ref={ref} style={{ position:'relative', minHeight:'100svh', background:'#000', overflow:'hidden', display:'flex', alignItems:'center' }}>
 
       {/* Earth photo */}
       <div style={{ position:'absolute', inset:0, backgroundImage:"url('/img-earth-kenya.jpg')", backgroundSize:'cover', backgroundPosition:'center', animation:'earthKen 30s ease-in-out infinite alternate' }} />

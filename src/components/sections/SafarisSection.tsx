@@ -56,7 +56,7 @@ export function SafarisSection() {
   }, [])
 
   return (
-    <section ref={ref} style={{ background: '#050505', padding: 'clamp(60px,8vh,100px) 0', overflow: 'hidden' }}>
+    <section id="packages" ref={ref} style={{ background: '#050505', padding: 'clamp(60px,8vh,100px) 0', overflow: 'hidden' }}>
 
       <div className="si" style={{
         opacity: 0, transform: 'translateY(24px)',
