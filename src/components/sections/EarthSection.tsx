@@ -101,24 +101,24 @@ export function EarthSection() {
           const [px,py] = bezPt([sx,sy],[kx,ky],c2,tp)
           if(i===0) ctx.moveTo(px,py); else ctx.lineTo(px,py)
         }
-        ctx.strokeStyle='rgba(212,167,95,0.35)'
+        ctx.strokeStyle='rgba(212,167,95,0.55)'
         ctx.lineWidth=0.5
         ctx.stroke()
 
         // Plane dot
         const [px,py] = bezPt([sx,sy],[kx,ky],c2,prog)
-        const g2 = ctx.createRadialGradient(px,py,0,px,py,8)
+        const g2 = ctx.createRadialGradient(px,py,0,px,py,10)
         g2.addColorStop(0,'rgba(248,224,120,0.9)')
         g2.addColorStop(1,'rgba(248,224,120,0)')
         ctx.beginPath();ctx.arc(px,py,5,0,Math.PI*2)
         ctx.fillStyle=g2;ctx.fill()
-        ctx.beginPath();ctx.arc(px,py,1.8,0,Math.PI*2)
+        ctx.beginPath();ctx.arc(px,py,2.5,0,Math.PI*2)
         ctx.fillStyle='rgba(255,255,200,1.0)';ctx.fill()
 
         // City pulse
         const pulse = Math.sin(t*2 + pl.city.lon*0.1)*0.5+0.5
-        const r1 = 3.5 + pulse*2
-        const r2 = 9 + pulse*7
+        const r1 = 4 + pulse*2.5
+        const r2 = 12 + pulse*9
 
         ctx.beginPath();ctx.arc(sx,sy,r2,0,Math.PI*2)
         ctx.strokeStyle=`rgba(212,167,95,${0.15+pulse*0.2})`
@@ -152,11 +152,11 @@ export function EarthSection() {
       ctx.lineWidth=0.5;ctx.stroke()
 
       ctx.beginPath();ctx.arc(kx,ky,kr2,0,Math.PI*2)
-      ctx.strokeStyle=`rgba(255,255,255,${0.07+kPulse*0.07})`
+      ctx.strokeStyle=`rgba(255,255,255,${0.15+kPulse*0.15})`
       ctx.lineWidth=0.5;ctx.stroke()
 
       ctx.beginPath();ctx.arc(kx,ky,kr1,0,Math.PI*2)
-      ctx.strokeStyle=`rgba(255,255,255,${0.4+kPulse*0.2})`
+      ctx.strokeStyle=`rgba(255,255,255,${0.7+kPulse*0.3})`
       ctx.lineWidth=1;ctx.stroke()
 
       const kg = ctx.createRadialGradient(kx,ky,0,kx,ky,kr1)
@@ -186,13 +186,13 @@ export function EarthSection() {
 
       {/* Earth photo */}
       <div style={{ position:'absolute', inset:0, backgroundImage:"url('/img-earth-kenya.jpg')", backgroundSize:'cover', backgroundPosition:'center', animation:'earthKen 30s ease-in-out infinite alternate' }} />
-      <div style={{ position:'absolute', inset:0, background:'linear-gradient(180deg,rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.05) 40%,rgba(0,0,0,0.55) 100%)' }} />
-      <div style={{ position:'absolute', inset:0, background:'linear-gradient(135deg,rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.2) 60%,transparent 100%)' }} />
+      <div style={{ position:'absolute', inset:0, background:'linear-gradient(180deg,rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.05) 40%,rgba(0,0,0,0.55) 100%)', zIndex:1 }} />
+      <div style={{ position:'absolute', inset:0, background:'linear-gradient(135deg,rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.15) 60%,transparent 100%)', zIndex:1 }} />
 
       {/* Canvas overlay — cities + flights */}
       <canvas
         ref={canvasRef}
-        style={{ position:'absolute', inset:0, width:'100%', height:'100%', pointerEvents:'none', zIndex:2, opacity:'var(--canvas-opacity, 1)' }}
+        style={{ position:'absolute', inset:0, width:'100%', height:'100%', pointerEvents:'none', zIndex:5 }}
       />
 
       {/* Right content */}

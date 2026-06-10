@@ -44,7 +44,7 @@ export function Navigation() {
         width: 'calc(100% - clamp(12px,4vw,32px))',
         maxWidth: 1180,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        padding: 'clamp(10px,3vw,14px) clamp(14px,4vw,24px)',
+        padding: '0 clamp(14px,4vw,24px)', height: 'clamp(52px,7vw,64px)',
         borderRadius: 100,
         background: scrolled ? 'rgba(5,5,5,0.95)' : 'rgba(5,5,5,0.6)',
         backdropFilter: 'blur(40px)', WebkitBackdropFilter: 'blur(40px)',
