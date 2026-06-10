@@ -14,23 +14,23 @@ const packages = [
     tag: 'Tsavo + Amboseli · 3 Days',
     title: 'Big Five Private Journey',
     sub: 'Tsavo East + Amboseli + Kilimanjaro',
-    desc: 'Three days hunting the Big Five. Amboseli beneath Kilimanjaro, elephant herds in the dust, leopards at dusk. No strangers.',
+    desc: 'Three days hunting the Big Five. Amboseli beneath Kilimanjaro, elephant herds in the dust, leopards at dusk.',
     tags: ['Big Five', 'Kilimanjaro View', 'Private'],
     img: '/img-rhino.jpg',
   },
   {
-    tag: 'Maasai Mara · 2–3 Days',
+    tag: 'Maasai Mara · 2-3 Days',
     title: 'Maasai Mara Luxury by Air',
-    sub: 'Flight from Diani — land in the Mara',
-    desc: 'Private flight, luxury tented camp in the heart of Mara, private game drives at dawn and sunset. Great Migration July–October.',
+    sub: 'Flight from Diani, land in the Mara',
+    desc: 'Private flight, luxury tented camp in the heart of Mara, private game drives at dawn and sunset. Great Migration July-October.',
     tags: ['By Air', 'Luxury Camp', 'Great Migration'],
     img: '/img-savanna.jpg',
   },
   {
-    tag: 'Bush + Beach · 5–7 Days',
-    title: 'Diani Beach & Safari Combo',
-    sub: 'The Best of Kenya — Wild and Coast',
-    desc: '2 days safari followed by 3 days on Diani Beach in a luxury resort. Rashid arranges everything — transfers, stays, dining.',
+    tag: 'Bush + Beach · 5-7 Days',
+    title: 'Diani Beach Safari Combo',
+    sub: 'The Best of Kenya, Wild and Coast',
+    desc: '2 days safari followed by 3 days on Diani Beach in a luxury resort. Rashid arranges everything, transfers, stays, dining.',
     tags: ['Bush + Beach', 'All-inclusive', 'Honeymoon Ideal'],
     img: '/img-elephants-sunset.jpg',
   },
@@ -44,9 +44,9 @@ export function SafarisSection() {
       if (e.isIntersecting) {
         ref.current?.querySelectorAll('.si').forEach((el, i) =>
           setTimeout(() => {
-            const el2 = el as HTMLElement
-            el2.style.opacity = '1'
-            el2.style.transform = 'translateY(0)'
+            const elem = el as HTMLElement
+            elem.style.opacity = '1'
+            elem.style.transform = 'translateY(0)'
           }, i * 120)
         )
       }
@@ -96,7 +96,7 @@ export function SafarisSection() {
             className="si safari-card"
             style={{
               opacity: 0, transform: 'translateY(32px)',
-              transition: `all 0.8s cubic-bezier(0.25,1,0.5,1) ${i * 0.08}s`,
+              transition: 'all 0.8s cubic-bezier(0.25,1,0.5,1)',
               position: 'relative', overflow: 'hidden',
               minHeight: 'clamp(400px,55vh,540px)',
               cursor: 'pointer',
@@ -104,7 +104,7 @@ export function SafarisSection() {
           >
             <div className="safari-photo" style={{
               position: 'absolute', inset: 0,
-              backgroundImage: `url('${p.img}')`,
+              backgroundImage: 'url(' + JSON.stringify(p.img) + ')',
               backgroundSize: 'cover', backgroundPosition: 'center',
               filter: 'brightness(0.4)',
               transition: 'filter 0.6s ease, transform 0.6s ease',
@@ -155,7 +155,7 @@ export function SafarisSection() {
               </div>
 
               
-                href="https://wa.me/254700000000?text=Hi%20Rashid%2C%20I%27m%20interested%20in%20a%20private%20safari"
+                href="https://wa.me/254700000000"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="safari-btn"
@@ -169,7 +169,7 @@ export function SafarisSection() {
                 }}
               >
                 Contact Rashid
-                <span>→</span>
+                <span>&#8594;</span>
               </a>
             </div>
           </div>
