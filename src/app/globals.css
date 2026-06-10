@@ -420,3 +420,9 @@ button, a { min-height: 44px; min-width: 44px; }
 @media(min-width:601px) and (max-width:900px){
   #all-packages { --pkg-cols: 2; }
 }
+
+/* Arabic RTL support */
+[lang="ar"], [dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}

@@ -34,7 +34,7 @@ export function Navigation() {
     if (el) el.scrollIntoView({ behavior: 'smooth' })
   }
 
-  const langs: Lang[] = ['en', 'cs', 'de']
+  const langs: Lang[] = ['en', 'cs', 'de', 'ar', 'sw', 'pl', 'it', 'es']
 
   return (
     <>
@@ -92,7 +92,7 @@ export function Navigation() {
                 padding:'4px 6px', transition:'color 0.2s',
                 borderRight: i < langs.length-1 ? '0.5px solid rgba(212,167,95,0.2)' : 'none',
                 textTransform:'uppercase',
-              }}>{l.toUpperCase()}</button>
+              }}>{l === 'sw' ? 'SW' : l === 'ar' ? 'AR' : l === 'pl' ? 'PL' : l === 'it' ? 'IT' : l === 'es' ? 'ES' : l.toUpperCase()}</button>
             ))}
           </div>
 
@@ -149,7 +149,7 @@ export function Navigation() {
               border: lang===l ? '0.5px solid rgba(212,167,95,0.4)' : '0.5px solid rgba(255,255,255,0.1)',
               cursor:'pointer', padding:'8px 16px', borderRadius:100,
               textTransform:'uppercase', transition:'all 0.2s',
-            }}>{l.toUpperCase()}</button>
+            }}>{l === 'sw' ? 'SW' : l === 'ar' ? 'AR' : l === 'pl' ? 'PL' : l === 'it' ? 'IT' : l === 'es' ? 'ES' : l.toUpperCase()}</button>
           ))}
         </div>
 
