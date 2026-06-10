@@ -99,7 +99,7 @@ export function Navigation() {
           {/* Desktop CTA */}
           <a href="https://wa.me/254718930587" target="_blank" rel="noopener noreferrer"
             className="nav-cta-desktop"
-            style={{ display:'none', fontSize:9, letterSpacing:'0.14em', color:'#050505', background:'#D4A75F', padding:'9px 18px', borderRadius:100, textDecoration:'none', textTransform:'uppercase', fontWeight:500, transition:'all 0.2s' }}
+            style={{ display:'none', position:'relative', overflow:'hidden', fontSize:9, letterSpacing:'0.16em', color:'#F2E6D0', background:'rgba(255,255,255,0.04)', padding:'9px 20px', borderRadius:100, textDecoration:'none', textTransform:'uppercase', fontWeight:400, border:'0.5px solid rgba(242,230,208,0.18)', backdropFilter:'blur(12px)', WebkitBackdropFilter:'blur(12px)', boxShadow:'0 0 16px rgba(212,167,95,0.1), inset 0 0.5px 0 rgba(255,255,255,0.08)', transition:'all 0.3s ease' }}
           >{t('nav_book')}</a>
 
           {/* Mobile burger */}

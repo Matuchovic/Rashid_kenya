@@ -426,3 +426,39 @@ button, a { min-height: 44px; min-width: 44px; }
   direction: rtl;
   text-align: right;
 }
+
+/* Book Safari — Ghost + gold top-line + shimmer */
+.nav-cta-desktop {
+  display: none;
+  position: relative !important;
+  overflow: hidden !important;
+}
+@media(min-width:768px){
+  .nav-cta-desktop { display: inline-flex !important; align-items: center; }
+}
+.nav-cta-desktop::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 0.5px;
+  background: linear-gradient(90deg, transparent, rgba(212,167,95,0.7), rgba(255,240,160,1), rgba(212,167,95,0.7), transparent);
+  z-index: 2;
+}
+.nav-cta-desktop::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 55%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(212,167,95,0.12), transparent);
+  animation: navCtaShimmer 3.5s ease-in-out infinite;
+  z-index: 1;
+}
+@keyframes navCtaShimmer {
+  0% { left: -100%; }
+  60% { left: 200%; }
+  100% { left: 200%; }
+}
+.nav-cta-desktop:hover {
+  color: #D4A75F !important;
+  border-color: rgba(212,167,95,0.45) !important;
+  box-shadow: 0 0 24px rgba(212,167,95,0.2), inset 0 0.5px 0 rgba(255,255,255,0.08) !important;
+}
