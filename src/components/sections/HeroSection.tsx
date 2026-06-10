@@ -79,7 +79,7 @@ export function HeroSection() {
           style={{ opacity: 0.9 }}
           suppressHydrationWarning
         >
-          <source src="/hero.mp4" type="video/mp4" />
+          <source src="https://files.catbox.moe/bbw5a1.mp4" type="video/mp4" />
         </video>
         <div
           className="absolute inset-0"
