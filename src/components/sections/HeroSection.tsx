@@ -30,7 +30,7 @@ export function HeroSection() {
           Est. 1997 · Private Luxury Safaris
           <span style={{ display: 'block', width: 24, height: '0.5px', background: 'rgba(212,167,95,0.4)' }}></span>
         </div>
-        <h1 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 'clamp(56px, 16vw, 130px)', fontWeight: 200, letterSpacing: '0.1em', color: '#F2E6D0', lineHeight: 0.88, marginBottom: 8 }}>RASHID</h1>
+        <h1 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 'clamp(56px, 16vw, 130px)', fontWeight: 200, letterSpacing: '0.1em', color: '#F2E6D0', lineHeight: 0.88, marginBottom: 8, animation: 'rashidGlow 3.5s ease-in-out infinite' }}>RASHID</h1>
         <div style={{ fontSize: 'clamp(9px, 2.5vw, 16px)', letterSpacing: '0.42em', color: 'rgba(212,167,95,0.7)', textTransform: 'uppercase', marginBottom: 18 }}>KENYA ADVENTURES</div>
         <div style={{ width: 28, height: '0.5px', background: 'rgba(212,167,95,0.4)', marginBottom: 18 }} />
         <div style={{ fontSize: 'clamp(8px, 1.8vw, 12px)', letterSpacing: '0.2em', color: 'rgba(242,230,208,0.4)', textTransform: 'uppercase' }}>Private Luxury Safaris Across East Africa</div>
@@ -41,7 +41,11 @@ export function HeroSection() {
         <div style={{ fontSize: 7, letterSpacing: '0.22em', color: 'rgba(212,167,95,0.35)', textTransform: 'uppercase' }}>Scroll to begin</div>
       </div>
 
-      <style>{`@keyframes heroKen{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.06) translate(-1%,0.5%)}}`}</style>
+      <style>{`@keyframes heroKen{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.06) translate(-1%,0.5%)}}
+        @keyframes rashidGlow{
+          0%,100%{text-shadow:0 0 30px rgba(212,167,95,0.0),0 0 0px rgba(212,167,95,0.0)}
+          50%{text-shadow:0 0 60px rgba(212,167,95,0.5),0 0 120px rgba(212,167,95,0.2),0 0 200px rgba(212,167,95,0.08)}
+        }`}</style>
     </section>
   )
 }
