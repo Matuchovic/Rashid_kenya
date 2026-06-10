@@ -82,7 +82,7 @@ export function PackagesSection() {
       </div>
 
       {/* Filter tabs */}
-      <div style={{ display:'flex', justifyContent:'center', gap:8, padding:'0 clamp(20px,5vw,48px)', marginBottom:'clamp(32px,5vh,48px)',
+      <div style={{ display:'flex', justifyContent:'center', flexWrap:'wrap', gap:8, padding:'0 clamp(16px,5vw,48px)', marginBottom:'clamp(28px,4vh,44px)',
         opacity: visible ? 1 : 0, transition:'opacity 0.8s ease 0.2s' }}>
         {(['all','safari','excursion'] as const).map(f => (
           <button key={f} onClick={() => setFilter(f)} style={{
@@ -94,19 +94,19 @@ export function PackagesSection() {
             color: filter === f ? '#D4A75F' : 'rgba(242,230,208,0.35)',
             minHeight: 40,
           }}>
-            {f === 'all' ? 'All Experiences' : f === 'safari' ? 'Safari Packages' : 'Day Excursions'}
+            {f === 'all' ? 'All' : f === 'safari' ? 'Safaris' : 'Excursions'}
           </button>
         ))}
       </div>
 
       {/* Cards grid */}
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(min(100%,300px),1fr))', gap:'clamp(8px,2vw,12px)', padding:'0 clamp(12px,4vw,48px)', maxWidth:1200, margin:'0 auto' }}>
+      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(min(100%,clamp(260px,40vw,340px)),1fr))', gap:'clamp(8px,2vw,12px)', padding:'0 clamp(12px,4vw,48px)', maxWidth:1200, margin:'0 auto' }}>
         {filtered.map((pkg, idx) => (
           <ContactMenu key={pkg.id}
             style={{
               position:'relative', overflow:'hidden',
-              borderRadius:'clamp(10px,2vw,16px)',
-              minHeight:'clamp(280px,45vw,360px)',
+              borderRadius:'clamp(12px,3vw,16px)',
+              minHeight:'clamp(200px,35vw,320px)',
               display:'flex', flexDirection:'column', justifyContent:'flex-end',
               textDecoration:'none', cursor:'pointer',
               border: pkg.highlight ? '0.5px solid rgba(212,167,95,0.3)' : '0.5px solid rgba(212,167,95,0.08)',
@@ -144,10 +144,10 @@ export function PackagesSection() {
             </div>
 
             {/* Content */}
-            <div style={{ position:'relative', zIndex:1, padding:'clamp(16px,3vw,24px)' }}>
+            <div style={{ position:'relative', zIndex:1, padding:'clamp(14px,3vw,22px)' }}>
               <h3 style={{
                 fontFamily:"'Cormorant Garamond',Georgia,serif",
-                fontSize:'clamp(18px,3vw,24px)', fontWeight:200,
+                fontSize:'clamp(16px,4vw,24px)', fontWeight:200,
                 color:'#F2E6D0', lineHeight:1.1, marginBottom:10,
               }}>{pkg.name}</h3>
 
@@ -200,7 +200,12 @@ export function PackagesSection() {
         .pkg-card:hover { border-color:rgba(212,167,95,0.35)!important; }
         @media(max-width:768px){
           .pkg-card:hover .pkg-photo { filter:brightness(0.35)!important; transform:none; }
-          .pkg-card { min-height:260px!important; }
+          
+          .pkg-card { min-height:220px!important; }
+          #all-packages .filter-btn { padding:8px 14px!important; font-size:8px!important; }
+          #all-packages h2 { line-height:0.88!important; }
+          #all-packages .pkg-name { font-size:clamp(16px,4.5vw,20px)!important; }
+        
         }
       `}</style>
     </section>

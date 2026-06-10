@@ -413,3 +413,18 @@ button, a { min-height: 44px; min-width: 44px; }
     padding:32px 24px 48px!important;
   }
 }
+
+@media(max-width:768px){
+  #all-packages .pkg-card { min-height:240px!important; }
+  #all-packages [style*="gridTemplateColumns"] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+    padding: 0 12px !important;
+  }
+}
+@media(max-width:480px){
+  #all-packages [style*="gridTemplateColumns"] {
+    grid-template-columns: 1fr !important;
+  }
+  #all-packages .pkg-card { min-height:280px!important; }
+}
