@@ -114,7 +114,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       {/* Bottom loading UI */}
       <div style={{
         position: 'relative', zIndex: 10,
-        width: '100%', padding: '0 40px 40px',
+        width: '100%', padding: '0 40px 180px',
         display: 'flex', flexDirection: 'column',
         alignItems: 'center', gap: 10,
         animation: 'ldrFadeIn 1s ease 0.8s both',
