@@ -21,6 +21,17 @@ export function HeroSection() {
     })
   }, [])
 
+  // Force video autoplay
+  useEffect(() => {
+    const v = videoRef.current
+    if (!v) return
+    v.muted = true
+    v.play().catch(() => {
+      const go = () => { v.play().catch(() => {}); document.removeEventListener('click', go) }
+      document.addEventListener('click', go)
+    })
+  }, [])
+
   // Parallax on mouse move
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
