@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
+import { DustParticles } from '@/components/ui/DustParticles'
 
 export function HeroSection() {
   const titleRef = useRef<HTMLDivElement>(null)
