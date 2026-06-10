@@ -139,7 +139,7 @@ export function PackagesSection() {
           <span style={{ display:'block', width:32, height:'0.5px', background:'rgba(212,167,95,0.25)' }} />
         </div>
         <h2 style={{ fontFamily:"'Cormorant Garamond',Georgia,serif", fontSize:'clamp(34px,5.5vw,60px)', fontWeight:200, color:'#F2E6D0', lineHeight:0.9, marginBottom:16 }}>
-          Every Experience<br /><em style={{ color:'#D4A75F', fontStyle:'italic' }}>{t('pkg_title_em')}</em>
+          {t('pkg_title')}<br /><em style={{ color:'#D4A75F', fontStyle:'italic' }}>{t('pkg_title_em')}</em>
         </h2>
         <p style={{ fontSize:'clamp(12px,1.6vw,14px)', color:'rgba(242,230,208,0.35)', maxWidth:480, margin:'0 auto', lineHeight:1.7 }}>
           {t('pkg_desc')}
