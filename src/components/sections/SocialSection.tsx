@@ -30,7 +30,7 @@ export function SocialSection() {
         <p style={{ fontSize:11, color:'rgba(242,230,208,0.3)', letterSpacing:'0.08em' }}>{t('soc_sub')}</p>
       </div>
 
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(min(100%,280px),1fr))', gap:14, maxWidth:680, margin:'0 auto' }}>
+      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(min(100%,300px),1fr))', gap:12, maxWidth:680, margin:'0 auto' }}>
 
         <a className="ssi social-card" href="https://www.facebook.com/share/g/1EWSvuCo4V/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"
           style={{ opacity:0, transform:'translateY(32px)', transition:'all 0.8s cubic-bezier(0.25,1,0.5,1) 0.1s', position:'relative', overflow:'hidden', borderRadius:18, padding:'clamp(24px,4vh,32px) clamp(20px,3vw,28px)', display:'flex', flexDirection:'column', background:'linear-gradient(145deg,#0f0900 0%,#180d00 100%)', border:'0.5px solid rgba(212,167,95,0.12)', textDecoration:'none' }}>

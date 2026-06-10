@@ -196,7 +196,7 @@ export function EarthSection() {
       />
 
       {/* Right content */}
-      <div style={{ position:'absolute', bottom:'clamp(40px,6vh,72px)', left:'clamp(20px,4vw,56px)', zIndex:10, maxWidth:420 }}>
+      <div style={{ className='earth-content' style={{ className='earth-text-block' style={{ position:'absolute', bottom:'clamp(40px,6vh,72px)', left:'clamp(20px,4vw,56px)', zIndex:10, maxWidth:420 }}>
         <div className="ei" style={{ opacity:0, transform:'translateY(24px)', transition:'all 0.8s cubic-bezier(0.25,1,0.5,1)', fontSize:7, letterSpacing:'0.22em', color:'rgba(212,167,95,0.5)', textTransform:'uppercase', marginBottom:14 }}>{t('earth_home')}</div>
         <h2 className="ei" style={{ opacity:0, transform:'translateY(30px)', transition:'all 0.9s cubic-bezier(0.25,1,0.5,1)', fontFamily:"'Cormorant Garamond',Georgia,serif", fontSize:'clamp(36px,6vw,64px)', fontWeight:200, color:'#F2E6D0', lineHeight:0.92, marginBottom:22 }}>
           {t('earth_title')}<br /><em style={{ color:'#D4A75F', fontStyle:'italic' }}>{t('earth_title_em')}</em>
@@ -221,6 +221,14 @@ export function EarthSection() {
 
       <style>{`
         @keyframes earthKen{0%{transform:scale(1)}100%{transform:scale(1.04) translate(-0.5%,0.5%)}}
+        @media(max-width:768px){
+          .earth-text-block{
+            bottom:0!important;left:0!important;right:0!important;
+            max-width:100%!important;width:100%!important;
+            padding:32px 24px 48px!important;
+            background:linear-gradient(0deg,rgba(0,0,0,0.95) 0%,rgba(0,0,0,0.7) 50%,transparent 100%)!important;
+          }
+        }
       `}</style>
     </section>
   )

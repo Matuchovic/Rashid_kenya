@@ -34,9 +34,9 @@ export function SafarisSection() {
         <p style={{ fontSize:13, lineHeight:1.7, color:'rgba(242,230,208,0.4)', maxWidth:320, margin:0 }}>{t('saf_sub')}</p>
       </div>
 
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(min(100%,280px),1fr))', gap:2, padding:'0 clamp(20px,5vw,60px)' }}>
+      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(min(100%,300px),1fr))', gap:'clamp(8px,2vw,2px)', padding:'0 clamp(12px,4vw,60px)' }}>
         {packages.map((p,i) => (
-          <div key={p.titleKey} className="si safari-card" style={{ opacity:0, transform:'translateY(32px)', transition:'all 0.8s cubic-bezier(0.25,1,0.5,1)', position:'relative', overflow:'hidden', minHeight:'clamp(400px,55vh,540px)', cursor:'pointer' }}>
+          <div key={p.titleKey} className="si safari-card" style={{ opacity:0, transform:'translateY(32px)', transition:'all 0.8s cubic-bezier(0.25,1,0.5,1)', position:'relative', overflow:'hidden', minHeight:'clamp(360px,55vh,540px)', cursor:'pointer', borderRadius:'clamp(12px,3vw,0px)' }}>
             <div className="safari-photo" style={{ position:'absolute', inset:0, backgroundImage:`url('${p.img}')`, backgroundSize:'cover', backgroundPosition:'center', filter:'brightness(0.4)', transition:'filter 0.6s ease,transform 0.6s ease' }} />
             <div style={{ position:'absolute', inset:0, background:'linear-gradient(0deg,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.2) 60%)' }} />
             <div style={{ position:'absolute', top:20, left:20, fontSize:7, letterSpacing:'0.18em', color:'rgba(212,167,95,0.7)', textTransform:'uppercase', padding:'5px 10px', border:'0.5px solid rgba(212,167,95,0.25)', borderRadius:100, background:'rgba(0,0,0,0.4)', backdropFilter:'blur(8px)' }}>{t(p.tagKey)}</div>
@@ -49,7 +49,7 @@ export function SafarisSection() {
                   <span key={tag} style={{ fontSize:7, letterSpacing:'0.12em', color:'rgba(212,167,95,0.55)', textTransform:'uppercase', padding:'3px 8px', border:'0.5px solid rgba(212,167,95,0.18)', borderRadius:100 }}>{tag}</span>
                 ))}
               </div>
-              <a href="https://wa.me/254700000000" target="_blank" rel="noopener noreferrer" className="safari-btn" style={{ display:'inline-flex', alignItems:'center', gap:8, fontSize:8, letterSpacing:'0.2em', textTransform:'uppercase', color:'#050505', background:'#D4A75F', padding:'10px 20px', borderRadius:100, textDecoration:'none', transition:'all 0.3s cubic-bezier(0.25,1,0.5,1)' }}>
+              <a href="https://wa.me/254700000000" target="_blank" rel="noopener noreferrer" className="safari-btn" style={{ display:'inline-flex', alignItems:'center', justifyContent:'center', gap:8, fontSize:8, letterSpacing:'0.2em', textTransform:'uppercase', color:'#050505', background:'#D4A75F', padding:'12px 20px', borderRadius:100, textDecoration:'none', transition:'all 0.3s cubic-bezier(0.25,1,0.5,1)', width:'100%' }}>
                 {t('saf_contact')} <span>&#8594;</span>
               </a>
             </div>
@@ -65,7 +65,7 @@ export function SafarisSection() {
       <style>{`
         .safari-card:hover .safari-photo{filter:brightness(0.6)!important;transform:scale(1.04)}
         .safari-btn:hover{background:#F0C860!important;transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,167,95,0.4)}
-        @media(max-width:768px){.safari-card{min-height:360px!important}}
+        @media(max-width:768px){.safari-card{min-height:360px!important;border-radius:14px!important}}
       `}</style>
     </section>
   )

@@ -18,10 +18,10 @@ export function HeroSection() {
       <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 80% 80% at 50% 50%,transparent 25%,rgba(0,0,0,0.75) 100%)' }} />
       <DustParticles />
       <div ref={titleRef} style={{ position:'absolute', inset:0, zIndex:10, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', textAlign:'center', padding:'0 clamp(16px,5vw,32px)', opacity:0, transform:'translateY(20px)', transition:'all 1.4s cubic-bezier(0.16,1,0.3,1)' }}>
-        <h1 style={{ fontFamily:"'Cormorant Garamond',Georgia,serif", fontSize:'clamp(64px,18vw,130px)', fontWeight:200, letterSpacing:'0.1em', color:'#F2E6D0', lineHeight:0.88, marginBottom:8, animation:'rashidGlow 3.5s ease-in-out infinite' }}>RASHID</h1>
-        <div style={{ fontSize:'clamp(9px,2.8vw,16px)', letterSpacing:'0.42em', color:'rgba(212,167,95,0.7)', textTransform:'uppercase', marginBottom:18 }}>{t('hero_sub')}</div>
+        <h1 style={{ fontFamily:"'Cormorant Garamond',Georgia,serif", fontSize:'clamp(64px,18vw,130px)', fontWeight:200, letterSpacing:'0.1em', color:'#F2E6D0', lineHeight:0.88, marginBottom:8, animation:'rashidGlow 3.5s ease-in-out infinite' }} className='hero-title'>RASHID</h1>
+        <div style={{ fontSize:'clamp(9px,2.8vw,16px)', letterSpacing:'0.42em', color:'rgba(212,167,95,0.7)', textTransform:'uppercase', marginBottom:18 }} className='hero-sub'>{t('hero_sub')}</div>
         <div style={{ width:'clamp(24px,4vw,32px)', height:'0.5px', background:'rgba(212,167,95,0.4)', marginBottom:18 }} />
-        <div style={{ fontSize:'clamp(8px,1.8vw,12px)', letterSpacing:'0.2em', color:'rgba(242,230,208,0.35)', textTransform:'uppercase' }}>{t('hero_private')}</div>
+        <div style={{ fontSize:'clamp(8px,1.8vw,12px)', letterSpacing:'0.2em', color:'rgba(242,230,208,0.35)', textTransform:'uppercase' }} className='hero-private'>{t('hero_private')}</div>
       </div>
       <div style={{ position:'absolute', bottom:'clamp(20px,4vh,40px)', left:0, right:0, zIndex:10, display:'flex', flexDirection:'column', alignItems:'center', gap:8 }}>
         <div style={{ width:'0.5px', height:'clamp(32px,5vh,48px)', background:'linear-gradient(180deg,rgba(212,167,95,0.5),transparent)' }} />

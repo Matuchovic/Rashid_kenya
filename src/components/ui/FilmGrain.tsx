@@ -25,7 +25,9 @@ export function FilmGrain() {
       frame++
 
       // Only update grain every 2 frames for performance
-      if (frame % 2 !== 0) return
+      const isMobile = window.innerWidth < 768
+      if (isMobile && frame % 4 !== 0) return
+      if (!isMobile && frame % 2 !== 0) return
 
       const w = canvas.width
       const h = canvas.height
@@ -37,7 +39,7 @@ export function FilmGrain() {
         data[i]     = 128 + noise
         data[i + 1] = 128 + noise
         data[i + 2] = 128 + noise
-        data[i + 3] = Math.random() * 10 + 4  // very low opacity
+        data[i + 3] = Math.random() * (isMobile ? 7 : 10) + 3
       }
 
       ctx.putImageData(imageData, 0, 0)

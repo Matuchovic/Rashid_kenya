@@ -301,3 +301,99 @@
     transform: none !important;
   }
 }
+
+
+/* ═══════════════════════════════════════
+   ULTIMATE MOBILE — rashid-kenya
+   ═══════════════════════════════════════ */
+
+/* Base */
+*, *::before, *::after { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body { overflow-x: hidden; }
+
+/* iOS safe area */
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+
+/* Touch targets min 44px */
+button, a { min-height: 44px; min-width: 44px; }
+
+@media (max-width: 768px) {
+
+  /* ── Navigation ── */
+  .nav-desktop { display: none !important; }
+  .nav-cta-desktop { display: none !important; }
+  .nav-burger { display: flex !important; }
+
+  /* ── Hero ── */
+  .hero-title {
+    font-size: clamp(72px, 22vw, 110px) !important;
+    letter-spacing: 0.06em !important;
+  }
+  .hero-sub {
+    font-size: 10px !important;
+    letter-spacing: 0.32em !important;
+  }
+  .hero-private {
+    font-size: 8px !important;
+    letter-spacing: 0.16em !important;
+    padding: 0 24px !important;
+  }
+
+  /* ── Earth section ── */
+  .earth-content {
+    padding: 40px 24px 48px !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    background: linear-gradient(0deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.6) 60%, transparent 100%) !important;
+  }
+  .earth-h2 { font-size: clamp(40px,11vw,56px) !important; }
+
+  /* ── Big Five ── */
+  .bf-desktop { display: none !important; }
+  .bf-mobile { display: block !important; }
+  .bf-header { padding: 40px 20px 24px !important; }
+  .bf-h2 { font-size: clamp(36px,10vw,48px) !important; }
+
+  /* ── Safaris ── */
+  .safari-grid {
+    grid-template-columns: 1fr !important;
+    padding: 0 16px !important;
+    gap: 12px !important;
+  }
+  .safari-card { min-height: 380px !important; border-radius: 16px !important; }
+  .safari-card:hover { transform: none !important; }
+  .safari-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 14px 20px !important;
+    font-size: 9px !important;
+  }
+
+  /* ── Experience ── */
+  .exp-content { padding: 48px 24px !important; }
+  .exp-h2 { font-size: clamp(40px,11vw,60px) !important; }
+
+  /* ── Social ── */
+  .social-grid {
+    grid-template-columns: 1fr !important;
+    padding: 0 !important;
+  }
+  .social-card:hover { transform: translateY(-4px) scale(1.005) !important; }
+
+  /* ── Loading screen ── */
+  .loader-title { font-size: clamp(52px,16vw,80px) !important; }
+  .loader-bar { width: 85vw !important; }
+}
+
+/* Smooth scrolling with momentum on iOS */
+@supports (-webkit-overflow-scrolling: touch) {
+  .scroll-container { -webkit-overflow-scrolling: touch; }
+}
+
+/* Prevent layout shift on font load */
+@font-face {
+  font-display: swap;
+}
