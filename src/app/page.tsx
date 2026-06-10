@@ -1,34 +1,18 @@
-import { AboutSection } from '@/components/sections/AboutSection'
-import { HeroSection }        from '@/components/sections/HeroSection'
-import { TickerStrip }         from '@/components/sections/TickerStrip'
-import { SafarisSection }      from '@/components/sections/SafarisSection'
-import { WhyKenyaSection }     from '@/components/sections/WhyKenyaSection'
-import {
-  ExperiencesSection,
-  GallerySection,
-  TestimonialsSection,
-  CtaSection,
-  BookingBar,
-} from '@/components/sections/HomeSections'
+import { Navigation } from '@/components/layout/Navigation'
+import { HeroSection } from '@/components/sections/HeroSection'
+import { BigFiveSection } from '@/components/sections/BigFiveSection'
+import { EarthSection } from '@/components/sections/EarthSection'
+import { ExperienceSection } from '@/components/sections/ExperienceSection'
 import { Footer } from '@/components/layout/Footer'
 
-export default function HomePage() {
+export default function Home() {
   return (
     <>
+      <Navigation />
       <HeroSection />
-      <AboutSection />
-      <TickerStrip />
-      <SafarisSection />
-      <div className="gold-divider mx-[72px]" />
-      <WhyKenyaSection />
-      <div className="gold-divider mx-[72px]" />
-      <ExperiencesSection />
-      <div className="gold-divider mx-[72px]" />
-      <GallerySection />
-      <div className="gold-divider mx-[72px]" />
-      <TestimonialsSection />
-      <CtaSection />
-      <BookingBar />
+      <EarthSection />
+      <BigFiveSection />
+      <ExperienceSection />
       <Footer />
     </>
   )

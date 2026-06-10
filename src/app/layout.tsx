@@ -1,7 +1,7 @@
 'use client'
-
 import { useState } from 'react'
 import { LoadingScreen } from '@/components/ui/LoadingScreen'
+import { NextFont } from 'next/dist/compiled/@next/font'
 import './globals.css'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
