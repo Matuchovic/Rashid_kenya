@@ -1,6 +1,6 @@
 'use client'
 
-export function Logo() {
+export function Logo({ size }: { size?: string }) {
   return (
     <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 20, textDecoration: 'none', flexShrink: 0 }}>
       {/* Animated emblem */}
