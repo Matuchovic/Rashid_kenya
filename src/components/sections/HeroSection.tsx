@@ -62,8 +62,10 @@ export function HeroSection() {
           muted
           loop
           playsInline
+          preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ opacity: 0.82 }}
+          style={{ opacity: 0.9 }}
+          onEnded={(e) => { const v = e.target as HTMLVideoElement; v.currentTime = 0; v.play(); }}
         >
           <source src="/hero.mp4" type="video/mp4" />
         </video>
@@ -113,98 +115,6 @@ export function HeroSection() {
             stroke="url(#rg1)" strokeWidth={w} opacity={op} />
         ))}
       </svg>
-
-      {/* Savanna terrain SVG */}
-      <svg
-        className="absolute bottom-0 left-0 right-0 pointer-events-none"
-        style={{ height: '60%', width: '100%' }}
-        viewBox="0 0 1400 600"
-        preserveAspectRatio="xMidYMax slice"
-      >
-        <defs>
-          <linearGradient id="tg" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stopColor="#1f0e00" stopOpacity="0.0"/>
-            <stop offset="40%"  stopColor="#1f0e00" stopOpacity="0.7"/>
-            <stop offset="100%" stopColor="#050505" stopOpacity="1.0"/>
-          </linearGradient>
-        </defs>
-        {/* Ground */}
-        <path d="M0,280 Q180,250 360,275 Q540,300 700,270 Q860,240 1050,268 Q1220,295 1400,265 L1400,600 L0,600Z" fill="url(#tg)"/>
-        <path d="M0,350 Q200,325 400,345 Q600,365 800,340 Q1000,315 1200,345 Q1300,360 1400,340 L1400,600 L0,600Z" fill="#050505" opacity="0.6"/>
-        {/* Grass tufts */}
-        <g fill="#0d0600" opacity="0.9">
-          <path d="M40,360 Q43,332 46,360 Q49,332 54,360Z"/>
-          <path d="M100,355 Q104,324 108,355 Q112,324 118,355Z"/>
-          <path d="M600,348 Q604,316 608,348 Q612,316 618,348Z"/>
-          <path d="M660,352 Q664,320 668,352Z"/>
-          <path d="M1200,350 Q1204,318 1208,350 Q1212,318 1218,350Z"/>
-          <path d="M1280,355 Q1284,323 1288,355Z"/>
-        </g>
-        {/* Left acacia */}
-        <g fill="#090400" opacity="0.92">
-          <rect x="95" y="155" width="11" height="115" rx="3"/>
-          <path d="M100,200 Q80,190 65,195" stroke="#090400" strokeWidth="5" fill="none" strokeLinecap="round"/>
-          <ellipse cx="100" cy="140" rx="68" ry="28"/>
-          <ellipse cx="68"  cy="150" rx="48" ry="22"/>
-          <ellipse cx="134" cy="145" rx="52" ry="24"/>
-          <ellipse cx="100" cy="132" rx="42" ry="18"/>
-        </g>
-        {/* Right acacia large */}
-        <g fill="#060300" opacity="0.95">
-          <rect x="1240" y="100" width="14" height="160" rx="4"/>
-          <path d="M1247,155 Q1220,142 1200,150" stroke="#060300" strokeWidth="6" fill="none" strokeLinecap="round"/>
-          <ellipse cx="1247" cy="82"  rx="88" ry="34"/>
-          <ellipse cx="1200" cy="95"  rx="58" ry="26"/>
-          <ellipse cx="1296" cy="88"  rx="65" ry="30"/>
-        </g>
-        {/* Elephant */}
-        <g fill="#0d0600" opacity="0.88" transform="translate(310,215)">
-          <ellipse cx="70" cy="65" rx="68" ry="50"/>
-          <ellipse cx="15" cy="45" rx="34" ry="28"/>
-          <path d="M-6,60 Q-22,75 -18,100 Q-14,90 -10,100 Q-6,88 -2,70 Q0,60 2,58Z"/>
-          <path d="M0,55 Q-15,62 -20,72" stroke="#1a1208" strokeWidth="4" fill="none" strokeLinecap="round"/>
-          <ellipse cx="-5" cy="38" rx="22" ry="30" fill="#0a0400"/>
-          <rect x="28" y="108" width="16" height="42" rx="6"/>
-          <rect x="52" y="108" width="16" height="44" rx="6"/>
-          <rect x="76" y="108" width="16" height="42" rx="6"/>
-          <rect x="98" y="108" width="16" height="40" rx="6"/>
-        </g>
-        {/* Giraffe */}
-        <g fill="#0a0500" opacity="0.80" transform="translate(850,148)">
-          <path d="M28,0 L20,80 L36,80 L32,0Z"/>
-          <ellipse cx="30" cy="0" rx="12" ry="9"/>
-          <rect x="24" y="-12" width="3" height="12" rx="1"/>
-          <rect x="33" y="-10" width="3" height="10" rx="1"/>
-          <path d="M14,78 L6,152 L54,152 L46,78Z"/>
-          <rect x="8"  y="148" width="9" height="52" rx="4"/>
-          <rect x="22" y="148" width="9" height="54" rx="4"/>
-          <rect x="34" y="148" width="9" height="52" rx="4"/>
-          <rect x="48" y="148" width="9" height="50" rx="4"/>
-        </g>
-        {/* Maasai figures */}
-        <g fill="#140800" opacity="0.82" transform="translate(730,258)">
-          <ellipse cx="15" cy="8" rx="7" ry="7"/>
-          <rect x="10" y="14" width="10" height="40" rx="2"/>
-          <path d="M10,20 L0,38" stroke="#140800" strokeWidth="4" strokeLinecap="round" fill="none"/>
-          <line x1="12" y1="54" x2="10" y2="78" stroke="#140800" strokeWidth="4" strokeLinecap="round"/>
-          <line x1="18" y1="54" x2="20" y2="78" stroke="#140800" strokeWidth="4" strokeLinecap="round"/>
-          <line x1="30" y1="2" x2="30" y2="75" stroke="#0f0600" strokeWidth="2.5" strokeLinecap="round"/>
-          <ellipse cx="55" cy="8" rx="7" ry="7"/>
-          <rect x="50" y="14" width="10" height="38" rx="2"/>
-          <path d="M50,22 L40,36" stroke="#140800" strokeWidth="4" strokeLinecap="round" fill="none"/>
-          <line x1="52" y1="52" x2="50" y2="76" stroke="#140800" strokeWidth="4" strokeLinecap="round"/>
-          <line x1="58" y1="52" x2="60" y2="76" stroke="#140800" strokeWidth="4" strokeLinecap="round"/>
-          <line x1="72" y1="2" x2="72" y2="72" stroke="#0f0600" strokeWidth="2.5" strokeLinecap="round"/>
-        </g>
-        {/* Birds */}
-        <g stroke="#0a0500" strokeWidth="1.5" fill="none" opacity="0.45">
-          <path d="M380,80 Q385,75 390,80"/>
-          <path d="M400,70 Q406,65 412,70"/>
-          <path d="M820,65 Q826,60 832,65"/>
-          <path d="M850,75 Q855,70 860,75"/>
-        </g>
-      </svg>
-
       {/* Dust particles container */}
       <div ref={particlesRef} className="absolute inset-0 pointer-events-none" />
 
