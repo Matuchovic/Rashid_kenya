@@ -1,3 +1,4 @@
+import { AboutSection } from '@/components/sections/AboutSection'
 import { HeroSection }        from '@/components/sections/HeroSection'
 import { TickerStrip }         from '@/components/sections/TickerStrip'
 import { SafarisSection }      from '@/components/sections/SafarisSection'
@@ -15,6 +16,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <AboutSection />
       <TickerStrip />
       <SafarisSection />
       <div className="gold-divider mx-[72px]" />
