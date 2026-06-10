@@ -62,13 +62,13 @@ export function DustParticles() {
       phase: number
     }
 
-    const COUNT = Math.min(55, Math.floor(W * H / 28000))
+    const COUNT = Math.min(120, Math.floor(W * H / 8000))
     const particles: Particle[] = []
 
     const createParticle = (x?: number, y?: number): Particle => {
       const depth = Math.random()
-      const size = depth * 2.2 + 0.3 + Math.random() * 0.8
-      const baseOpacity = depth * 0.07 + 0.01 + Math.random() * 0.04
+      const size = depth * 3.5 + 0.8 + Math.random() * 2.0
+      const baseOpacity = depth * 0.35 + 0.08 + Math.random() * 0.15
       const col = COLORS[Math.floor(Math.random() * COLORS.length)]
       const life = Math.random() * 600 + 400
 
@@ -129,7 +129,7 @@ export function DustParticles() {
         // Gentle opacity breathing
         else {
           const breath = Math.sin(p.phase + frame * 0.003) * 0.015
-          p.opacity = Math.max(0, Math.min(p.opacityTarget + breath, 0.14))
+          p.opacity = Math.max(0, Math.min(p.opacityTarget + breath, 0.5))
         }
 
         // Wobble motion — organic, non-repeating feel
@@ -202,7 +202,7 @@ export function DustParticles() {
         height: '100%',
         pointerEvents: 'none',
         zIndex: 1,
-        mixBlendMode: 'screen',
+        
       }}
     />
   )
