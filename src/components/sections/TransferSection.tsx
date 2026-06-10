@@ -228,7 +228,7 @@ export function TransferSection() {
                 <path d={s.icon} />
               </svg>
             </div>
-            <div style={{ fontSize:'clamp(8px,2.2vw,10px)', letterSpacing:'0.08em', color: i === active ? 'rgba(212,167,95,0.7)' : 'rgba(242,230,208,0.2)', textTransform:'uppercase', textAlign:'center', lineHeight:1.4, transition:'color 0.5s', className:'step-text' }}>{t(s.labelKey)}</div>
+            <div style={{ fontSize:'clamp(8px,2.2vw,10px)', letterSpacing:'0.08em', color: i === active ? 'rgba(212,167,95,0.7)' : 'rgba(242,230,208,0.2)', textTransform:'uppercase', textAlign:'center', lineHeight:1.4, transition:'color 0.5s' }}>{t(s.labelKey)}</div>
             <div style={{ fontSize:'clamp(7px,1.2vw,9px)', color: i === active ? 'rgba(242,230,208,0.35)' : 'rgba(242,230,208,0.12)', letterSpacing:'0.06em', textAlign:'center', transition:'color 0.5s' }}>{t(s.subKey)}</div>
           </div>
         ))}
