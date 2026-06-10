@@ -209,7 +209,7 @@ export function TransferSection() {
       </div>
 
       {/* Steps */}
-      <div style={{ display:'flex', maxWidth:640, margin:'0 auto clamp(24px,4vh,36px)', padding:'0 clamp(16px,4vw,32px)', position:'relative' }}>
+      <div style={{ display:'flex', maxWidth:640, margin:'0 auto clamp(20px,3vh,32px)', padding:'0 clamp(12px,3vw,32px)', position:'relative', gap:'clamp(4px,1vw,8px)' }}>
         <div style={{ position:'absolute', top:20, left:'calc(clamp(16px,4vw,32px) + 28px)', right:'calc(clamp(16px,4vw,32px) + 28px)', height:'0.5px', background:'rgba(212,167,95,0.1)' }} />
         {STEPS.map((s, i) => (
           <div key={i} onClick={() => { activeRef.current = i; setActive(i) }}
@@ -228,7 +228,7 @@ export function TransferSection() {
                 <path d={s.icon} />
               </svg>
             </div>
-            <div style={{ fontSize:'clamp(8px,1.5vw,10px)', letterSpacing:'0.1em', color: i === active ? 'rgba(212,167,95,0.7)' : 'rgba(242,230,208,0.2)', textTransform:'uppercase', textAlign:'center', lineHeight:1.4, transition:'color 0.5s' }}>{t(s.labelKey)}</div>
+            <div style={{ fontSize:'clamp(8px,2.2vw,10px)', letterSpacing:'0.08em', color: i === active ? 'rgba(212,167,95,0.7)' : 'rgba(242,230,208,0.2)', textTransform:'uppercase', textAlign:'center', lineHeight:1.4, transition:'color 0.5s', className:'step-text' }}>{t(s.labelKey)}</div>
             <div style={{ fontSize:'clamp(7px,1.2vw,9px)', color: i === active ? 'rgba(242,230,208,0.35)' : 'rgba(242,230,208,0.12)', letterSpacing:'0.06em', textAlign:'center', transition:'color 0.5s' }}>{t(s.subKey)}</div>
           </div>
         ))}
@@ -241,31 +241,46 @@ export function TransferSection() {
 
       {/* Canvas */}
       <div style={{ padding:'0 clamp(16px,4vw,48px)', marginBottom:'clamp(20px,4vh,32px)' }}>
-        <canvas ref={canvasRef} style={{ width:'100%', height:'clamp(140px,22vw,190px)', display:'block', borderRadius:12 }} />
+        <canvas ref={canvasRef} style={{ width:'100%', height:'clamp(160px,40vw,190px)', display:'block', borderRadius:12 }} />
       </div>
 
       {/* Message */}
-      <div style={{ textAlign:'center', padding:'0 clamp(20px,5vw,48px)', minHeight:80 }}>
+      <div style={{ textAlign:'center', padding:'0 clamp(16px,5vw,48px)', minHeight:72 }}>
         <div style={{ fontSize:7, letterSpacing:'0.2em', color:'rgba(212,167,95,0.4)', textTransform:'uppercase', marginBottom:10 }}>
           {stepMessages[active].eyebrow}
         </div>
-        <div style={{ fontFamily:"'Cormorant Garamond',Georgia,serif", fontSize:'clamp(20px,3vw,30px)', fontWeight:200, color:'#F2E6D0', lineHeight:1.2, marginBottom:10 }}>
+        <div style={{ fontFamily:"'Cormorant Garamond',Georgia,serif", fontSize:'clamp(20px,5vw,30px)', fontWeight:200, color:'#F2E6D0', lineHeight:1.2, marginBottom:10 }}>
           {stepMessages[active].text}
         </div>
-        <div style={{ fontSize:'clamp(11px,1.5vw,13px)', color:'rgba(242,230,208,0.28)', lineHeight:1.7, maxWidth:440, margin:'0 auto' }}>
+        <div style={{ fontSize:'clamp(11px,3vw,13px)', color:'rgba(242,230,208,0.28)', lineHeight:1.7, maxWidth:440, margin:'0 auto' }}>
           {stepMessages[active].sub}
         </div>
       </div>
 
       {/* CTA */}
-      <div style={{ textAlign:'center', marginTop:'clamp(28px,4vh,40px)' }}>
+      <div style={{ textAlign:'center', marginTop:'clamp(28px,4vh,40px)', padding:'0 clamp(20px,5vw,48px)' }}>
         <a href="https://wa.me/254700000000" target="_blank" rel="noopener noreferrer" style={{
-          display:'inline-flex', alignItems:'center', gap:8,
+          display:'inline-flex', alignItems:'center', justifyContent:'center', gap:8,
           fontSize:9, letterSpacing:'0.2em', textTransform:'uppercase',
           color:'#050505', background:'#D4A75F',
-          padding:'13px 32px', borderRadius:100, textDecoration:'none',
+          padding:'14px 32px', borderRadius:100, textDecoration:'none',
+          width:'min(320px,100%)', minHeight:48,
         }}>{t('tr_cta')} →</a>
       </div>
+
+      <style>{`
+        @media(max-width:768px){
+          #transfer .step-icon { width:36px!important; height:36px!important; }
+          #transfer .step-text { font-size:8px!important; }
+          #transfer .step-sub-text { display:none; }
+          #transfer .msg-title { font-size:clamp(18px,5vw,24px)!important; }
+          #transfer .msg-desc { font-size:11px!important; }
+          #transfer canvas { border-radius:8px!important; }
+        }
+        @media(max-width:400px){
+          #transfer .step-icon { width:32px!important; height:32px!important; }
+        }
+      `}</style>
     </section>
   )
 }
