@@ -1,9 +1,114 @@
 'use client'
+import React from 'react'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { useLang } from '@/context/LanguageContext'
 import { ContactMenu } from '@/components/ui/ContactMenu'
 import { Lang } from '@/lib/translations'
+
+
+function LionLogo() {
+  const canvasRef = React.useRef<HTMLCanvasElement>(null)
+  React.useEffect(() => {
+    const cv = canvasRef.current; if (!cv) return
+    const ctx = cv.getContext('2d'); if (!ctx) return
+    const CX=32,CY=32; let f=0
+    const pts = Array.from({length:40},(_,i)=>({
+      a:(i/40)*Math.PI*2, spd:(Math.random()>.5?1:-1)*(0.002+Math.random()*0.005),
+      ph:Math.random()*Math.PI*2, sz:0.4+Math.random()*1.4, op:0.25+Math.random()*0.65, ring:i%3
+    }))
+    const HM='HAKUNA MATATA  ✦  HAKUNA MATATA  ✦  '
+    let raf:number
+    function draw(){
+      ctx.clearRect(0,0,64,64)
+      const t=f*0.022,br=Math.sin(t)*.5+.5,pu=Math.sin(t*1.5)*.5+.5
+      // Glow
+      const rg=ctx.createRadialGradient(CX,CY,0,CX,CY,32)
+      rg.addColorStop(.5,'rgba(212,167,95,0)'); rg.addColorStop(1,`rgba(212,167,95,${.08+pu*.07})`)
+      ctx.beginPath();ctx.arc(CX,CY,32,0,Math.PI*2);ctx.fillStyle=rg;ctx.fill()
+      // Tečky
+      pts.forEach(p=>{
+        p.a+=p.spd
+        const r=[22,26,30][p.ring]+Math.sin(p.ph+t)*2
+        const px=CX+Math.cos(p.a)*r, py=CY+Math.sin(p.a)*r
+        const g=.3+Math.sin(p.ph+t*1.8)*.7
+        ctx.beginPath();ctx.arc(px,py,p.sz*(.6+g*.4),0,Math.PI*2)
+        ctx.fillStyle=`rgba(255,215,70,${p.op*Math.max(0,g)})`;ctx.fill()
+      })
+      // Hakuna Matata
+      ctx.save();ctx.translate(CX,CY);ctx.rotate(f*.005)
+      ctx.font='2.6px Inter,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle'
+      const chars=HM.split(''),apc=(Math.PI*2)/chars.length
+      chars.forEach((ch,i)=>{
+        ctx.save();ctx.rotate(i*apc-Math.PI/2);ctx.translate(0,-19);ctx.rotate(Math.PI/2)
+        ctx.fillStyle=`rgba(212,167,95,${.35+Math.sin(f*.04+i*.3)*.3})`;ctx.fillText(ch,0,0)
+        ctx.restore()
+      })
+      ctx.restore()
+      // Kruh
+      ctx.beginPath();ctx.arc(CX,CY,21,0,Math.PI*2)
+      ctx.strokeStyle=`rgba(212,167,95,${.15+pu*.12})`;ctx.lineWidth=.3;ctx.stroke()
+      // Hřiva
+      ctx.save();ctx.translate(CX,CY+1)
+      const ms=[11+br*.9,9+br*.7,7+br*.5,5+br*.4]
+      const mc=['rgba(45,18,2,','rgba(100,48,6,','rgba(150,85,12,','rgba(210,155,25,']
+      const mw=[3,2.5,2,1.8]; const mn=[16,13,10,8]
+      ms.forEach((m,li)=>{
+        for(let i=0;i<mn[li];i++){
+          const a=(i/mn[li])*Math.PI*2+(li*.2)+Math.sin(t*(.35+li*.1)+i*.5)*.05
+          ctx.beginPath();ctx.moveTo(0,-1)
+          const ex=Math.cos(a)*m,ey=Math.sin(a)*m*.93
+          ctx.bezierCurveTo(Math.cos(a-.3)*m*.6,Math.sin(a-.3)*m*.6*.93,Math.cos(a+.3)*m*.6,Math.sin(a+.3)*m*.6*.93,ex,ey)
+          ctx.lineWidth=mw[li];ctx.strokeStyle=mc[li]+`${.7+Math.sin(t+i)*.1})`
+          ctx.lineCap='round';ctx.stroke()
+        }
+      })
+      // Hlava
+      ctx.beginPath()
+      ctx.moveTo(-6,1);ctx.bezierCurveTo(-8,-2,-8,-7,-6,-9)
+      ctx.bezierCurveTo(-4,-11,4,-11,6,-9);ctx.bezierCurveTo(8,-7,8,-2,6,1)
+      ctx.bezierCurveTo(5,4,3,7,2,8);ctx.bezierCurveTo(1,9,-1,9,-2,8)
+      ctx.bezierCurveTo(-3,7,-5,4,-6,1)
+      const hg=ctx.createRadialGradient(0,-3,0,0,-3,10)
+      hg.addColorStop(0,'#DFB040');hg.addColorStop(.6,'#C49020');hg.addColorStop(1,'#8A6010')
+      ctx.fillStyle=hg;ctx.fill()
+      // Uši
+      ctx.beginPath();ctx.moveTo(-5,-8);ctx.lineTo(-8,-13);ctx.lineTo(-4,-9);ctx.fillStyle='#A87016';ctx.fill()
+      ctx.beginPath();ctx.moveTo(5,-8);ctx.lineTo(8,-13);ctx.lineTo(4,-9);ctx.fillStyle='#A87016';ctx.fill()
+      // Oči
+      const bk=Math.sin(t*.28)>.93?.3:1
+      [[-3,-4],[3,-4]].forEach(([ex,ey],idx)=>{
+        ctx.beginPath();ctx.ellipse(ex,ey,2,1.8*bk,0,0,Math.PI*2);ctx.fillStyle='#0a0600';ctx.fill()
+        ctx.beginPath();ctx.ellipse(ex,ey,1.4,1.4*bk,0,0,Math.PI*2);ctx.fillStyle='rgba(155,90,10,.9)';ctx.fill()
+        ctx.beginPath();ctx.ellipse(ex,ey,.8,1.1*bk,0,0,Math.PI*2);ctx.fillStyle='#040200';ctx.fill()
+        if(bk>.4){ctx.beginPath();ctx.arc(ex+(idx==0?.6:-.6),ey-.8,.7,0,Math.PI*2);ctx.fillStyle=`rgba(255,230,150,${.6+pu*.3})`;ctx.fill()}
+      })
+      // Nos
+      ctx.beginPath();ctx.moveTo(-2,0);ctx.bezierCurveTo(-2.5,-1,2.5,-1,2,0);ctx.bezierCurveTo(1.8,2,.8,3,0,3);ctx.bezierCurveTo(-.8,3,-1.8,2,-2,0)
+      ctx.fillStyle='#5A2808';ctx.fill()
+      // Tělo
+      ctx.beginPath()
+      ctx.moveTo(-6,8);ctx.bezierCurveTo(-8,11,-8,16,-6,19);ctx.bezierCurveTo(-4,21,-2,22,0,22)
+      ctx.bezierCurveTo(2,22,4,21,6,19);ctx.bezierCurveTo(8,16,8,11,6,8);ctx.bezierCurveTo(4,6,-4,6,-6,8)
+      const bg=ctx.createLinearGradient(0,8,0,22);bg.addColorStop(0,'#C49020');bg.addColorStop(1,'#886010')
+      ctx.fillStyle=bg;ctx.fill()
+      // Ocas
+      const ts=Math.sin(t*1.4)*7
+      ctx.beginPath();ctx.moveTo(6,16);ctx.bezierCurveTo(12,13+ts*.3,15,8+ts*.7,17,3+ts)
+      ctx.strokeStyle='#B89018';ctx.lineWidth=2;ctx.lineCap='round';ctx.stroke()
+      for(let i=0;i<6;i++){
+        const ta=(i/6)*Math.PI*1.4-Math.PI*.7
+        ctx.beginPath();ctx.moveTo(17,3+ts);ctx.bezierCurveTo(17+Math.cos(ta)*3,3+ts+Math.sin(ta)*3,17+Math.cos(ta)*5,3+ts+Math.sin(ta)*5,17+Math.cos(ta)*5.5,3+ts+Math.sin(ta)*5.5)
+        ctx.strokeStyle=`rgba(180,130,18,.5)`;ctx.lineWidth=1.2;ctx.stroke()
+      }
+      ctx.restore()
+      f++;raf=requestAnimationFrame(draw)
+    }
+    draw()
+    return ()=>cancelAnimationFrame(raf)
+  },[])
+  return <canvas ref={canvasRef} width={64} height={64} style={{width:40,height:40}} />
+}
 
 export function Navigation() {
   const { lang, setLang, t } = useLang()
