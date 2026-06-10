@@ -117,8 +117,8 @@ export function Navigation() {
       {/* Mobile fullscreen menu */}
       <div style={{
         position:'fixed', inset:0, zIndex:999,
-        background:'rgba(3,2,1,0.98)', backdropFilter:'blur(40px)',
-        display:'flex', flexDirection:'column', justifyContent:'center',
+        background:'rgba(3,2,1,0.98)', backdropFilter:'blur(40px)', overflowY:'auto',
+        display:'flex', flexDirection:'column', justifyContent:'flex-start', paddingTop:'clamp(80px,15vh,120px)',
         padding:'0 clamp(28px,8vw,48px) clamp(40px,8vh,72px)',
         opacity:open?1:0, pointerEvents:open?'all':'none',
         transition:'opacity 0.4s cubic-bezier(0.16,1,0.3,1)',

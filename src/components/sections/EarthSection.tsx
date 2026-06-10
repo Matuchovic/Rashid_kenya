@@ -192,7 +192,7 @@ export function EarthSection() {
       {/* Canvas overlay — cities + flights */}
       <canvas
         ref={canvasRef}
-        style={{ position:'absolute', inset:0, width:'100%', height:'100%', pointerEvents:'none', zIndex:2 }}
+        style={{ position:'absolute', inset:0, width:'100%', height:'100%', pointerEvents:'none', zIndex:2, opacity:'var(--canvas-opacity, 1)' }}
       />
 
       {/* Right content */}
@@ -221,6 +221,24 @@ export function EarthSection() {
 
       <style>{`
         @keyframes earthKen{0%{transform:scale(1)}100%{transform:scale(1.04) translate(-0.5%,0.5%)}}
+        @media(max-width:768px){
+          .earth-text-block{
+            position:relative!important;
+            bottom:auto!important;
+            left:auto!important;
+            top:auto!important;
+            width:100%!important;
+            max-width:100%!important;
+            padding:32px 24px 48px!important;
+            background:rgba(0,0,0,0.0)!important;
+            z-index:10;
+          }
+          #earth{
+            flex-direction:column!important;
+            align-items:flex-start!important;
+            min-height:auto!important;
+          }
+        }
         @media(max-width:768px){
           .earth-text-block{
             bottom:0!important;left:0!important;right:0!important;
