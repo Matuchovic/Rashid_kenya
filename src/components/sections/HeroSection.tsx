@@ -51,19 +51,22 @@ export function HeroSection() {
       className="relative w-full overflow-hidden flex items-end justify-between"
       style={{ height: '100vh', minHeight: 680 }}
     >
-      {/* Background photo layer */}
+      {/* Background video layer */}
       <div
         ref={bgRef}
         className="absolute inset-0 transition-transform duration-[50ms] ease-linear"
         style={{ willChange: 'transform' }}
       >
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url('/hero.jpg')",
-            opacity: 0.82,
-          }}
-        />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ opacity: 0.82 }}
+        >
+          <source src="/hero.mp4" type="video/mp4" />
+        </video>
         {/* Cinematic colour grade overlay */}
         <div
           className="absolute inset-0"
