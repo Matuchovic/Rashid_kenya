@@ -6,6 +6,15 @@ import Link from 'next/link'
 export function HeroSection() {
   const contentRef = useRef<HTMLDivElement>(null)
   const particlesRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const v = videoRef.current
+    if (!v) return
+    v.muted = true
+    v.defaultMuted = true
+    v.play().catch(() => {})
+  }, [])
 
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
@@ -44,101 +53,46 @@ export function HeroSection() {
       className="relative w-full overflow-hidden flex items-end justify-between"
       style={{ height: '100vh', minHeight: 680 }}
     >
-      {/* Vimeo background video */}
-      <div className="absolute inset-0 overflow-hidden" style={{ zIndex: 0 }}>
-        <iframe
-          src="https://player.vimeo.com/video/1199957700?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1&quality=1080p"
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            width: '177.78vh',
-            height: '100vh',
-            minWidth: '100%',
-            minHeight: '56.25vw',
-            transform: 'translate(-50%, -50%)',
-            border: 'none',
-            opacity: 0.9,
-          }}
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowFullScreen
-        />
-      </div>
-
-      {/* Cinematic overlay */}
+      {/* Photo fallback — always visible */}
       <div
         className="absolute inset-0"
         style={{
-          zIndex: 1,
-          background: `
-            radial-gradient(ellipse 60% 40% at 52% 18%, rgba(255,170,30,0.45) 0%, rgba(220,100,10,0.25) 35%, transparent 65%),
-            linear-gradient(0deg, #050505 0%, rgba(5,5,5,0.72) 28%, rgba(5,5,5,0.10) 55%, rgba(15,8,0,0.30) 100%),
-            linear-gradient(90deg, rgba(5,5,5,0.40) 0%, transparent 55%, rgba(5,5,5,0.15) 100%)
-          `,
+          backgroundImage: "url('/hero.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center 35%',
         }}
       />
 
-      {/* Sun orb */}
-      <div
-        className="absolute left-1/2 sun-orb pointer-events-none"
-        style={{
-          zIndex: 2,
-          top: '10%',
-          width: 100, height: 100,
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, #FFEF99 0%, #FFD040 28%, rgba(255,160,20,0.35) 60%, transparent 100%)',
-          boxShadow: '0 0 60px 30px rgba(255,180,40,0.30), 0 0 180px 80px rgba(255,130,0,0.18), 0 0 400px 150px rgba(200,80,0,0.10)',
-        }}
-      />
-
-      {/* Light rays */}
-      <svg
-        className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none"
-        style={{ zIndex: 2, width: '100%', height: '65%', opacity: 0.20 }}
-        viewBox="0 0 1400 500"
-        preserveAspectRatio="xMidYMid slice"
+      {/* Video — plays on Chrome, overlays photo on Safari when allowed */}
+      <video
+        ref={videoRef}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        className="absolute inset-0 w-full h-full object-cover"
       >
-        <defs>
-          <linearGradient id="rg1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#FFB828" stopOpacity="1" />
-            <stop offset="100%" stopColor="#FF7000" stopOpacity="0" />
-          </linearGradient>
-        </defs>
-        {[
-          [0, 50, 0.25], [200, 70, 0.20], [420, 90, 0.18],
-          [660, 100, 0.16], [860, 80, 0.18], [1100, 60, 0.22], [1400, 40, 0.28],
-        ].map(([x, w, op], i) => (
-          <line key={i} x1="700" y1="0" x2={x} y2="500"
-            stroke="url(#rg1)" strokeWidth={w} opacity={op} />
-        ))}
-      </svg>
+        <source src="/hero.mp4" type="video/mp4" />
+      </video>
+
+      {/* Overlay */}
+      <div className="absolute inset-0" style={{ background: `linear-gradient(0deg, #050505 0%, rgba(5,5,5,0.72) 28%, rgba(5,5,5,0.10) 55%, rgba(15,8,0,0.30) 100%), linear-gradient(90deg, rgba(5,5,5,0.40) 0%, transparent 55%, rgba(5,5,5,0.15) 100%)` }} />
+
+      {/* Sun */}
+      <div className="absolute left-1/2 sun-orb pointer-events-none" style={{ top: '10%', width: 100, height: 100, borderRadius: '50%', background: 'radial-gradient(circle, #FFEF99 0%, #FFD040 28%, rgba(255,160,20,0.35) 60%, transparent 100%)', boxShadow: '0 0 60px 30px rgba(255,180,40,0.30), 0 0 180px 80px rgba(255,130,0,0.18)' }} />
 
       {/* Particles */}
-      <div ref={particlesRef} className="absolute inset-0 pointer-events-none" style={{ zIndex: 2 }} />
+      <div ref={particlesRef} className="absolute inset-0 pointer-events-none" />
 
       {/* Content */}
-      <div
-        ref={contentRef}
-        className="relative flex items-end justify-between w-full gap-10"
-        style={{ zIndex: 10, padding: '0 72px 88px', transition: 'transform 0.05s linear', willChange: 'transform' }}
-      >
+      <div ref={contentRef} className="relative z-10 flex items-end justify-between w-full gap-10" style={{ padding: '0 72px 88px', transition: 'transform 0.05s linear' }}>
         <div className="max-w-[600px]">
           <div className="eyebrow mb-[18px] reveal visible">Kenya · East Africa · Since 1997</div>
-          <h1
-            className="text-white reveal visible"
-            style={{
-              fontFamily: "'Cormorant Garamond', Georgia, serif",
-              fontSize: 'clamp(56px, 7vw, 90px)',
-              fontWeight: 300,
-              lineHeight: 0.92,
-              letterSpacing: '-0.01em',
-            }}
-          >
+          <h1 className="text-white reveal visible" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 'clamp(56px, 7vw, 90px)', fontWeight: 300, lineHeight: 0.92, letterSpacing: '-0.01em' }}>
             A Journey<br />
             <em style={{ color: '#D9A441', fontStyle: 'italic' }}>Beyond</em>
-            <span className="block text-white/75" style={{ fontSize: 'clamp(40px, 5vw, 64px)', lineHeight: 1.0 }}>
-              The Known
-            </span>
+            <span className="block text-white/75" style={{ fontSize: 'clamp(40px, 5vw, 64px)', lineHeight: 1.0 }}>The Known</span>
           </h1>
           <p className="mt-[22px] text-sm leading-[1.75] text-muted max-w-[380px] reveal visible">
             We craft intimate luxury safaris across Kenya\'s most extraordinary wilderness —
@@ -153,7 +107,6 @@ export function HeroSection() {
             <button className="btn-ghost">▶ Watch Film</button>
           </div>
         </div>
-
         <div className="hidden xl:flex flex-col gap-3 flex-shrink-0">
           {[
             { icon: '🌍', label: 'National Parks', value: '58 Destinations' },
@@ -161,9 +114,7 @@ export function HeroSection() {
             { icon: '🦁', label: 'Wildlife Encounters', value: '10,000+ Guests' },
           ].map(stat => (
             <div key={stat.label} className="glass rounded-[18px] flex items-center gap-3.5 px-[22px] py-4" style={{ minWidth: 228 }}>
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center text-lg flex-shrink-0" style={{ background: 'rgba(217,164,65,0.14)' }}>
-                {stat.icon}
-              </div>
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center text-lg flex-shrink-0" style={{ background: 'rgba(217,164,65,0.14)' }}>{stat.icon}</div>
               <div>
                 <p className="text-[10px] text-dim tracking-[0.10em] uppercase mb-[3px]">{stat.label}</p>
                 <p className="text-[15px] font-medium text-white">{stat.value}</p>
@@ -174,7 +125,7 @@ export function HeroSection() {
       </div>
 
       {/* Scroll cue */}
-      <div className="absolute bottom-9 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" style={{ zIndex: 10 }}>
+      <div className="absolute bottom-9 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
         <div style={{ width: 1, height: 44, background: 'linear-gradient(180deg, transparent, rgba(255,255,255,0.4), transparent)' }} />
         <span className="text-[9px] text-dim tracking-[0.18em] uppercase">Scroll</span>
       </div>
