@@ -4,35 +4,25 @@ import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 
 export function HeroSection() {
-  const heroRef   = useRef<HTMLDivElement>(null)
-  const bgRef     = useRef<HTMLDivElement>(null)
+  const heroRef    = useRef<HTMLDivElement>(null)
+  const bgRef      = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const particlesRef = useRef<HTMLDivElement>(null)
-  const videoRef = useRef<HTMLVideoElement>(null)
 
-  // Force video autoplay on mount
   useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-    video.muted = true
-    video.play().catch(() => {
-      const unlock = () => { video.play().catch(() => {}); document.removeEventListener('click', unlock) }
-      document.addEventListener('click', unlock)
-    })
+    const vid = document.getElementById('hero-video') as HTMLVideoElement | null
+    if (!vid) return
+    vid.muted = true
+    vid.defaultMuted = true
+    vid.setAttribute('muted', '')
+    vid.setAttribute('playsinline', '')
+    vid.setAttribute('autoplay', '')
+    const tryPlay = () => vid.play().catch(() => {})
+    tryPlay()
+    setTimeout(tryPlay, 500)
+    setTimeout(tryPlay, 1500)
   }, [])
 
-  // Force video autoplay
-  useEffect(() => {
-    const v = videoRef.current
-    if (!v) return
-    v.muted = true
-    v.play().catch(() => {
-      const go = () => { v.play().catch(() => {}); document.removeEventListener('click', go) }
-      document.addEventListener('click', go)
-    })
-  }, [])
-
-  // Parallax on mouse move
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
       const cx = (e.clientX / window.innerWidth  - 0.5) * 2
@@ -46,7 +36,6 @@ export function HeroSection() {
     return () => window.removeEventListener('mousemove', onMove)
   }, [])
 
-  // Generate dust particles
   useEffect(() => {
     const pc = particlesRef.current
     if (!pc) return
@@ -74,14 +63,13 @@ export function HeroSection() {
       className="relative w-full overflow-hidden flex items-end justify-between"
       style={{ height: '100vh', minHeight: 680 }}
     >
-      {/* Background video layer */}
       <div
         ref={bgRef}
         className="absolute inset-0 transition-transform duration-[50ms] ease-linear"
         style={{ willChange: 'transform' }}
       >
         <video
-          ref={videoRef}
+          id="hero-video"
           autoPlay
           muted
           loop
@@ -89,11 +77,10 @@ export function HeroSection() {
           preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ opacity: 0.9 }}
-          onCanPlay={() => { videoRef.current?.play() }}
+          suppressHydrationWarning
         >
           <source src="/hero.mp4" type="video/mp4" />
         </video>
-        {/* Cinematic colour grade overlay */}
         <div
           className="absolute inset-0"
           style={{
@@ -106,7 +93,6 @@ export function HeroSection() {
         />
       </div>
 
-      {/* Sun */}
       <div
         className="absolute left-1/2 sun-orb pointer-events-none"
         style={{
@@ -118,7 +104,6 @@ export function HeroSection() {
         }}
       />
 
-      {/* Light rays */}
       <svg
         className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none"
         style={{ width: '100%', height: '65%', opacity: 0.22 }}
@@ -139,16 +124,14 @@ export function HeroSection() {
             stroke="url(#rg1)" strokeWidth={w} opacity={op} />
         ))}
       </svg>
-      {/* Dust particles container */}
+
       <div ref={particlesRef} className="absolute inset-0 pointer-events-none" />
 
-      {/* Hero content */}
       <div
         ref={contentRef}
         className="relative z-10 flex items-end justify-between w-full gap-10"
         style={{ padding: '0 72px 88px', transition: 'transform 0.05s linear', willChange: 'transform' }}
       >
-        {/* Left: headline */}
         <div className="max-w-[600px]">
           <div className="eyebrow mb-[18px] reveal visible">Kenya · East Africa · Since 1997</div>
           <h1
@@ -173,7 +156,7 @@ export function HeroSection() {
           <p className="mt-[22px] text-sm leading-[1.75] text-muted max-w-[380px] reveal visible">
             We craft intimate luxury safaris across Kenya's most extraordinary wilderness —
             from the endless plains of Masai Mara to the ice-capped peaks of Mount Kenya.
-            Witness nature\'s greatest theatre, guided by people who know every trail.
+            Witness nature's greatest theatre, guided by people who know every trail.
           </p>
           <div className="flex gap-3.5 mt-9 reveal visible">
             <Link href="/safaris" className="btn-primary">
@@ -187,7 +170,6 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Right: stat glass cards */}
         <div className="hidden xl:flex flex-col gap-3 flex-shrink-0">
           {[
             { icon: '🌍', label: 'National Parks',      value: '58 Destinations' },
@@ -210,7 +192,6 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll cue */}
       <div className="absolute bottom-9 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
         <div
           className="scroll-bar"
@@ -219,7 +200,6 @@ export function HeroSection() {
         <span className="text-[9px] text-dim tracking-[0.18em] uppercase">Scroll</span>
       </div>
 
-      {/* Particle drift keyframes injected once */}
       <style>{`
         @keyframes particleDrift {
           0%   { transform:translateY(0) translateX(0); opacity:0; }
