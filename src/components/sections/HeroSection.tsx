@@ -60,7 +60,7 @@ export function HeroSection() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1516426122078-c23e76319801?w=2000&q=85&auto=format&fit=crop')",
+            backgroundImage: "url('/hero.jpg')",
             opacity: 0.82,
           }}
         />
