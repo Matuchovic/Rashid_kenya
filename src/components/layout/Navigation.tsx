@@ -3,11 +3,11 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 
 const LINKS = [
-  { label: 'Safaris',      href: '/safaris' },
-  { label: 'Big Five',     href: '/#bigfive' },
-  { label: 'Destinations', href: '/#destinations' },
-  { label: 'About',        href: '/about' },
-  { label: 'Contact',      href: '/contact' },
+  { label: 'Safaris',   href: '#safaris' },
+  { label: 'Big Five',  href: '#bigfive' },
+  { label: 'Packages',  href: '#packages' },
+  { label: 'Experience',href: '#experience' },
+  { label: 'Contact',   href: '#contact' },
 ]
 
 export function Navigation() {
@@ -61,10 +61,10 @@ export function Navigation() {
         <ul className="nav-desktop" style={{ display:'none', gap:28, listStyle:'none', margin:0, padding:0, zIndex:2 }}>
           {LINKS.map(l => (
             <li key={l.href}>
-              <Link href={l.href} style={{ fontSize:10, letterSpacing:'0.08em', color:'rgba(242,230,208,0.5)', textDecoration:'none', textTransform:'uppercase', transition:'color 0.2s' }}
+              <a href={l.href} onClick={e => { e.preventDefault(); const el = document.querySelector(l.href); if(el) el.scrollIntoView({behavior:'smooth'}); }} style={{ fontSize:10, letterSpacing:'0.08em', color:'rgba(242,230,208,0.5)', textDecoration:'none', textTransform:'uppercase', transition:'color 0.2s', cursor:'pointer' }}
                 onMouseEnter={e => (e.currentTarget.style.color='rgba(212,167,95,0.9)')}
                 onMouseLeave={e => (e.currentTarget.style.color='rgba(242,230,208,0.5)')}
-              >{l.label}</Link>
+              >{l.label}</a>
             </li>
           ))}
         </ul>
@@ -102,7 +102,7 @@ export function Navigation() {
         <ul style={{ listStyle:'none', margin:0, padding:0, display:'flex', flexDirection:'column' }}>
           {LINKS.map((l, i) => (
             <li key={l.href} style={{ borderBottom:'0.5px solid rgba(212,167,95,0.07)' }}>
-              <Link href={l.href} onClick={() => setOpen(false)} style={{
+              <a href={l.href} onClick={e => { e.preventDefault(); setOpen(false); setTimeout(()=>{ const el = document.querySelector(l.href); if(el) el.scrollIntoView({behavior:'smooth'}); },300); }} style={{
                 display:'block', padding:'clamp(16px,4vh,24px) 0',
                 fontFamily:"'Cormorant Garamond',Georgia,serif",
                 fontSize:'clamp(36px,10vw,56px)', fontWeight:200,
@@ -113,7 +113,7 @@ export function Navigation() {
               }}
               onMouseEnter={e=>(e.currentTarget.style.color='#D4A75F')}
               onMouseLeave={e=>(e.currentTarget.style.color='#F2E6D0')}
-              >{l.label}</Link>
+              >{l.label}</a>
             </li>
           ))}
         </ul>
