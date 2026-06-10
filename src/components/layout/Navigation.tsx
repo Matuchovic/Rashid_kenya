@@ -223,11 +223,11 @@ export function Navigation() {
         <div style={{ position:'absolute', bottom:0, left:'50%', transform:'translateX(-50%)', height:1.5, width:0, background:'linear-gradient(90deg,transparent 0%,rgba(212,167,95,0.4) 10%,rgba(248,224,120,0.95) 50%,rgba(212,167,95,0.4) 90%,transparent 100%)', boxShadow:'0 0 10px rgba(212,167,95,0.6)', animation:'navHeartbeat 3.5s cubic-bezier(0.16,1,0.3,1) infinite', pointerEvents:'none' }} />
 
         {/* Logo */}
-        <a href="#hero" onClick={e=>{e.preventDefault();scrollTo('#hero')}} style={{ display:'flex', alignItems:'flex-end', gap:8, textDecoration:'none', flexShrink:0, zIndex:2 }}>
-          <div style={{ fontFamily:"'Cormorant Garamond',Georgia,serif", fontSize:'clamp(22px,4vw,28px)', fontWeight:200, color:'#D4A75F', lineHeight:1 }}>R</div>
-          <div style={{ paddingBottom:3 }}>
-            <div style={{ fontSize:'clamp(7px,1.2vw,8px)', letterSpacing:'0.22em', color:'#F2E6D0', textTransform:'uppercase', lineHeight:1 }}>Rashid</div>
-            <div style={{ fontSize:'clamp(5px,1vw,6px)', letterSpacing:'0.16em', color:'rgba(212,167,95,0.45)', textTransform:'uppercase' }}>Kenya Adventures</div>
+        <a href="#hero" onClick={e=>{e.preventDefault();scrollTo('#hero')}} style={{ display:'flex', alignItems:'center', gap:10, textDecoration:'none', flexShrink:0, zIndex:2 }}>
+          <LionLogo />
+          <div style={{ display:'flex', flexDirection:'column', gap:2 }}>
+            <div style={{ fontFamily:"'Cormorant Garamond',Georgia,serif", fontSize:'clamp(13px,2vw,18px)', fontWeight:200, color:'#F2E6D0', letterSpacing:'0.22em', lineHeight:1 }}>RASHID</div>
+            <div style={{ fontSize:'clamp(5px,0.9vw,6px)', letterSpacing:'0.16em', color:'rgba(212,167,95,0.5)', textTransform:'uppercase' }}>KENYA ADVENTURES</div>
           </div>
         </a>
 
