@@ -160,7 +160,7 @@ export function PackagesSection() {
                 ))}
                 {pkg.includes.length > 3 && (
                   <span style={{ fontSize:'clamp(7px,1.4vw,8px)', letterSpacing:'0.08em', color:'rgba(242,230,208,0.25)', padding:'3px 8px', border:'0.5px solid rgba(212,167,95,0.08)', borderRadius:100 }}>
-                    +{pkg.includes.length - 3} {t('pkg_more')}
+                    +{(pkg.includes.length - 3).toString()} {t('pkg_more')}
                   </span>
                 )}
               </div>
