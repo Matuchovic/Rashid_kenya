@@ -594,7 +594,7 @@ export const translations = {
     bf_label: 'I Big Five', bf_wild: 'Selvaggi.', bf_powerful: 'Potenti.', bf_untamed: 'Indomiti.',
     bf_lion: 'Leone', bf_leopard: 'Leopardo', bf_elephant: 'Elefante', bf_rhino: 'Rinoceronte', bf_buffalo: 'Bufalo',
     bf_lion_desc: "Il re della savana. Osserva i branchi cacciare all'alba.",
-    bf_leopard_desc: 'Il più elusivo. Nascosto tra le acacie durante l'ora d'oro.',
+    bf_leopard_desc: "Il più elusivo. Nascosto tra le acacie durante l'ora d'oro.",
     bf_elephant_desc: 'Branchi sotto il Kilimanjaro. Maestosità pura e senza tempo.',
     bf_rhino_desc: 'Antico e potente. Un incontro raro e sacro.',
     bf_buffalo_desc: 'Migliaia di esemplari. La forza oscura delle pianure.',
