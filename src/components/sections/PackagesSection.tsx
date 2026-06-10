@@ -70,7 +70,7 @@ export function PackagesSection() {
         transition:'all 0.9s cubic-bezier(0.16,1,0.3,1)' }}>
         <div style={{ fontSize:7, letterSpacing:'0.22em', color:'rgba(212,167,95,0.45)', textTransform:'uppercase', marginBottom:14, display:'flex', alignItems:'center', gap:12, justifyContent:'center' }}>
           <span style={{ display:'block', width:32, height:'0.5px', background:'rgba(212,167,95,0.25)' }} />
-          Kenya Safari & Excursions
+          {t('pkg_label')}
           <span style={{ display:'block', width:32, height:'0.5px', background:'rgba(212,167,95,0.25)' }} />
         </div>
         <h2 style={{ fontFamily:"'Cormorant Garamond',Georgia,serif", fontSize:'clamp(34px,5.5vw,60px)', fontWeight:200, color:'#F2E6D0', lineHeight:0.9, marginBottom:16 }}>
@@ -168,7 +168,7 @@ export function PackagesSection() {
               {/* CTA */}
               <div className="pkg-cta" style={{ display:'flex', alignItems:'center', gap:8, transition:'gap 0.3s ease' }}>
                 <span style={{ fontSize:'clamp(8px,1.6vw,9px)', letterSpacing:'0.18em', textTransform:'uppercase', color:'rgba(212,167,95,0.7)' }}>
-                  Enquire Now
+                  {t('pkg_enquire')}
                 </span>
                 <span style={{ fontSize:12, color:'rgba(212,167,95,0.5)', transition:'transform 0.3s ease' }} className="pkg-arrow">→</span>
               </div>
