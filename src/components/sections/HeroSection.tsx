@@ -42,7 +42,7 @@ export function HeroSection() {
   return (
     <section
       className="relative w-full overflow-hidden flex items-end justify-between"
-      style={{ height: '100vh', minHeight: 680 }}
+      style={{ height: '100svh', minHeight: 600 }}
     >
       {/* Hero photo with Ken Burns */}
       <div
@@ -107,16 +107,16 @@ export function HeroSection() {
       {/* Content */}
       <div
         ref={contentRef}
-        className="relative z-10 flex items-end justify-between w-full gap-10"
-        style={{ padding: '0 72px 88px', transition: 'transform 0.05s linear', willChange: 'transform' }}
+        className="relative z-10 flex items-end justify-between w-full gap-10 hero-content"
+        style={{ transition: 'transform 0.05s linear', willChange: 'transform' }}
       >
-        <div className="max-w-[600px]">
+        <div className="hero-text">
           <div className="eyebrow mb-[18px] reveal visible">Kenya · East Africa · Since 1997</div>
           <h1
             className="text-white reveal visible"
             style={{
               fontFamily: "'Cormorant Garamond', Georgia, serif",
-              fontSize: 'clamp(56px, 7vw, 90px)',
+              fontSize: 'clamp(44px, 7vw, 90px)',
               fontWeight: 300,
               lineHeight: 0.92,
               letterSpacing: '-0.01em',
@@ -124,16 +124,15 @@ export function HeroSection() {
           >
             A Journey<br />
             <em style={{ color: '#D9A441', fontStyle: 'italic' }}>Beyond</em>
-            <span className="block text-white/75" style={{ fontSize: 'clamp(40px, 5vw, 64px)', lineHeight: 1.0 }}>
+            <span className="block text-white/75" style={{ fontSize: 'clamp(32px, 5vw, 64px)', lineHeight: 1.0 }}>
               The Known
             </span>
           </h1>
-          <p className="mt-[22px] text-sm leading-[1.75] text-muted max-w-[380px] reveal visible">
-            We craft intimate luxury safaris across Kenya\'s most extraordinary wilderness —
+          <p className="mt-[22px] text-sm leading-[1.75] text-muted hero-desc reveal visible">
+            We craft intimate luxury safaris across Kenya's most extraordinary wilderness —
             from the endless plains of Masai Mara to the ice-capped peaks of Mount Kenya.
-            Witness nature\'s greatest theatre, guided by people who know every trail.
           </p>
-          <div className="flex gap-3.5 mt-9 reveal visible">
+          <div className="flex gap-3 mt-8 flex-wrap reveal visible">
             <Link href="/safaris" className="btn-primary">
               Explore Safaris
               <span className="inline-flex items-center justify-center w-6 h-6 rounded-full text-xs" style={{ background: 'rgba(0,0,0,0.2)' }}>→</span>
@@ -159,13 +158,47 @@ export function HeroSection() {
         </div>
       </div>
 
+      {/* Mobile stat pills */}
+      <div className="absolute bottom-20 left-0 right-0 flex justify-center gap-3 px-5 xl:hidden z-10">
+        {[
+          { icon: '⭐', value: '4.97★' },
+          { icon: '🦁', value: '10K+ Guests' },
+          { icon: '🌍', value: '58 Parks' },
+        ].map(s => (
+          <div key={s.value} className="glass rounded-full px-4 py-2 flex items-center gap-2">
+            <span className="text-sm">{s.icon}</span>
+            <span className="text-xs text-white/70 font-medium">{s.value}</span>
+          </div>
+        ))}
+      </div>
+
       {/* Scroll cue */}
-      <div className="absolute bottom-9 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
         <div style={{ width: 1, height: 44, background: 'linear-gradient(180deg, transparent, rgba(255,255,255,0.4), transparent)' }} />
         <span className="text-[9px] text-dim tracking-[0.18em] uppercase">Scroll</span>
       </div>
 
       <style>{`
+        .hero-content {
+          padding: 0 24px 100px;
+        }
+        .hero-text {
+          max-width: 600px;
+          width: 100%;
+        }
+        .hero-desc {
+          max-width: 380px;
+        }
+        @media (min-width: 768px) {
+          .hero-content {
+            padding: 0 48px 88px;
+          }
+        }
+        @media (min-width: 1280px) {
+          .hero-content {
+            padding: 0 72px 88px;
+          }
+        }
         @keyframes kenBurns {
           0%   { transform: scale(1.0) translateX(0px) translateY(0px); }
           100% { transform: scale(1.08) translateX(-20px) translateY(-10px); }

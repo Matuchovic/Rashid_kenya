@@ -212,3 +212,24 @@
     transform: none !important;
   }
 }
+
+
+/* ── Mobile Responsive ────────────────────────────── */
+@media (max-width: 768px) {
+  .btn-primary, .btn-ghost {
+    @apply px-5 py-3 text-xs;
+    min-height: 44px;
+  }
+
+  .eyebrow {
+    @apply text-[9px];
+  }
+}
+
+/* Touch targets */
+@media (hover: none) {
+  .btn-primary:hover,
+  .btn-ghost:hover {
+    transform: none;
+  }
+}
