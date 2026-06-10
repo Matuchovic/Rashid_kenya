@@ -28,7 +28,7 @@ const PACKAGES: Pkg[] = [
   { id:'amboseli', name:'3 Days Tsavo East & Amboseli', duration:'3 Days', tag:'Premium', category:'safari', highlight:true,
     includes:['4×4 Jeep & Guide','Park Entry Fees','2× Accommodation','All Meals','Kilimanjaro Views','Drinking Water'], img:'/pkg-amboseli.jpg' },
   { id:'tsavo3combo', name:'3 Days Tsavo East & Salt Lick', duration:'3 Days', tag:'Premium', category:'safari',
-    includes:['4×4 Jeep & Guide','Park Entry Fees','2× Accommodation','All Meals','Drinking Water'], img:'/pkg-safari-sunset.jpg' },
+    includes:['4×4 Jeep & Guide','Park Entry Fees','2× Accommodation','All Meals','Drinking Water'], img:'/pkg-lodge-sunset.jpg' },
   { id:'tsavoboth', name:'3 Days Tsavo East & West', duration:'3 Days', tag:'Premium', category:'safari',
     includes:['4×4 Jeep & Guide','Park Entry Fees','2× Accommodation','All Meals','Drinking Water'], img:'/pkg-tsavo1.jpg' },
   { id:'mombasa', name:'Mombasa City Tour', duration:'Full Day', tag:'City', category:'excursion',
