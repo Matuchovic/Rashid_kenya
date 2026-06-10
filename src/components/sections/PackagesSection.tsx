@@ -100,13 +100,13 @@ export function PackagesSection() {
       </div>
 
       {/* Cards grid */}
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(min(100%,clamp(260px,40vw,340px)),1fr))', gap:'clamp(8px,2vw,12px)', padding:'0 clamp(12px,4vw,48px)', maxWidth:1200, margin:'0 auto' }}>
+      <div className="pkg-grid" style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(min(100%,clamp(260px,30vw,340px)),1fr))', gridAutoRows:'clamp(280px,38vw,360px)', gap:'clamp(8px,2vw,12px)', padding:'0 clamp(12px,4vw,48px)', maxWidth:1200, margin:'0 auto' }}>
         {filtered.map((pkg, idx) => (
           <ContactMenu key={pkg.id}
             style={{
               position:'relative', overflow:'hidden',
               borderRadius:'clamp(12px,3vw,16px)',
-              minHeight:'clamp(200px,35vw,320px)',
+              height:'100%',
               display:'flex', flexDirection:'column', justifyContent:'flex-end',
               textDecoration:'none', cursor:'pointer',
               border: pkg.highlight ? '0.5px solid rgba(212,167,95,0.3)' : '0.5px solid rgba(212,167,95,0.08)',
