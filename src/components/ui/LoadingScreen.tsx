@@ -5,19 +5,21 @@ import { useEffect, useState } from 'react'
 export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const [pct, setPct] = useState(0)
   const [leaving, setLeaving] = useState(false)
-  const [litCount, setLitCount] = useState(0)
+  const [msgIdx, setMsgIdx] = useState(0)
+
+  const msgs = ['Into the Heart of Africa...', 'The wild awakens...', 'Your journey begins...', 'Africa awaits...']
 
   useEffect(() => {
     let p = 0
     const iv = setInterval(() => {
-      p += Math.random() * 2.2 + 0.8
+      p += Math.random() * 2 + 0.8
       if (p >= 100) {
         p = 100
         clearInterval(iv)
-        setTimeout(() => { setLeaving(true); setTimeout(onComplete, 1000) }, 600)
+        setTimeout(() => { setLeaving(true); setTimeout(onComplete, 1000) }, 500)
       }
       setPct(Math.min(Math.round(p), 100))
-      setLitCount(Math.floor(Math.min(p, 99) / 20))
+      setMsgIdx(Math.floor(Math.min(p, 99) / 25))
     }, 55)
     return () => clearInterval(iv)
   }, [onComplete])
@@ -39,143 +41,122 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         backgroundImage: "url('/bigfive.jpg')",
         backgroundSize: 'cover',
         backgroundPosition: 'center 20%',
-        animation: 'ldrKen 8s ease-in-out infinite alternate',
+        animation: 'ldrKen 9s ease-in-out infinite alternate',
       }} />
 
       {/* Fire atmosphere */}
       <div style={{
         position: 'absolute', inset: 0,
-        background: 'radial-gradient(ellipse 90% 70% at 50% 25%, rgba(255,130,0,0.15) 0%, rgba(150,60,0,0.08) 45%, transparent 70%)',
-        animation: 'ldrEmber 4s ease-in-out infinite',
+        background: 'radial-gradient(ellipse 90% 60% at 50% 25%, rgba(255,120,0,0.1) 0%, transparent 65%)',
+        animation: 'ldrEmber 5s ease-in-out infinite',
       }} />
 
-      {/* Dark bottom vignette */}
+      {/* Dark bottom gradient */}
       <div style={{
         position: 'absolute', inset: 0,
-        background: 'linear-gradient(0deg, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.88) 18%, rgba(0,0,0,0.55) 35%, rgba(0,0,0,0.15) 55%, rgba(0,0,0,0.5) 100%)',
+        background: 'linear-gradient(0deg, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.7) 22%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.4) 100%)',
       }} />
 
-      {/* Side vignette */}
+      {/* Edge vignette */}
       <div style={{
         position: 'absolute', inset: 0,
-        background: 'radial-gradient(ellipse 75% 75% at 50% 50%, transparent 25%, rgba(0,0,0,0.75) 100%)',
+        background: 'radial-gradient(ellipse 75% 75% at 50% 50%, transparent 30%, rgba(0,0,0,0.75) 100%)',
       }} />
 
-      {/* Loading UI — bottom */}
+      {/* Center gold text */}
+      <div style={{
+        position: 'absolute', top: '50%', left: '50%',
+        transform: 'translate(-50%, -50%)',
+        textAlign: 'center', zIndex: 10,
+        animation: 'ldrFadeIn 1.5s ease 0.3s both',
+      }}>
+        <div style={{
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
+          fontSize: 'clamp(52px, 10vw, 96px)',
+          fontWeight: 200,
+          letterSpacing: '0.18em',
+          color: '#D4A75F',
+          textShadow: '0 0 40px rgba(212,167,95,0.6), 0 0 80px rgba(212,167,95,0.3), 0 0 160px rgba(212,167,95,0.15)',
+          lineHeight: 0.9,
+          animation: 'ldrGlow 3s ease-in-out infinite',
+        }}>
+          RASHID
+        </div>
+        <div style={{
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
+          fontSize: 'clamp(10px, 1.5vw, 14px)',
+          fontWeight: 200,
+          letterSpacing: '0.45em',
+          color: 'rgba(212,167,95,0.55)',
+          textTransform: 'uppercase',
+          marginTop: 12,
+          textShadow: '0 0 20px rgba(212,167,95,0.3)',
+        }}>
+          Kenya Adventures
+        </div>
+        <div style={{
+          width: 40, height: '0.5px',
+          background: 'linear-gradient(90deg, transparent, rgba(212,167,95,0.5), transparent)',
+          margin: '16px auto',
+        }} />
+        <div style={{
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
+          fontSize: 'clamp(11px, 1.2vw, 13px)',
+          fontWeight: 200,
+          fontStyle: 'italic',
+          letterSpacing: '0.12em',
+          color: 'rgba(242,230,208,0.3)',
+        }}>
+          Into the Heart of Africa
+        </div>
+      </div>
+
+      {/* Bottom loading UI */}
       <div style={{
         position: 'relative', zIndex: 10,
+        width: '100%', padding: '0 40px 40px',
         display: 'flex', flexDirection: 'column',
-        alignItems: 'center', gap: 0,
-        paddingBottom: 48, width: '100%',
-        animation: 'ldrFadeUp 1s ease 0.5s both',
+        alignItems: 'center', gap: 10,
+        animation: 'ldrFadeIn 1s ease 0.8s both',
       }}>
-
-        {/* LOADING text */}
-        <div style={{
-          fontFamily: "'Inter', sans-serif",
-          fontSize: 13, fontWeight: 300,
-          letterSpacing: '0.55em',
-          color: 'rgba(217,164,65,0.7)',
-          textTransform: 'uppercase',
-          marginBottom: 18,
-        }}>Loading</div>
-
         {/* Gold progress bar */}
-        <div style={{
-          width: 'min(520px, 80vw)',
-          height: 2,
-          background: 'rgba(255,255,255,0.06)',
-          position: 'relative',
-          borderRadius: 2,
-          overflow: 'hidden',
-          marginBottom: 16,
-        }}>
+        <div style={{ width: 'min(480px, 80vw)', height: '0.5px', background: 'rgba(255,255,255,0.05)', position: 'relative', overflow: 'visible' }}>
           <div style={{
             position: 'absolute', top: 0, left: 0,
-            height: '100%',
-            width: pct + '%',
-            background: 'linear-gradient(90deg, #C08020, #D9A441, #F8E060, #D9A441, #C08020)',
+            height: '100%', width: pct + '%',
+            background: 'linear-gradient(90deg, transparent, #D4A75F, #F0D080, #D4A75F)',
             backgroundSize: '200% auto',
-            boxShadow: '0 0 12px rgba(217,164,65,0.8), 0 0 24px rgba(217,164,65,0.4)',
-            borderRadius: 2,
+            boxShadow: '0 0 10px rgba(212,167,95,0.7), 0 0 20px rgba(212,167,95,0.3)',
             transition: 'width 0.08s ease',
             animation: 'ldrShimmer 1.5s linear infinite',
           }} />
           {/* Glow tip */}
           <div style={{
-            position: 'absolute', top: -3, height: 8,
-            width: 20, borderRadius: '50%',
-            background: 'rgba(248,224,96,0.9)',
-            boxShadow: '0 0 16px 6px rgba(217,164,65,0.8)',
-            left: `calc(${pct}% - 10px)`,
+            position: 'absolute', top: -3, height: 7,
+            width: 16, borderRadius: '50%',
+            background: 'rgba(240,208,120,0.9)',
+            boxShadow: '0 0 12px 4px rgba(212,167,95,0.8)',
+            left: `calc(${pct}% - 8px)`,
             transition: 'left 0.08s ease',
           }} />
         </div>
 
-        {/* Percentage */}
-        <div style={{
-          fontFamily: "'Inter', sans-serif",
-          fontSize: 14, fontWeight: 200,
-          letterSpacing: '0.2em',
-          color: 'rgba(217,164,65,0.6)',
-          marginBottom: 24,
-        }}>{pct} %</div>
-
-        {/* 5 animal icons */}
-        <div style={{ display: 'flex', gap: 28, alignItems: 'center' }}>
-          {[
-            { emoji: '🦁', label: 'Lion',     at: 0  },
-            { emoji: '🐘', label: 'Elephant', at: 20 },
-            { emoji: '🦏', label: 'Rhino',    at: 40 },
-            { emoji: '🐆', label: 'Leopard',  at: 60 },
-            { emoji: '🐃', label: 'Buffalo',  at: 80 },
-          ].map((a, i) => {
-            const lit = pct >= a.at
-            return (
-              <div key={i} style={{
-                display: 'flex', flexDirection: 'column',
-                alignItems: 'center', gap: 6,
-                transition: 'all 0.5s ease',
-                opacity: lit ? 1 : 0.18,
-                transform: lit ? 'scale(1.1)' : 'scale(0.9)',
-              }}>
-                <div style={{
-                  fontSize: 28,
-                  filter: lit
-                    ? 'drop-shadow(0 0 8px rgba(217,164,65,0.9)) drop-shadow(0 0 16px rgba(217,164,65,0.5))'
-                    : 'grayscale(1)',
-                  transition: 'filter 0.5s ease',
-                }}>{a.emoji}</div>
-                <div style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: 8, letterSpacing: '0.18em',
-                  color: lit ? 'rgba(217,164,65,0.65)' : 'rgba(255,255,255,0.15)',
-                  textTransform: 'uppercase',
-                  transition: 'color 0.5s ease',
-                }}>{a.label}</div>
-              </div>
-            )
-          })}
+        <div style={{ display: 'flex', justifyContent: 'space-between', width: 'min(480px, 80vw)' }}>
+          <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 8, letterSpacing: '0.16em', color: 'rgba(212,167,95,0.4)', textTransform: 'uppercase' }}>
+            {msgs[Math.min(msgIdx, msgs.length - 1)]}
+          </span>
+          <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 8, letterSpacing: '0.1em', color: 'rgba(212,167,95,0.35)' }}>
+            {pct}%
+          </span>
         </div>
       </div>
 
       <style>{`
-        @keyframes ldrKen {
-          0%  { transform: scale(1)    translate(0,    0);    }
-          100%{ transform: scale(1.07) translate(-1%, 0.5%); }
-        }
-        @keyframes ldrEmber {
-          0%,100%{ opacity: 0.7; }
-          50%    { opacity: 1;   }
-        }
-        @keyframes ldrFadeUp {
-          from{ opacity:0; transform:translateY(20px); }
-          to  { opacity:1; transform:translateY(0);    }
-        }
-        @keyframes ldrShimmer {
-          0%  { background-position: 200% center; }
-          100%{ background-position: -100% center; }
-        }
+        @keyframes ldrKen { 0%{transform:scale(1) translate(0,0)} 100%{transform:scale(1.07) translate(-1%,0.5%)} }
+        @keyframes ldrEmber { 0%,100%{opacity:0.6} 50%{opacity:1} }
+        @keyframes ldrFadeIn { from{opacity:0;transform:translate(-50%,-48%)} to{opacity:1;transform:translate(-50%,-50%)} }
+        @keyframes ldrGlow { 0%,100%{text-shadow:0 0 40px rgba(212,167,95,0.6),0 0 80px rgba(212,167,95,0.3),0 0 160px rgba(212,167,95,0.15)} 50%{text-shadow:0 0 60px rgba(212,167,95,0.9),0 0 120px rgba(212,167,95,0.5),0 0 200px rgba(212,167,95,0.25)} }
+        @keyframes ldrShimmer { 0%{background-position:200%} 100%{background-position:-100%} }
       `}</style>
     </div>
   )
