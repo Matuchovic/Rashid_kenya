@@ -101,31 +101,31 @@ export function EarthSection() {
           const [px,py] = bezPt([sx,sy],[kx,ky],c2,tp)
           if(i===0) ctx.moveTo(px,py); else ctx.lineTo(px,py)
         }
-        ctx.strokeStyle='rgba(212,167,95,0.12)'
+        ctx.strokeStyle='rgba(212,167,95,0.35)'
         ctx.lineWidth=0.5
         ctx.stroke()
 
         // Plane dot
         const [px,py] = bezPt([sx,sy],[kx,ky],c2,prog)
-        const g2 = ctx.createRadialGradient(px,py,0,px,py,5)
+        const g2 = ctx.createRadialGradient(px,py,0,px,py,8)
         g2.addColorStop(0,'rgba(248,224,120,0.9)')
         g2.addColorStop(1,'rgba(248,224,120,0)')
         ctx.beginPath();ctx.arc(px,py,5,0,Math.PI*2)
         ctx.fillStyle=g2;ctx.fill()
         ctx.beginPath();ctx.arc(px,py,1.8,0,Math.PI*2)
-        ctx.fillStyle='rgba(255,248,160,0.95)';ctx.fill()
+        ctx.fillStyle='rgba(255,255,200,1.0)';ctx.fill()
 
         // City pulse
         const pulse = Math.sin(t*2 + pl.city.lon*0.1)*0.5+0.5
-        const r1 = 2.5 + pulse*1.5
-        const r2 = 6 + pulse*5
+        const r1 = 3.5 + pulse*2
+        const r2 = 9 + pulse*7
 
         ctx.beginPath();ctx.arc(sx,sy,r2,0,Math.PI*2)
-        ctx.strokeStyle=`rgba(212,167,95,${0.06+pulse*0.07})`
+        ctx.strokeStyle=`rgba(212,167,95,${0.15+pulse*0.2})`
         ctx.lineWidth=0.5;ctx.stroke()
 
         ctx.beginPath();ctx.arc(sx,sy,r1,0,Math.PI*2)
-        ctx.strokeStyle=`rgba(212,167,95,${0.25+pulse*0.2})`
+        ctx.strokeStyle=`rgba(212,167,95,${0.5+pulse*0.3})`
         ctx.lineWidth=0.5;ctx.stroke()
 
         const gd = ctx.createRadialGradient(sx,sy,0,sx,sy,r1)
@@ -135,7 +135,7 @@ export function EarthSection() {
         ctx.fillStyle=gd;ctx.fill()
 
         // Label
-        ctx.fillStyle=`rgba(242,230,208,${0.45+pulse*0.2})`
+        ctx.fillStyle=`rgba(242,230,208,${0.7+pulse*0.25})`
         ctx.font='500 8px Inter,sans-serif'
         ctx.textAlign='left'
         ctx.fillText(pl.city.name, sx+r1+3, sy+3)

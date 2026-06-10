@@ -20,7 +20,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
 
   return (
     <div style={{ position:'fixed', inset:0, zIndex:9999, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', background:'#000', opacity:leaving?0:1, transition:leaving?'opacity 1s ease':'none', overflow:'hidden' }}>
-      <div style={{ position:'absolute', inset:0, backgroundImage:"url('/bigfive.jpg')", backgroundSize:'cover', backgroundPosition:'center 30%', animation:'ldrKen 9s ease-in-out infinite alternate' }} />
+      <div style={{ position:'absolute', inset:0, backgroundImage:"url('/bigfive.jpg')", backgroundSize:'cover', backgroundPosition:'center 20%', animation:'ldrKen 9s ease-in-out infinite alternate' }} />
       <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 90% 60% at 50% 25%,rgba(255,120,0,0.1) 0%,transparent 65%)', animation:'ldrEmber 5s ease-in-out infinite' }} />
       <div style={{ position:'absolute', inset:0, background:'linear-gradient(0deg,rgba(0,0,0,0.97) 0%,rgba(0,0,0,0.7) 22%,rgba(0,0,0,0.1) 50%,rgba(0,0,0,0.4) 100%)' }} />
       <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 75% 75% at 50% 50%,transparent 30%,rgba(0,0,0,0.75) 100%)' }} />
@@ -48,6 +48,10 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         @keyframes ldrEmber{0%,100%{opacity:0.6}50%{opacity:1}}
         @keyframes ldrGlow{0%,100%{text-shadow:0 0 40px rgba(212,167,95,0.6),0 0 80px rgba(212,167,95,0.3)}50%{text-shadow:0 0 60px rgba(212,167,95,0.9),0 0 120px rgba(212,167,95,0.5)}}
         @keyframes ldrShimmer{0%{background-position:200%}100%{background-position:-100%}}
+        @media(max-width:768px){
+          .loader-outer{height:100dvh!important;min-height:100dvh!important;}
+          .loader-bg{background-position:center 18%!important;background-size:cover!important;}
+        }
       `}</style>
     </div>
   )
