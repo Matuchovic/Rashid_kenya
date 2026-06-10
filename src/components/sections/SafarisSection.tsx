@@ -1,57 +1,221 @@
-import Link from 'next/link'
-import { SAFARIS } from '@/lib/data'
-import { SafariCard } from '@/components/ui/SafariCard'
-import { Reveal } from '@/components/ui/Reveal'
+'use client'
+import { useEffect, useRef } from 'react'
+
+const packages = [
+  {
+    tag: 'Tsavo · 2 Days',
+    title: 'Private Tsavo\nWilderness',
+    sub: 'Tsavo East National Park',
+    desc: 'Just you, Rashid and the wild. Private land cruiser, luxury tented camp, dawn game drive and sundowner on the savanna. Rashid knows every track.',
+    tags: ['100% Private', 'Luxury Camp', 'Rashid Personally', 'Flexible Schedule'],
+    img: '/img-elephants-dust.jpg',
+  },
+  {
+    tag: 'Tsavo + Amboseli · 3 Days',
+    title: 'Big Five\nPrivate Journey',
+    sub: 'Tsavo East + Amboseli + Kilimanjaro',
+    desc: 'Three days hunting the Big Five. Amboseli beneath Kilimanjaro, elephant herds in the dust, leopards at dusk. Private vehicle, no strangers.',
+    tags: ['Big Five', 'Kilimanjaro View', 'Private', 'Luxury Lodge'],
+    img: '/img-rhino.jpg',
+  },
+  {
+    tag: 'Maasai Mara · 2–3 Days',
+    title: 'Maasai Mara\nLuxury by Air',
+    sub: 'Flight from Diani — land in the heart of the Mara',
+    desc: 'Private or scheduled flight, luxury tented camp in the heart of Mara, private game drives at dawn and sunset. Great Migration July–October.',
+    tags: ['By Air', 'Luxury Camp', 'Great Migration', 'Private'],
+    img: '/img-savanna.jpg',
+  },
+  {
+    tag: 'Bush + Beach · 5–7 Days',
+    title: 'Diani Beach\n& Safari Combo',
+    sub: 'The Best of Kenya — Wild and Coast',
+    desc: '2 days safari (Tsavo or Amboseli) followed by 3 days on Diani Beach in a luxury resort. Rashid arranges everything — transfers, stays, dining, ocean activities.',
+    tags: ['Bush + Beach', 'All-inclusive', 'Honeymoon Ideal', 'Luxury Resort'],
+    img: '/img-elephants-sunset.jpg',
+  },
+]
 
 export function SafarisSection() {
-  const featured = SAFARIS.filter(s => s.featured)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        ref.current?.querySelectorAll('.si').forEach((el, i) =>
+          setTimeout(() => {
+            (el as HTMLElement).style.opacity = '1'
+            ;(el as HTMLElement).style.transform = 'translateY(0)'
+          }, i * 120)
+        )
+      }
+    }, { threshold: 0.1 })
+    if (ref.current) obs.observe(ref.current)
+    return () => obs.disconnect()
+  }, [])
 
   return (
-    <section id="safaris" className="px-[72px] py-[110px]">
-      <div className="max-w-[1180px] mx-auto">
-        {/* Header */}
-        <div className="flex items-end justify-between mb-[60px] gap-6">
-          <Reveal>
-            <p className="eyebrow mb-3.5">Curated Journeys</p>
-            <h2 className="section-title">Signature <em>Safaris</em></h2>
-          </Reveal>
-          <Reveal>
-            <Link
-              href="/safaris"
-              className="text-[12px] tracking-[0.08em] pb-1 cursor-none"
-              style={{
-                color: '#D9A441',
-                borderBottom: '1px solid rgba(217,164,65,0.35)',
-                textDecoration: 'none',
-              }}
-            >
-              View all 24 safaris →
-            </Link>
-          </Reveal>
+    <section ref={ref} style={{ background: '#050505', padding: 'clamp(60px,8vh,100px) 0', overflow: 'hidden' }}>
+
+      {/* Header */}
+      <div className="si" style={{
+        opacity: 0, transform: 'translateY(24px)',
+        transition: 'all 0.8s cubic-bezier(0.25,1,0.5,1)',
+        padding: '0 clamp(20px,5vw,60px)', marginBottom: 'clamp(40px,6vh,64px)',
+        display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: 20,
+      }}>
+        <div>
+          <div style={{ fontSize: 7, letterSpacing: '0.22em', color: 'rgba(212,167,95,0.5)', textTransform: 'uppercase', marginBottom: 12 }}>
+            Private Safari Experiences
+          </div>
+          <h2 style={{
+            fontFamily: "'Cormorant Garamond', Georgia, serif",
+            fontSize: 'clamp(36px,5vw,64px)', fontWeight: 200,
+            color: '#F2E6D0', lineHeight: 0.9, margin: 0,
+          }}>
+            Crafted for<br /><em style={{ color: '#D4A75F', fontStyle: 'italic' }}>You Alone.</em>
+          </h2>
         </div>
-
-        {/* Grid: large card left + 2×2 right */}
-        <div className="grid gap-5" style={{ gridTemplateColumns: '1.5fr 1fr 1fr' }}>
-          {/* Hero card */}
-          <Reveal className="row-span-2">
-            <SafariCard safari={featured[0]} large />
-          </Reveal>
-
-          {/* Two regular cards */}
-          {featured.slice(1).map((safari, i) => (
-            <Reveal key={safari.id} delay={(i % 2 + 1) as 1 | 2}>
-              <SafariCard safari={safari} />
-            </Reveal>
-          ))}
-
-          {/* Non-featured extras (2 more) */}
-          {SAFARIS.filter(s => !s.featured).slice(0, 2).map((safari, i) => (
-            <Reveal key={safari.id} delay={(i % 2 + 1) as 1 | 2}>
-              <SafariCard safari={safari} />
-            </Reveal>
-          ))}
-        </div>
+        <p style={{ fontSize: 13, lineHeight: 1.7, color: 'rgba(242,230,208,0.4)', maxWidth: 320, margin: 0 }}>
+          Every safari is private, personal and designed around your vision.
+          No shared vehicles. No strangers. Just Rashid, you and Kenya.
+        </p>
       </div>
+
+      {/* Cards grid */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
+        gap: 2,
+        padding: '0 clamp(20px,5vw,60px)',
+      }}>
+        {packages.map((p, i) => (
+          <div
+            key={p.title}
+            className="si safari-card"
+            style={{
+              opacity: 0, transform: 'translateY(32px)',
+              transition: `all 0.8s cubic-bezier(0.25,1,0.5,1) ${i * 0.08}s`,
+              position: 'relative', overflow: 'hidden',
+              minHeight: 'clamp(420px,55vh,560px)',
+              cursor: 'pointer',
+            }}
+          >
+            {/* Photo bg */}
+            <div className="safari-photo" style={{
+              position: 'absolute', inset: 0,
+              backgroundImage: `url('${p.img}')`,
+              backgroundSize: 'cover', backgroundPosition: 'center',
+              filter: 'brightness(0.45)',
+              transition: 'filter 0.6s ease, transform 0.6s ease',
+            }} />
+
+            {/* Gradient */}
+            <div style={{
+              position: 'absolute', inset: 0,
+              background: 'linear-gradient(0deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.3) 55%, rgba(0,0,0,0.15) 100%)',
+            }} />
+
+            {/* Top tag */}
+            <div style={{
+              position: 'absolute', top: 20, left: 20,
+              fontSize: 7, letterSpacing: '0.18em',
+              color: 'rgba(212,167,95,0.6)', textTransform: 'uppercase',
+              padding: '5px 10px',
+              border: '0.5px solid rgba(212,167,95,0.2)',
+              borderRadius: 100,
+              background: 'rgba(0,0,0,0.3)',
+              backdropFilter: 'blur(8px)',
+            }}>{p.tag}</div>
+
+            {/* Content bottom */}
+            <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: 'clamp(20px,3vh,28px)' }}>
+              <div style={{ fontSize: 7, letterSpacing: '0.14em', color: 'rgba(212,167,95,0.45)', textTransform: 'uppercase', marginBottom: 8 }}>
+                {p.sub}
+              </div>
+              <h3 style={{
+                fontFamily: "'Cormorant Garamond', Georgia, serif",
+                fontSize: 'clamp(26px,3vw,34px)', fontWeight: 200,
+                color: '#F2E6D0', lineHeight: 0.95, marginBottom: 14,
+                whiteSpace: 'pre-line',
+              }}>{p.title}</h3>
+
+              <p style={{
+                fontSize: 12, lineHeight: 1.7,
+                color: 'rgba(242,230,208,0.45)',
+                marginBottom: 18,
+                display: '-webkit-box',
+                WebkitLineClamp: 3,
+                WebkitBoxOrient: 'vertical',
+                overflow: 'hidden',
+              }}>{p.desc}</p>
+
+              {/* Tags */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5, marginBottom: 20 }}>
+                {p.tags.map(t => (
+                  <span key={t} style={{
+                    fontSize: 7, letterSpacing: '0.12em',
+                    color: 'rgba(212,167,95,0.5)', textTransform: 'uppercase',
+                    padding: '3px 8px',
+                    border: '0.5px solid rgba(212,167,95,0.15)',
+                    borderRadius: 100,
+                  }}>{t}</span>
+                ))}
+              </div>
+
+              {/* Contact button */}
+              
+                href="https://wa.me/254700000000?text=Hi%20Rashid%2C%20I%27m%20interested%20in%20a%20private%20safari"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="safari-btn"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 8,
+                  fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase',
+                  color: '#050505', background: '#D4A75F',
+                  padding: '10px 20px', borderRadius: 100,
+                  textDecoration: 'none',
+                  transition: 'all 0.3s cubic-bezier(0.25,1,0.5,1)',
+                  border: 'none', cursor: 'pointer',
+                }}
+              >
+                Contact Rashid
+                <span style={{ fontSize: 10 }}>→</span>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Bottom note */}
+      <div className="si" style={{
+        opacity: 0, transform: 'translateY(20px)',
+        transition: 'all 0.8s cubic-bezier(0.25,1,0.5,1)',
+        textAlign: 'center', marginTop: 48, padding: '0 20px',
+      }}>
+        <div style={{ width: 32, height: '0.5px', background: 'rgba(212,167,95,0.3)', margin: '0 auto 16px' }} />
+        <p style={{ fontSize: 12, color: 'rgba(242,230,208,0.25)', letterSpacing: '0.08em' }}>
+          Every experience is fully customised. Pricing on request.
+        </p>
+      </div>
+
+      <style>{`
+        .safari-card:hover .safari-photo {
+          filter: brightness(0.6) !important;
+          transform: scale(1.03);
+        }
+        .safari-btn:hover {
+          background: #F0C860 !important;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 30px rgba(212,167,95,0.4);
+        }
+        .safari-btn:active {
+          transform: translateY(0);
+        }
+        @media(max-width:768px){
+          .safari-card { min-height: 380px !important; }
+        }
+      `}</style>
     </section>
   )
 }
