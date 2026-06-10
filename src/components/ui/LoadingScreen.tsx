@@ -20,7 +20,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
 
   return (
     <div style={{ position:'fixed', inset:0, zIndex:9999, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', background:'#000', opacity:leaving?0:1, transition:leaving?'opacity 1s ease':'none', overflow:'hidden' }}>
-      <div style={{ position:'absolute', inset:0, backgroundImage:"url('/bigfive.jpg')", backgroundSize:'cover', backgroundPosition:'center 20%', animation:'ldrKen 9s ease-in-out infinite alternate' }} />
+      <div style={{ position:'absolute', inset:0, backgroundImage:"url('/bigfive.jpg')", backgroundSize:'cover', backgroundPosition:'center 35%', animation:'ldrKen 9s ease-in-out infinite alternate' }} />
       <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 90% 60% at 50% 25%,rgba(255,120,0,0.1) 0%,transparent 65%)', animation:'ldrEmber 5s ease-in-out infinite' }} />
       <div style={{ position:'absolute', inset:0, background:'linear-gradient(0deg,rgba(0,0,0,0.97) 0%,rgba(0,0,0,0.7) 22%,rgba(0,0,0,0.1) 50%,rgba(0,0,0,0.4) 100%)' }} />
       <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 75% 75% at 50% 50%,transparent 30%,rgba(0,0,0,0.75) 100%)' }} />
