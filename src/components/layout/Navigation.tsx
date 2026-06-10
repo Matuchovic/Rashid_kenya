@@ -32,7 +32,12 @@ export function Navigation() {
         border: '0.5px solid rgba(212,167,95,0.1)',
         transition: 'all 0.3s ease',
         boxShadow: scrolled ? '0 8px 60px rgba(0,0,0,0.6)' : 'none',
+        overflow: 'hidden',
       }}>
+        {/* Heartbeat glow line */}
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 1, background: 'linear-gradient(90deg,transparent,rgba(212,167,95,0.06),transparent)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', height: 1, width: 0, background: 'linear-gradient(90deg,transparent 0%,rgba(212,167,95,0.4) 10%,rgba(248,224,120,0.95) 50%,rgba(212,167,95,0.4) 90%,transparent 100%)', boxShadow: '0 0 10px rgba(212,167,95,0.6),0 -2px 20px rgba(212,167,95,0.25),0 -6px 40px rgba(212,167,95,0.1)', animation: 'navHeartbeat 3.5s cubic-bezier(0.16,1,0.3,1) infinite', pointerEvents: 'none' }} />
+
         {/* Logo */}
         <Link href="/" style={{ display: 'flex', alignItems: 'flex-end', gap: 8, textDecoration: 'none' }}>
           <div style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 28, fontWeight: 200, color: '#D4A75F', lineHeight: 1 }}>R</div>
@@ -126,6 +131,15 @@ export function Navigation() {
           .nav-desktop{display:flex!important}
           .nav-cta-desktop{display:inline!important}
           .nav-burger{display:none!important}
+        }
+        @keyframes navHeartbeat{
+          0%{width:0;opacity:0}
+          8%{opacity:1}
+          30%{width:70%;opacity:0.9}
+          55%{width:88%;opacity:0.7}
+          75%{width:92%;opacity:0.5}
+          90%{width:94%;opacity:0.2}
+          100%{width:96%;opacity:0}
         }
       `}</style>
     </>
