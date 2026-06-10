@@ -74,10 +74,10 @@ export function PackagesSection() {
           <span style={{ display:'block', width:32, height:'0.5px', background:'rgba(212,167,95,0.25)' }} />
         </div>
         <h2 style={{ fontFamily:"'Cormorant Garamond',Georgia,serif", fontSize:'clamp(34px,5.5vw,60px)', fontWeight:200, color:'#F2E6D0', lineHeight:0.9, marginBottom:16 }}>
-          Every Experience<br /><em style={{ color:'#D4A75F', fontStyle:'italic' }}>Tailored for You.</em>
+          Every Experience<br /><em style={{ color:'#D4A75F', fontStyle:'italic' }}>{t('pkg_title_em')}</em>
         </h2>
         <p style={{ fontSize:'clamp(12px,1.6vw,14px)', color:'rgba(242,230,208,0.35)', maxWidth:480, margin:'0 auto', lineHeight:1.7 }}>
-          From dawn game drives in Tsavo to dolphin encounters in Wasini — Rashid designs every detail around you.
+          {t('pkg_desc')}
         </p>
       </div>
 
@@ -94,7 +94,7 @@ export function PackagesSection() {
             color: filter === f ? '#D4A75F' : 'rgba(242,230,208,0.35)',
             minHeight: 40,
           }}>
-            {f === 'all' ? 'All' : f === 'safari' ? 'Safaris' : 'Excursions'}
+            {f === 'all' ? t('pkg_filter_all') : f === 'safari' ? t('pkg_filter_safari') : t('pkg_filter_excursion')}
           </button>
         ))}
       </div>
@@ -160,7 +160,7 @@ export function PackagesSection() {
                 ))}
                 {pkg.includes.length > 3 && (
                   <span style={{ fontSize:'clamp(7px,1.4vw,8px)', letterSpacing:'0.08em', color:'rgba(242,230,208,0.25)', padding:'3px 8px', border:'0.5px solid rgba(212,167,95,0.08)', borderRadius:100 }}>
-                    +{pkg.includes.length - 3} more
+                    +{pkg.includes.length - 3} ' '+t('pkg_more')
                   </span>
                 )}
               </div>
@@ -184,11 +184,11 @@ export function PackagesSection() {
       }}>
         <div style={{ width:32, height:'0.5px', background:'rgba(212,167,95,0.25)', margin:'0 auto 16px' }} />
         <p style={{ fontSize:'clamp(12px,1.6vw,14px)', color:'rgba(242,230,208,0.25)', letterSpacing:'0.06em', marginBottom:24 }}>
-          All prices on request · Fully customisable · Private & group options
+          {t('pkg_pricing')}
         </p>
         <ContactMenu>
           <div style={{ display:'inline-flex', alignItems:'center', justifyContent:'center', gap:8, fontSize:'clamp(8px,1.8vw,10px)', letterSpacing:'0.2em', textTransform:'uppercase', color:'#050505', background:'#D4A75F', padding:'clamp(12px,2vw,14px) clamp(24px,4vw,36px)', borderRadius:100, cursor:'pointer', minHeight:48, minWidth:200 }}>
-            Plan My Kenya Experience →
+            {t('pkg_cta')} →
           </div>
         </ContactMenu>
       </div>

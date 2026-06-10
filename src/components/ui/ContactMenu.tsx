@@ -1,27 +1,28 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
+import { useLang } from '@/context/LanguageContext'
 
 const CONTACTS = [
   {
     icon: '💬',
     label: 'WhatsApp',
-    sub: '+254 718 930 587',
+    sub: t('contact_wa_sub'),
     href: 'https://wa.me/254718930587',
     color: 'rgba(37,211,102,0.15)',
     border: 'rgba(37,211,102,0.3)',
   },
   {
     icon: '👥',
-    label: 'Facebook Group',
-    sub: 'Kenya Safari Community',
+    label: t('contact_fb_group'),
+    sub: t('contact_fb_group_sub'),
     href: 'https://www.facebook.com/share/g/1EWSvuCo4V/?mibextid=wwXIfr',
     color: 'rgba(24,119,242,0.12)',
     border: 'rgba(24,119,242,0.25)',
   },
   {
     icon: '👤',
-    label: 'Facebook Profile',
-    sub: 'Rashid personally',
+    label: t('contact_fb_profile'),
+    sub: t('contact_fb_profile_sub'),
     href: 'https://www.facebook.com/share/1FBMYTAVux/?mibextid=wwXIfr',
     color: 'rgba(24,119,242,0.08)',
     border: 'rgba(24,119,242,0.2)',
@@ -35,6 +36,7 @@ interface ContactMenuProps {
 }
 
 export function ContactMenu({ children, style, className }: ContactMenuProps) {
+  const { t } = useLang()
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
