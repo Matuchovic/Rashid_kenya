@@ -59,8 +59,23 @@ export function TransferSection() {
     // ═══ PARTICLES & STATE ═══
     type Particle = { x:number; y:number; vx:number; vy:number; life:number; sz:number }
     type Firefly   = { x:number; y:number; vx:number; vy:number; life:number; ph:number }
-    const dustArr:  Particle[] = []
-    const ffArr:    Firefly[]  = []
+    type SmokeText = { x:number; y:number; vx:number; vy:number; life:number; sz:number; rot:number; vrot:number }
+    const dustArr:  Particle[]  = []
+    const ffArr:    Firefly[]   = []
+    const smokeTexts: SmokeText[] = []
+    // Inicializuj smoke texty hned
+    for(let i=0;i<12;i++){
+      smokeTexts.push({
+        x: Math.random()*2000,
+        y: 20+Math.random()*120,
+        vx: (Math.random()-.5)*.3,
+        vy: -(Math.random()*.15+.05),
+        life: Math.random(),
+        sz: 6+Math.random()*18,
+        rot: Math.random()*Math.PI*2,
+        vrot: (Math.random()-.5)*.008
+      })
+    }
     const shootStars: {x:number;y:number;vx:number;vy:number;life:number}[] = []
     let shootTimer = 60
     const STARS = Array.from({length:18},()=>({
@@ -97,6 +112,32 @@ export function TransferSection() {
         ctx.fillStyle = `rgba(255,245,210,${b})`
         ctx.fillRect((s.x - parallax*0.05) % W, s.y, 1.3, 1.3)
       })
+
+      // ── HAKUNA MATATA smoke texts ──
+      // Respawn
+      for(let i=smokeTexts.length;i<12;i++){
+        smokeTexts.push({x:Math.random()*W,y:H*.55+Math.random()*30,vx:(Math.random()-.5)*.25,vy:-(Math.random()*.12+.04),life:0,sz:6+Math.random()*18,rot:Math.random()*Math.PI*2,vrot:(Math.random()-.5)*.007})
+      }
+      for(let i=smokeTexts.length-1;i>=0;i--){
+        const st=smokeTexts[i]
+        st.x+=st.vx; st.y+=st.vy; st.life+=0.003; st.rot+=st.vrot
+        // Fade in na začátku, fade out na konci
+        const alpha = st.life<0.2 ? st.life/0.2 : st.life>0.75 ? (1-st.life)/0.25 : 1
+        ctx.save()
+        ctx.globalAlpha = alpha * 0.18
+        ctx.translate(st.x, st.y)
+        ctx.rotate(st.rot)
+        ctx.font = `${st.sz}px 'Cormorant Garamond', Georgia, serif`
+        ctx.fillStyle = '#D4A75F'
+        ctx.textAlign = 'center'
+        ctx.letterSpacing = '0.2em'
+        ctx.fillText('HAKUNA MATATA', 0, 0)
+        ctx.restore()
+        // Respawn když vyletí nahoru nebo ze strany
+        if(st.life>=1 || st.y<-20 || st.x<-100 || st.x>W+100){
+          smokeTexts[i]={x:Math.random()*W,y:H*.52+Math.random()*40,vx:(Math.random()-.5)*.25,vy:-(Math.random()*.12+.04),life:0,sz:6+Math.random()*20,rot:(Math.random()-.5)*.3,vrot:(Math.random()-.5)*.007}
+        }
+      }
 
       // ── SHOOTING STARS ──
       shootTimer--
