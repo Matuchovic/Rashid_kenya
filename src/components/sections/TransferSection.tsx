@@ -952,20 +952,6 @@ export function TransferSection() {
           width:'min(320px,100%)', minHeight:48,
         }}>{t('tr_cta')} →</a>
       </div>
-
-      <style>{`
-        @media(max-width:768px){
-          #transfer .step-icon { width:36px!important; height:36px!important; }
-          #transfer .step-text { font-size:8px!important; }
-          #transfer .step-sub-text { display:none; }
-          #transfer .msg-title { font-size:clamp(18px,5vw,24px)!important; }
-          #transfer .msg-desc { font-size:11px!important; }
-          #transfer canvas { border-radius:8px!important; }
-        }
-        @media(max-width:400px){
-          #transfer .step-icon { width:32px!important; height:32px!important; }
-        }
-      `}</style>
     </section>
   )
 }
