@@ -127,7 +127,7 @@ export function PackagesSection() {
   const filtered = PACKAGES.filter(p => filter === 'all' || p.category === filter)
 
   return (
-    <section id="all-packages" ref={ref} style={{ background:'#050505', padding:'clamp(60px,8vh,100px) 0', overflowX:'hidden', overflowY:'visible' }}>
+    <section id="all-packages" ref={ref} style={{ background:'#050505', padding:'clamp(60px,8vh,100px) 0', overflow:'hidden' }}>
 
       {/* Header */}
       <div style={{ textAlign:'center', padding:'0 clamp(20px,5vw,48px)', marginBottom:'clamp(36px,5vh,52px)',
@@ -167,7 +167,7 @@ export function PackagesSection() {
       {/* Cards grid — desktop: grid, mobile: horizontal swipe */}
       <div className="pkg-grid" style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(280px,1fr))', gridAutoRows:'320px', gap:12, padding:'0 clamp(12px,4vw,48px)', maxWidth:1200, margin:'0 auto' }}>
         {filtered.map((pkg, idx) => (
-          <div key={pkg.id} className="pkg-card-wrap" style={{ height:"100%" }}>
+          <div key={pkg.id} className="pkg-card-wrap" style={{ display:"block", height:"100%", position:"relative" }}>
           <ContactMenu
             style={{
               position:'relative', overflow:'hidden',
@@ -289,6 +289,8 @@ export function PackagesSection() {
             height: 100% !important;
           }
         }
+        .pkg-card-wrap { height: 320px; }
+        @media(min-width:769px){ .pkg-card-wrap { height: 100%; } }
         .pkg-card:hover .pkg-photo { filter:brightness(0.55)!important; transform:scale(1.04); }
         .pkg-card:hover .pkg-cta { gap:14px!important; }
         .pkg-card:hover .pkg-arrow { transform:translateX(4px); }
