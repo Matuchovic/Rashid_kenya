@@ -384,7 +384,6 @@ export function Navigation() {
         border: '0.5px solid rgba(212,167,95,0.1)',
         transition: 'all 0.3s ease',
         boxShadow: scrolled ? '0 8px 60px rgba(0,0,0,0.6)' : 'none',
-        overflow: 'hidden',
       }}>
         {/* Heartbeat line */}
         <div style={{ position:'absolute', bottom:0, left:0, right:0, height:1, background:'linear-gradient(90deg,transparent,rgba(212,167,95,0.06),transparent)', pointerEvents:'none' }} />
