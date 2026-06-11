@@ -164,7 +164,7 @@ export function PackagesSection() {
         ))}
       </div>
 
-      {/* Cards grid */}
+      {/* Cards grid — desktop: grid, mobile: horizontal swipe */}
       <div className="pkg-grid" style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(280px,1fr))', gridAutoRows:'320px', gap:12, padding:'0 clamp(12px,4vw,48px)', maxWidth:1200, margin:'0 auto' }}>
         {filtered.map((pkg, idx) => (
           <ContactMenu key={pkg.id}
@@ -239,6 +239,7 @@ export function PackagesSection() {
               </div>
             </div>
           </ContactMenu>
+          </div>
         ))}
       </div>
 
@@ -259,6 +260,29 @@ export function PackagesSection() {
       </div>
 
       <style>{`
+        @media(max-width:768px){
+          .pkg-grid {
+            display: flex !important;
+            flex-direction: row !important;
+            overflow-x: scroll !important;
+            overflow-y: hidden !important;
+            scroll-snap-type: x mandatory !important;
+            -webkit-overflow-scrolling: touch !important;
+            gap: 12px !important;
+            padding: 0 16px 16px !important;
+            scrollbar-width: none !important;
+            max-width: 100vw !important;
+            grid-template-columns: unset !important;
+          }
+          .pkg-grid::-webkit-scrollbar { display: none !important; }
+          .pkg-card-wrap {
+            min-width: 78vw !important;
+            max-width: 78vw !important;
+            height: 320px !important;
+            flex-shrink: 0 !important;
+            scroll-snap-align: start !important;
+          }
+        }
         .pkg-card:hover .pkg-photo { filter:brightness(0.55)!important; transform:scale(1.04); }
         .pkg-card:hover .pkg-cta { gap:14px!important; }
         .pkg-card:hover .pkg-arrow { transform:translateX(4px); }
