@@ -331,6 +331,16 @@ export function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [langOpen, setLangOpen] = useState(false)
+  const langRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (langRef.current && !langRef.current.contains(e.target as Node)) {
+        setLangOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [])
 
   const LINKS = [
     { key: 'nav_safaris',    href: '#safaris' },
@@ -405,11 +415,11 @@ export function Navigation() {
         {/* Right: lang switcher + CTA */}
         <div style={{ display:'flex', alignItems:'center', gap:12, zIndex:2 }}>
           {/* Lang dropdown */}
-          <div className="nav-desktop" style={{ display:'none', position:'relative' }} onMouseEnter={() => setLangOpen(true)} onMouseLeave={() => setLangOpen(false)}>
-            <button style={{
+          <div ref={langRef} className="nav-desktop" style={{ display:'none', position:'relative' }}>
+            <button onClick={() => setLangOpen(o => !o)} style={{
               display:'flex', alignItems:'center', gap:5,
               fontSize:9, letterSpacing:'0.14em', fontWeight:500,
-              color:'#D4A75F', background:'rgba(212,167,95,0.06)',
+              color:'#D4A75F', background: langOpen ? 'rgba(212,167,95,0.12)' : 'rgba(212,167,95,0.06)',
               border:'0.5px solid rgba(212,167,95,0.25)',
               cursor:'pointer', padding:'6px 12px', borderRadius:100,
               textTransform:'uppercase', transition:'all 0.2s',
