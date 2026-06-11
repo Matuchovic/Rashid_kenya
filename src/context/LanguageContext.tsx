@@ -20,7 +20,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   // Načti jazyk z localStorage při startu
   useEffect(() => {
     const saved = localStorage.getItem('rashid-lang') as Lang | null
-    if (saved && ['en','cs','de'].includes(saved)) setLang(saved)
+    if (saved && ['en','cs','de','ar','sw','pl','it','es'].includes(saved)) setLang(saved)
   }, [])
 
   // Ulož jazyk do localStorage při změně
