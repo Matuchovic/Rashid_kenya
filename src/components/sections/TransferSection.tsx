@@ -63,17 +63,22 @@ export function TransferSection() {
     const dustArr:  Particle[]  = []
     const ffArr:    Firefly[]   = []
     const smokeTexts: SmokeText[] = []
-    // Inicializuj smoke texty hned
-    for(let i=0;i<12;i++){
+    const SMOKE_WORDS = [
+      'Welcome','Rashodi','Jambo','No Worries','Bez starostí',
+      'Keine Sorgen','لا تقلق','Hakuna Matata','Bez zmartwień',
+      'Nessun Problema','Sin Preocupaciones','Karibu','Maisha Mazuri',
+    ]
+    // Inicializuj smoke texty hned — rozprostřené po nebi
+    for(let i=0;i<SMOKE_WORDS.length;i++){
       smokeTexts.push({
-        x: Math.random()*2000,
-        y: 20+Math.random()*120,
-        vx: (Math.random()-.5)*.3,
-        vy: -(Math.random()*.15+.05),
+        x: (i/SMOKE_WORDS.length)*2400 - 200,
+        y: 15+Math.random()*130,
+        vx: (Math.random()-.5)*.28,
+        vy: -(Math.random()*.14+.04),
         life: Math.random(),
-        sz: 6+Math.random()*18,
-        rot: Math.random()*Math.PI*2,
-        vrot: (Math.random()-.5)*.008
+        sz: 7+Math.random()*20,
+        rot: (Math.random()-.5)*.25,
+        vrot: (Math.random()-.5)*.006
       })
     }
     const shootStars: {x:number;y:number;vx:number;vy:number;life:number}[] = []
@@ -114,28 +119,51 @@ export function TransferSection() {
       })
 
       // ── HAKUNA MATATA smoke texts ──
-      // Respawn
-      for(let i=smokeTexts.length;i<12;i++){
-        smokeTexts.push({x:Math.random()*W,y:H*.55+Math.random()*30,vx:(Math.random()-.5)*.25,vy:-(Math.random()*.12+.04),life:0,sz:6+Math.random()*18,rot:Math.random()*Math.PI*2,vrot:(Math.random()-.5)*.007})
+      // Smoke words — respawn a render
+      while(smokeTexts.length < SMOKE_WORDS.length) {
+        const wi = smokeTexts.length
+        smokeTexts.push({
+          x:Math.random()*W, y:H*.5+Math.random()*50,
+          vx:(Math.random()-.5)*.28, vy:-(Math.random()*.13+.04),
+          life:0, sz:7+Math.random()*20,
+          rot:(Math.random()-.5)*.28, vrot:(Math.random()-.5)*.006
+        })
       }
-      for(let i=smokeTexts.length-1;i>=0;i--){
+      for(let i=0;i<smokeTexts.length;i++){
         const st=smokeTexts[i]
-        st.x+=st.vx; st.y+=st.vy; st.life+=0.003; st.rot+=st.vrot
-        // Fade in na začátku, fade out na konci
-        const alpha = st.life<0.2 ? st.life/0.2 : st.life>0.75 ? (1-st.life)/0.25 : 1
+        st.x+=st.vx; st.y+=st.vy; st.life+=0.0025; st.rot+=st.vrot
+        // Jemný fade in a fade out
+        let alpha: number
+        if(st.life<0.18) alpha=st.life/0.18
+        else if(st.life>0.72) alpha=(1-st.life)/0.28
+        else alpha=1
+        // Různé velikosti mají různou průhlednost — větší = průhledněší
+        const sizeAlpha = 1 - (st.sz-7)/30
+        const finalAlpha = alpha * (0.08 + sizeAlpha*0.14)
+        if(finalAlpha<=0) continue
         ctx.save()
-        ctx.globalAlpha = alpha * 0.18
+        ctx.globalAlpha = finalAlpha
         ctx.translate(st.x, st.y)
         ctx.rotate(st.rot)
-        ctx.font = `${st.sz}px 'Cormorant Garamond', Georgia, serif`
-        ctx.fillStyle = '#D4A75F'
+        // Font — arabština větší, ostatní proporcionálně
+        const word = SMOKE_WORDS[i % SMOKE_WORDS.length]
+        const isArabic = /[؀-ۿ]/.test(word)
+        const fontSize = isArabic ? st.sz*1.3 : st.sz
+        ctx.font = `${fontSize}px 'Cormorant Garamond', Georgia, serif`
+        // Barva — mírně variuje kolem zlaté
+        const hue = 38 + Math.sin(st.life*4+i)*6
+        ctx.fillStyle = `hsl(${hue},65%,62%)`
         ctx.textAlign = 'center'
-        ctx.letterSpacing = '0.2em'
-        ctx.fillText('HAKUNA MATATA', 0, 0)
+        ctx.fillText(word, 0, 0)
         ctx.restore()
-        // Respawn když vyletí nahoru nebo ze strany
-        if(st.life>=1 || st.y<-20 || st.x<-100 || st.x>W+100){
-          smokeTexts[i]={x:Math.random()*W,y:H*.52+Math.random()*40,vx:(Math.random()-.5)*.25,vy:-(Math.random()*.12+.04),life:0,sz:6+Math.random()*20,rot:(Math.random()-.5)*.3,vrot:(Math.random()-.5)*.007}
+        // Respawn
+        if(st.life>=1 || st.y<-30 || st.x<-150 || st.x>W+150){
+          smokeTexts[i]={
+            x:Math.random()*W, y:H*.48+Math.random()*60,
+            vx:(Math.random()-.5)*.28, vy:-(Math.random()*.13+.04),
+            life:0, sz:7+Math.random()*22,
+            rot:(Math.random()-.5)*.28, vrot:(Math.random()-.5)*.006
+          }
         }
       }
 
