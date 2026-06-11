@@ -1,16 +1,28 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { readFileSync, writeFileSync } from 'fs'
-import { join } from 'path'
+import { put, list, del } from '@vercel/blob'
 
-const DATA_FILE = join(process.cwd(), 'data', 'reviews.json')
+const BLOB_NAME = 'rashid-reviews.json'
 const ADMIN_PASSWORD = 'rashid2026'
 
-function getReviews() {
-  try { return JSON.parse(readFileSync(DATA_FILE, 'utf-8')) } catch { return [] }
+async function getReviews() {
+  try {
+    const { blobs } = await list({ prefix: BLOB_NAME })
+    if (!blobs.length) return []
+    const res = await fetch(blobs[0].url)
+    return await res.json()
+  } catch { return [] }
+}
+
+async function saveReviews(reviews: any[]) {
+  await put(BLOB_NAME, JSON.stringify(reviews), {
+    access: 'public',
+    addRandomSuffix: false,
+    allowOverwrite: true,
+  })
 }
 
 export async function GET() {
-  const reviews = getReviews()
+  const reviews = await getReviews()
   return NextResponse.json(reviews)
 }
 
@@ -21,7 +33,7 @@ export async function POST(req: NextRequest) {
     if (!name || !country || !text || !stars) {
       return NextResponse.json({ error: 'Missing fields' }, { status: 400 })
     }
-    const reviews = getReviews()
+    const reviews = await getReviews()
     const newReview = {
       id: Date.now().toString(),
       name: name.trim().slice(0, 60),
@@ -31,9 +43,10 @@ export async function POST(req: NextRequest) {
       date: new Date().toISOString().split('T')[0],
     }
     reviews.unshift(newReview)
-    writeFileSync(DATA_FILE, JSON.stringify(reviews, null, 2))
+    await saveReviews(reviews)
     return NextResponse.json(newReview, { status: 201 })
-  } catch {
+  } catch (e) {
+    console.error(e)
     return NextResponse.json({ error: 'Server error' }, { status: 500 })
   }
 }
@@ -45,9 +58,9 @@ export async function DELETE(req: NextRequest) {
     if (password !== ADMIN_PASSWORD) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
-    const reviews = getReviews()
+    const reviews = await getReviews()
     const filtered = reviews.filter((r: any) => r.id !== id)
-    writeFileSync(DATA_FILE, JSON.stringify(filtered, null, 2))
+    await saveReviews(filtered)
     return NextResponse.json({ ok: true })
   } catch {
     return NextResponse.json({ error: 'Server error' }, { status: 500 })
