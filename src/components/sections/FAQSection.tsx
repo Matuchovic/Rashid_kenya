@@ -3,12 +3,12 @@ import { useState } from 'react'
 import { useLang } from '@/context/LanguageContext'
 
 const FAQS = [
-  { q: 'When is the best time to visit Kenya?', a: 'The best time is during the dry seasons: January to February and June to October. July to September is peak season. Year-round is possible.', qKey: 'faq_q1', aKey: 'faq_a1' },
-  { q: 'What should I pack for a safari?', a: 'Light neutral clothing (khaki, olive, beige), a good hat, sunscreen, insect repellent, binoculars, and a camera. Rashid provides all safari equipment.', qKey: 'faq_q2', aKey: 'faq_a2' },
-  { q: 'Is safari safe for children?', a: 'Absolutely. Rashid has extensive experience with families. Game drives are in a secure 4x4 vehicle. Minimum recommended age is 5 years.', qKey: 'faq_q3', aKey: 'faq_a3' },
-  { q: 'How does payment work?', a: 'We discuss and agree on everything via WhatsApp first. Payment is flexible: bank transfer, cash, or other arrangements. No hidden fees.', qKey: 'faq_q4', aKey: 'faq_a4' },
-  { q: 'How big are the groups?', a: 'All safaris are private: just you, your travel companions, and Rashid. No joining strangers on a bus. Full flexibility on timing and routes.', qKey: 'faq_q5', aKey: 'faq_a5' },
-  { q: 'Do I need vaccinations?', a: 'Yellow fever vaccination is recommended. Malaria prophylaxis is advised. Consult your doctor 4 to 6 weeks before travel.', qKey: 'faq_q6', aKey: 'faq_a6' },
+  { qKey: 'faq_q1', aKey: 'faq_a1', q: 'When is the best time to visit Kenya?', a: 'The best time is during the dry seasons: January to February and June to October. July to September is peak season. Year-round is possible.', qKey: 'faq_q1', aKey: 'faq_a1' },
+  { qKey: 'faq_q2', aKey: 'faq_a2', q: 'What should I pack for a safari?', a: 'Light neutral clothing (khaki, olive, beige), a good hat, sunscreen, insect repellent, binoculars, and a camera. Rashid provides all safari equipment.', qKey: 'faq_q2', aKey: 'faq_a2' },
+  { qKey: 'faq_q3', aKey: 'faq_a3', q: 'Is safari safe for children?', a: 'Absolutely. Rashid has extensive experience with families. Game drives are in a secure 4x4 vehicle. Minimum recommended age is 5 years.', qKey: 'faq_q3', aKey: 'faq_a3' },
+  { qKey: 'faq_q4', aKey: 'faq_a4', q: 'How does payment work?', a: 'We discuss and agree on everything via WhatsApp first. Payment is flexible: bank transfer, cash, or other arrangements. No hidden fees.', qKey: 'faq_q4', aKey: 'faq_a4' },
+  { qKey: 'faq_q5', aKey: 'faq_a5', q: 'How big are the groups?', a: 'All safaris are private: just you, your travel companions, and Rashid. No joining strangers on a bus. Full flexibility on timing and routes.', qKey: 'faq_q5', aKey: 'faq_a5' },
+  { qKey: 'faq_q6', aKey: 'faq_a6', q: 'Do I need vaccinations?', a: 'Yellow fever vaccination is recommended. Malaria prophylaxis is advised. Consult your doctor 4 to 6 weeks before travel.', qKey: 'faq_q6', aKey: 'faq_a6' },
 ]
 
 export function FAQSection() {
@@ -31,7 +31,7 @@ export function FAQSection() {
       </div>
 
       <div style={{ maxWidth: 720, margin: '0 auto', padding: '0 clamp(16px,5vw,48px)' }}>
-        {FAQ_KEYS.map((faq, i) => (
+        {FAQS.map((faq, i) => (
           <div key={i} style={{ borderBottom: '0.5px solid rgba(212,167,95,0.1)', overflow: 'hidden' }}>
 
             <button
