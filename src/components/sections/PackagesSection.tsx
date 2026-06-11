@@ -274,6 +274,9 @@ export function PackagesSection() {
             scrollbar-width: none !important;
             max-width: 100vw !important;
             grid-template-columns: unset !important;
+            grid-auto-rows: unset !important;
+            height: 340px !important;
+            align-items: stretch !important;
           }
           .pkg-grid::-webkit-scrollbar { display: none !important; }
           .pkg-card-wrap {
