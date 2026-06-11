@@ -64,7 +64,7 @@ export function TransferSection() {
     const ffArr:    Firefly[]   = []
     const smokeTexts: SmokeText[] = []
     const SMOKE_WORDS = [
-      'Welcome','Rashidi','Jambo','No Worries','Bez starostí',
+      'Welcome','Rashid','Jambo','No Worries','Bez starostí',
       'Keine Sorgen','لا تقلق','Hakuna Matata','Bez zmartwień',
       'Nessun Problema','Sin Preocupaciones','Karibu','Maisha Mazuri',
     ]
@@ -576,7 +576,7 @@ export function TransferSection() {
         ]
 
         const word = SMOKE_WORDS[i % SMOKE_WORDS.length]
-        const isAr = /[\u0600-\u06FF]/.test(word)
+        const isAr = word.charCodeAt(0) >= 0x0600 && word.charCodeAt(0) <= 0x06FF
         const fs   = isAr ? st.sz * 1.3 : st.sz
 
         ctx.save()
