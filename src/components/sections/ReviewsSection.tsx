@@ -32,18 +32,13 @@ function TranslateButton({ text, lang }: { text: string; lang: string }) {
     if (translated) { setShow(s => !s); return }
     setLoading(true)
     try {
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
+      const res = await fetch('/api/translate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 1000,
-          messages: [{ role: 'user', content: `Translate this safari review to ${LANG_NAMES[lang] || lang}. Return ONLY the translated text, nothing else:\n\n${text}` }]
-        })
+        body: JSON.stringify({ text, lang: LANG_NAMES[lang] || lang })
       })
       const data = await res.json()
-      const result = data.content?.[0]?.text || ''
-      setTranslated(result)
+      setTranslated(data.translated || 'Translation failed')
       setShow(true)
     } catch { setTranslated('Translation failed') }
     setLoading(false)
