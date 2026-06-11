@@ -74,7 +74,7 @@ export function TransferSection() {
       const sz = 8 + Math.random() * 16
       smokeTexts.push({
         x:    (i / SMOKE_WORDS.length) * 1800 + Math.random() * 200,
-        y:    20 + Math.random() * (H * 0.45),
+        y:    20 + Math.random() * 80,
         vx:   (Math.random() - 0.5) * 0.18,
         vy:   -(0.25 + Math.random() * 0.35),
         life: Math.random() * 0.9,  // různé fáze — ne všechna najednou
@@ -124,8 +124,6 @@ export function TransferSection() {
       // ── FLOATING WORDS — cinematic smoke drift ──
       // Profesionální systém: slova stoupají jako kouř z horizontu
       // Každé slovo má unikátní trajektorii, velikost a fázi
-      const W_sm = W
-      const H_sm = H
       // Respawn slov které dokončily cyklus
       for(let i = 0; i < smokeTexts.length; i++) {
         const st = smokeTexts[i]
@@ -140,7 +138,7 @@ export function TransferSection() {
           const newSz = 8 + Math.random() * 16  // 8–24px — nikdy obří
           smokeTexts[i] = {
             x:    Math.random() * W_sm,
-            y:    H_sm * 0.52 + Math.random() * 35,
+            y:    H * 0.52 + Math.random() * 35,
             vx:   (Math.random() - 0.5) * 0.18,
             vy:   -(0.25 + Math.random() * 0.35),  // stoupá plynule
             life: 0,
