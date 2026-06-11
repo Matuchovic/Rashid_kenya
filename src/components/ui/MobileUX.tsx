@@ -29,7 +29,7 @@ export function WhatsAppFAB() {
   }, [])
 
   return (
-    
+    <a
       href="https://wa.me/254718930587"
       target="_blank"
       rel="noopener noreferrer"
