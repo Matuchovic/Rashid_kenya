@@ -110,6 +110,7 @@ export const translations = {
     tr_step4_desc: 'Your safari adventure starts at dawn',
     tr_cta: 'Plan My Transfer',
     earth_earth: 'Earth', earth_africa: 'Africa', earth_kenya: 'Kenya', earth_diani: 'Diani Beach',
+    faq_label: 'Before You Go', faq_title: 'Frequently Asked', faq_title_em: 'Questions', faq_more: 'Still have questions? Rashid answers personally.', faq_cta: 'Ask Rashid directly', faq_q1: 'When is the best time to visit Kenya?', faq_a1: 'The best time is during the dry seasons: January to February and June to October. July to September is peak season for the Great Migration. Year-round is possible.', faq_q2: 'What should I pack for a safari?', faq_a2: 'Light neutral clothing, a good hat, sunscreen, insect repellent, binoculars and a camera. Rashid provides all safari equipment.', faq_q3: 'Is safari safe for children?', faq_a3: 'Absolutely. Rashid has extensive experience with families. Game drives are in a secure 4x4. Minimum recommended age is 5 years.', faq_q4: 'How does payment work?', faq_a4: 'We discuss everything via WhatsApp first. Payment is flexible: bank transfer, cash or other arrangements. No hidden fees.', faq_q5: 'How big are the groups?', faq_a5: 'All safaris are private: just you, your companions and Rashid. No joining strangers. Full flexibility on timing and routes.', faq_q6: 'Do I need vaccinations?', faq_a6: 'Yellow fever vaccination is recommended. Malaria prophylaxis is advised. Consult your doctor 4 to 6 weeks before travel.',
     footer_copy: '© 2026 Rashid Adventures Kenya',
   },
   cs: {
@@ -213,6 +214,7 @@ export const translations = {
     tr_step4_desc: 'Vaše safari dobrodružství začíná za úsvitu',
     tr_cta: 'Naplánovat transfer',
     earth_earth: 'Svět', earth_africa: 'Afrika', earth_kenya: 'Keňa', earth_diani: 'Diani Beach',
+    faq_label: 'Než odcestujete', faq_title: 'Nejčastější', faq_title_em: 'Otázky', faq_more: 'Máte další otázky? Rashid odpovídá osobně.', faq_cta: 'Zeptejte se Rashida', faq_q1: 'Kdy je nejlepší čas navštívit Keňu?', faq_a1: 'Nejlepší čas je v suchých obdobích: leden až únor a červen až říjen. Červenec až září je hlavní sezóna Velké migrace.', faq_q2: 'Co si mám zabalit na safari?', faq_a2: 'Lehké neutrální oblečení, klobouk, opalovací krém, repelent, dalekohled a fotoaparát. Rashid zajistí veškeré vybavení.', faq_q3: 'Je safari bezpečné pro děti?', faq_a3: 'Rozhodně ano. Rashid má bohaté zkušenosti s rodinami. Výjezdy probíhají v bezpečném vozidle 4x4. Doporučený minimální věk je 5 let.', faq_q4: 'Jak probíhá platba?', faq_a4: 'Nejprve vše probereme přes WhatsApp. Platba je flexibilní: bankovní převod, hotovost nebo jiná dohoda. Žádné skryté poplatky.', faq_q5: 'Jak velké jsou skupiny?', faq_a5: 'Všechna safari jsou soukromá: jen vy, vaši společníci a Rashid. Plná flexibilita v čase a trasách.', faq_q6: 'Potřebuji očkování?', faq_a6: 'Doporučuje se očkování proti žluté zimnici a maláriová profylaxe. Poraďte se s lékařem 4 až 6 týdnů před cestou.',
     footer_copy: '© 2026 Rashid Adventures Kenya',
   },
   de: {
@@ -316,6 +318,7 @@ export const translations = {
     tr_step4_desc: 'Ihr Safari-Abenteuer beginnt bei Tagesanbruch',
     tr_cta: 'Transfer planen',
     earth_earth: 'Welt', earth_africa: 'Afrika', earth_kenya: 'Kenia', earth_diani: 'Diani Beach',
+    faq_label: 'Vor der Reise', faq_title: 'Häufig gestellte', faq_title_em: 'Fragen', faq_more: 'Noch Fragen? Rashid antwortet persönlich.', faq_cta: 'Rashid direkt fragen', faq_q1: 'Wann ist die beste Reisezeit für Kenia?', faq_a1: 'Die beste Zeit ist in den Trockenzeiten: Januar bis Februar und Juni bis Oktober. Juli bis September ist Hochsaison für die Große Migration.', faq_q2: 'Was soll ich für eine Safari einpacken?', faq_a2: 'Leichte neutrale Kleidung, Hut, Sonnencreme, Insektenschutz, Fernglas und Kamera. Rashid stellt die gesamte Safari-Ausrüstung bereit.', faq_q3: 'Ist eine Safari sicher für Kinder?', faq_a3: 'Absolut. Rashid hat umfangreiche Erfahrung mit Familien. Pirschfahrten finden im sicheren 4x4 statt. Empfohlenes Mindestalter ist 5 Jahre.', faq_q4: 'Wie läuft die Zahlung ab?', faq_a4: 'Wir besprechen alles zunächst über WhatsApp. Zahlung ist flexibel: Banküberweisung, Bargeld. Keine versteckten Gebühren.', faq_q5: 'Wie groß sind die Gruppen?', faq_a5: 'Alle Safaris sind privat: nur Sie, Ihre Begleiter und Rashid. Volle Flexibilität bei Zeiten und Routen.', faq_q6: 'Brauche ich Impfungen?', faq_a6: 'Gelbfieberimpfung wird empfohlen. Malariaprophylaxe ist ratsam. Konsultieren Sie Ihren Arzt 4 bis 6 Wochen vor der Reise.',
     footer_copy: '© 2026 Rashid Adventures Kenya',
   },
 
@@ -405,6 +408,7 @@ export const translations = {
     inc_game_drive: 'جولة سفاري', inc_waterfall: 'مشي إلى الشلال',
     inc_ranger: 'حارس مسلح', inc_sunset_views: 'مناظر الغروب',
     inc_beach_guide: 'مرشد الشاطئ', inc_starfish: 'زيارة قرية ستارفيش',
+    faq_label: 'قبل السفر', faq_title: 'الأسئلة', faq_title_em: 'الشائعة', faq_more: 'هل لديك المزيد من الأسئلة؟ رشيد يجيب شخصياً.', faq_cta: 'اسأل رشيداً مباشرة', faq_q1: 'ما هو أفضل وقت لزيارة كينيا؟', faq_a1: 'أفضل وقت هو موسم الجفاف: يناير إلى فبراير ويونيو إلى أكتوبر. يوليو إلى سبتمبر هو موسم الهجرة الكبرى.', faq_q2: 'ماذا أحضر في رحلة السفاري؟', faq_a2: 'ملابس خفيفة بألوان محايدة، قبعة، واقي شمس، طارد حشرات، منظار وكاميرا. رشيد يوفر جميع معدات السفاري.', faq_q3: 'هل السفاري آمن للأطفال؟', faq_a3: 'بالتأكيد. رشيد لديه خبرة واسعة مع العائلات. الرحلات تتم في سيارة 4x4 آمنة. الحد الأدنى الموصى به للعمر هو 5 سنوات.', faq_q4: 'كيف تتم الدفعة؟', faq_a4: 'نناقش كل شيء عبر واتساب أولاً. الدفع مرن: تحويل بنكي أو نقداً. لا رسوم خفية.', faq_q5: 'ما حجم المجموعات؟', faq_a5: 'جميع رحلات السفاري خاصة: فقط أنت ورفقاؤك ورشيد. مرونة كاملة في التوقيت والمسارات.', faq_q6: 'هل أحتاج إلى لقاحات؟', faq_a6: 'يوصى بلقاح الحمى الصفراء والوقاية من الملاريا. استشر طبيبك قبل 4 إلى 6 أسابيع من السفر.',
     footer_copy: '© 2026 Rashid Adventures Kenya',
   },
   sw: {
@@ -493,6 +497,7 @@ export const translations = {
     inc_game_drive: 'Safari ya Wanyama', inc_waterfall: 'Kutembea hadi Maporomoko',
     inc_ranger: 'Askari Mwenye Silaha', inc_sunset_views: 'Mandhari ya Machweo',
     inc_beach_guide: 'Kiongozi wa Pwani', inc_starfish: 'Ziara ya Kijiji cha Starfish',
+    faq_label: 'Kabla ya Kwenda', faq_title: 'Maswali', faq_title_em: 'Yanaulizwa Mara Nyingi', faq_more: 'Bado una maswali? Rashid anajibu kibinafsi.', faq_cta: 'Uliza Rashid Moja kwa Moja', faq_q1: 'Wakati gani bora wa kutembelea Kenya?', faq_a1: 'Wakati bora ni kipindi cha ukame: Januari hadi Februari na Juni hadi Oktoba. Julai hadi Septemba ni wakati wa Uhamaji Mkuu.', faq_q2: 'Nifungushe nini kwa safari?', faq_a2: 'Nguo nyepesi za rangi ya kawaida, kofia, krimu ya jua, dawa ya wadudu, darubini na kamera. Rashid anaweza kupendeza vifaa vyote.', faq_q3: 'Je safari ni salama kwa watoto?', faq_a3: 'Kabisa. Rashid ana uzoefu mkubwa na familia. Matembezi yanafanywa katika gari salama la 4x4. Umri wa chini ni miaka 5.', faq_q4: 'Malipo yanafanywa vipi?', faq_a4: 'Tunajadili kila kitu kupitia WhatsApp kwanza. Malipo ni ya kubadilika: uhamisho wa benki au pesa taslimu. Hakuna ada zilizofichwa.', faq_q5: 'Vikundi ni vikubwa kiasi gani?', faq_a5: 'Safari zote ni za kibinafsi: wewe tu, wasafiri wenzako na Rashid. Uhuru kamili wa muda na njia.', faq_q6: 'Je ninahitaji chanjo?', faq_a6: 'Chanjo ya homa ya manjano inapendekezwa. Dawa ya kuzuia malaria inashauriwa. Wasiliana na daktari wako wiki 4 hadi 6 kabla ya safari.',
     footer_copy: '© 2026 Rashid Adventures Kenya',
   },
   pl: {
@@ -581,6 +586,7 @@ export const translations = {
     inc_game_drive: 'Przejazd Safari', inc_waterfall: 'Wędrówka do Wodospadu',
     inc_ranger: 'Uzbrojony Ranger', inc_sunset_views: 'Widoki na Zachód Słońca',
     inc_beach_guide: 'Przewodnik Plażowy', inc_starfish: 'Wizyta w Wiosce Starfish',
+    faq_label: 'Przed Wyjazdem', faq_title: 'Najczęściej Zadawane', faq_title_em: 'Pytania', faq_more: 'Masz więcej pytań? Rashid odpowiada osobiście.', faq_cta: 'Zapytaj Rashida bezpośrednio', faq_q1: 'Kiedy najlepiej odwiedzić Kenię?', faq_a1: 'Najlepszy czas to suche pory roku: styczeń do lutego i czerwiec do października. Lipiec do września to szczyt sezonu Wielkiej Migracji.', faq_q2: 'Co spakować na safari?', faq_a2: 'Lekkie, neutralne ubrania, kapelusz, krem do opalania, środek na owady, lornetkę i aparat. Rashid zapewnia cały sprzęt safari.', faq_q3: 'Czy safari jest bezpieczne dla dzieci?', faq_a3: 'Absolutnie. Rashid ma duże doświadczenie z rodzinami. Wycieczki w bezpiecznym 4x4. Zalecany minimalny wiek to 5 lat.', faq_q4: 'Jak przebiega płatność?', faq_a4: 'Najpierw wszystko omawiamy przez WhatsApp. Płatność jest elastyczna: przelew, gotówka. Brak ukrytych opłat.', faq_q5: 'Jak duże są grupy?', faq_a5: 'Wszystkie safari są prywatne: tylko ty, twoi towarzysze i Rashid. Pełna elastyczność w zakresie czasu i tras.', faq_q6: 'Czy potrzebuję szczepień?', faq_a6: 'Zaleca się szczepienie przeciwko żółtej gorączce i profilaktykę przeciwmalaryczną. Skonsultuj się z lekarzem 4 do 6 tygodni przed podróżą.',
     footer_copy: '© 2026 Rashid Adventures Kenya',
   },
   it: {
@@ -669,6 +675,7 @@ export const translations = {
     inc_game_drive: 'Game Drive', inc_waterfall: 'Escursione alla Cascata',
     inc_ranger: 'Ranger Armato', inc_sunset_views: 'Viste al Tramonto',
     inc_beach_guide: 'Guida alla Spiaggia', inc_starfish: 'Visita al Villaggio Starfish',
+    faq_label: 'Prima di Partire', faq_title: 'Domande', faq_title_em: 'Frequenti', faq_more: 'Hai altre domande? Rashid risponde personalmente.', faq_cta: 'Chiedi a Rashid direttamente', faq_q1: 'Quando è il momento migliore per visitare il Kenya?', faq_a1: 'Il momento migliore è durante le stagioni secche: gennaio-febbraio e giugno-ottobre. Luglio-settembre è la stagione di punta per la Grande Migrazione.', faq_q2: 'Cosa portare per un safari?', faq_a2: 'Abbigliamento leggero in colori neutri, un buon cappello, crema solare, repellente, binocolo e fotocamera. Rashid fornisce tutta la attrezzatura.', faq_q3: 'Il safari è sicuro per i bambini?', faq_a3: 'Assolutamente. Rashid ha grande esperienza con le famiglie. Le uscite in sicuro 4x4. Eta minima consigliata 5 anni.', faq_q4: 'Come funziona il pagamento?', faq_a4: 'Discutiamo tutto via WhatsApp prima. Il pagamento è flessibile: bonifico, contanti. Nessuna commissione nascosta.', faq_q5: 'Quanto sono grandi i gruppi?', faq_a5: 'Tutti i safari sono privati: solo voi, i vostri compagni e Rashid. Piena flessibilita su tempi e percorsi.', faq_q6: 'Ho bisogno di vaccinazioni?', faq_a6: 'Si raccomanda il vaccino contro la febbre gialla e la profilassi antimalarica. Consultate il medico 4-6 settimane prima.',
     footer_copy: '© 2026 Rashid Adventures Kenya',
   },
   es: {
@@ -757,6 +764,7 @@ export const translations = {
     inc_game_drive: 'Game Drive', inc_waterfall: 'Senderismo a la Cascada',
     inc_ranger: 'Guardabosques Armado', inc_sunset_views: 'Vistas al Atardecer',
     inc_beach_guide: 'Guía de Playa', inc_starfish: 'Visita al Pueblo Starfish',
+    faq_label: 'Antes de Ir', faq_title: 'Preguntas', faq_title_em: 'Frecuentes', faq_more: 'Todavia tienes preguntas? Rashid responde personalmente.', faq_cta: 'Pregunta a Rashid directamente', faq_q1: 'Cuando es el mejor momento para visitar Kenia?', faq_a1: 'El mejor momento es durante las temporadas secas: enero a febrero y junio a octubre. Julio a septiembre es temporada alta para la Gran Migracion.', faq_q2: 'Que debo empacar para un safari?', faq_a2: 'Ropa ligera en colores neutros, sombrero, protector solar, repelente, binoculares y camara. Rashid proporciona todo el equipo.', faq_q3: 'Es el safari seguro para ninos?', faq_a3: 'Absolutamente. Rashid tiene amplia experiencia con familias. Recorridos en vehiculo 4x4 seguro. Edad minima recomendada 5 anos.', faq_q4: 'Como funciona el pago?', faq_a4: 'Primero acordamos todo por WhatsApp. El pago es flexible: transferencia, efectivo. Sin cargos ocultos.', faq_q5: 'Que tan grandes son los grupos?', faq_a5: 'Todos los safaris son privados: solo usted, sus companeros y Rashid. Plena flexibilidad en tiempos y rutas.', faq_q6: 'Necesito vacunas?', faq_a6: 'Se recomienda la vacuna contra la fiebre amarilla y profilaxis antipalúdica. Consulte a su medico 4 a 6 semanas antes del viaje.',
     footer_copy: '© 2026 Rashid Adventures Kenya',
   },
 } as const
