@@ -56,133 +56,309 @@ export function TransferSection() {
     resize()
     window.addEventListener('resize', resize)
 
+    // ═══ PARTICLES & STATE ═══
+    type Particle = { x:number; y:number; vx:number; vy:number; life:number; sz:number }
+    type Firefly   = { x:number; y:number; vx:number; vy:number; life:number; ph:number }
+    const dustArr:  Particle[] = []
+    const ffArr:    Firefly[]  = []
+    const shootStars: {x:number;y:number;vx:number;vy:number;life:number}[] = []
+    let shootTimer = 60
+    const STARS = Array.from({length:18},()=>({
+      x:Math.random()*2000, y:Math.random()*200, ph:Math.random()*Math.PI*2
+    }))
+
     const draw = () => {
       rafRef.current = requestAnimationFrame(draw)
       frameRef.current++
-      const f = frameRef.current
-      const W = canvas.offsetWidth
-      const H = canvas.offsetHeight
+      const f  = frameRef.current
+      const W  = canvas.offsetWidth
+      const H  = canvas.offsetHeight
+      const t  = f * 0.022
+      const step = activeRef.current
+      // Parallax offset — vzdálené věci se hýbou pomaleji
+      const parallax = step * W * 0.08
 
       ctx.clearRect(0, 0, W, H)
 
-      // Sky
-      ctx.fillStyle = '#080503'
-      ctx.fillRect(0, 0, W, H * 0.58)
+      // ── SKY ──
+      const skyG = ctx.createLinearGradient(0,0,0,H*0.6)
+      skyG.addColorStop(0, '#03020a')
+      skyG.addColorStop(1, '#0d0804')
+      ctx.fillStyle = skyG; ctx.fillRect(0,0,W,H*0.62)
 
-      // Stars
-      const stars = [[0.07,0.1],[0.18,0.25],[0.3,0.08],[0.42,0.32],[0.55,0.14],[0.67,0.28],[0.78,0.06],[0.88,0.22],[0.95,0.15]]
-      stars.forEach(([sx, sy]) => {
-        const tw = Math.sin(f * 0.04 + sx * 10) * 0.35 + 0.45
-        ctx.fillStyle = `rgba(242,230,208,${tw})`
-        ctx.fillRect(sx * W, sy * H * 0.5, 1.2, 1.2)
+      // Horizon warm glow
+      const hg = ctx.createLinearGradient(0,H*.44,0,H*.62)
+      hg.addColorStop(0,'rgba(70,35,5,0)'); hg.addColorStop(1,'rgba(70,35,5,.4)')
+      ctx.fillStyle = hg; ctx.fillRect(0,H*.44,W,H*.18)
+
+      // ── STARS (blikají) ──
+      STARS.forEach(s => {
+        const b = Math.sin(f*.04 + s.ph) * .35 + .55
+        ctx.fillStyle = `rgba(255,245,210,${b})`
+        ctx.fillRect((s.x - parallax*0.05) % W, s.y, 1.3, 1.3)
       })
 
-      // Moon
-      ctx.beginPath(); ctx.arc(W * 0.84, H * 0.15, 14, 0, Math.PI * 2)
-      ctx.fillStyle = 'rgba(242,230,208,0.09)'; ctx.fill()
-      ctx.beginPath(); ctx.arc(W * 0.84 + 5, H * 0.15 - 3, 12, 0, Math.PI * 2)
-      ctx.fillStyle = '#080503'; ctx.fill()
-
-      // Ocean
-      for (let i = 0; i < 3; i++) {
-        const oy = H * 0.48 + i * 5
-        const sh = Math.sin(f * 0.025 + i) * 0.5 + 0.5
-        ctx.fillStyle = `rgba(15,35,50,${0.4 + sh * 0.15})`
-        ctx.fillRect(0, oy, W, 4)
+      // ── SHOOTING STARS ──
+      shootTimer--
+      if (shootTimer < 0) {
+        shootTimer = 80 + Math.random()*120
+        shootStars.push({x:Math.random()*W*.7, y:Math.random()*H*.28, vx:2.8+Math.random()*2, vy:.7+Math.random()*.5, life:1})
+      }
+      for (let i = shootStars.length-1; i >= 0; i--) {
+        const ss = shootStars[i]
+        const sl = 18*ss.life
+        ctx.beginPath(); ctx.moveTo(ss.x,ss.y); ctx.lineTo(ss.x-sl,ss.y-sl*.4)
+        ctx.strokeStyle=`rgba(255,245,180,${ss.life*.8})`; ctx.lineWidth=1.2; ctx.stroke()
+        ctx.beginPath(); ctx.arc(ss.x,ss.y,1.4,0,Math.PI*2)
+        ctx.fillStyle=`rgba(255,245,180,${ss.life})`; ctx.fill()
+        ss.x+=ss.vx; ss.y+=ss.vy; ss.life-=.038
+        if (ss.life<=0) shootStars.splice(i,1)
       }
 
-      // Road
-      const ry = H * 0.63
-      const rh = H * 0.27
-      const midY = ry + rh / 2
+      // ── MOON ──
+      ctx.beginPath(); ctx.arc(W*.84,H*.13,11,0,Math.PI*2)
+      ctx.fillStyle='rgba(255,248,220,.1)'; ctx.fill()
+      ctx.beginPath(); ctx.arc(W*.84+4,H*.13-2,9.5,0,Math.PI*2)
+      ctx.fillStyle='#03020a'; ctx.fill()
 
-      ctx.fillStyle = '#141008'
+      // ── KILIMANJARO silueta (parallax slow) ──
+      const kx = -parallax*0.15
+      ctx.save(); ctx.translate(kx,0)
       ctx.beginPath()
-      ctx.moveTo(0, ry); ctx.lineTo(W, ry - 8)
-      ctx.lineTo(W, ry + rh); ctx.lineTo(0, ry + rh + 8)
-      ctx.fill()
+      ctx.moveTo(W*.08,H*.58); ctx.lineTo(W*.22,H*.27); ctx.lineTo(W*.28,H*.34)
+      ctx.lineTo(W*.35,H*.15); ctx.lineTo(W*.42,H*.33); ctx.lineTo(W*.5,H*.27); ctx.lineTo(W*.62,H*.58)
+      ctx.fillStyle='rgba(10,6,2,.98)'; ctx.fill()
+      ctx.strokeStyle='rgba(212,167,95,.1)'; ctx.lineWidth=.5; ctx.stroke()
+      // Sníh
+      ctx.beginPath()
+      ctx.moveTo(W*.32,H*.19); ctx.lineTo(W*.35,H*.15); ctx.lineTo(W*.38,H*.19); ctx.lineTo(W*.35,H*.21)
+      ctx.fillStyle='rgba(255,248,220,.14)'; ctx.fill()
+      ctx.restore()
 
-      ctx.strokeStyle = 'rgba(212,167,95,0.12)'; ctx.lineWidth = 0.5
-      ctx.beginPath(); ctx.moveTo(0, ry); ctx.lineTo(W, ry - 8); ctx.stroke()
-      ctx.beginPath(); ctx.moveTo(0, ry + rh + 8); ctx.lineTo(W, ry + rh); ctx.stroke()
+      // ── MOMBASA MAJÁK (step 0) ──
+      if (step === 0) {
+        const mx = W*.88, my = H*.38
+        ctx.fillStyle='rgba(212,167,95,.3)'; ctx.fillRect(mx-4,my,8,H*.22)
+        ctx.fillStyle='rgba(212,167,95,.2)'; ctx.fillRect(mx-8,my+H*.2,16,4)
+        // Blikající světlo
+        const lb = Math.sin(f*.15)>.5 ? .9 : .1
+        const lg=ctx.createRadialGradient(mx,my,0,mx,my,20)
+        lg.addColorStop(0,`rgba(255,240,150,${lb*.5})`); lg.addColorStop(1,'rgba(255,240,150,0)')
+        ctx.fillStyle=lg; ctx.beginPath(); ctx.arc(mx,my,20,0,Math.PI*2); ctx.fill()
+        ctx.beginPath(); ctx.arc(mx,my,3,0,Math.PI*2)
+        ctx.fillStyle=`rgba(255,240,150,${lb})`; ctx.fill()
+      }
+
+      // ── PALMY u Diani (step 2-3) ──
+      if (step >= 2) {
+        const palmOpacity = step === 2 ? .5 : .8
+        const palms = [W*.72, W*.78, W*.85]
+        palms.forEach((px,pi) => {
+          const py = H*.58
+          ctx.save()
+          ctx.globalAlpha = palmOpacity
+          // Kmen
+          ctx.beginPath(); ctx.moveTo(px,py); ctx.bezierCurveTo(px+2,py-10,px-3,py-20,px,py-30)
+          ctx.strokeStyle='rgba(212,167,95,.5)'; ctx.lineWidth=2.5; ctx.lineCap='round'; ctx.stroke()
+          // Listy
+          for(let li=0;li<5;li++) {
+            const la = (li/5)*Math.PI*2 + Math.sin(t+pi)*.1
+            const sway = Math.sin(t*1.2+pi+li)*.05
+            ctx.beginPath()
+            ctx.moveTo(px,py-30)
+            ctx.bezierCurveTo(
+              px+Math.cos(la+sway)*12,py-30+Math.sin(la+sway)*8,
+              px+Math.cos(la+sway)*20,py-30+Math.sin(la+sway)*14,
+              px+Math.cos(la+sway)*22,py-30+Math.sin(la+sway)*15
+            )
+            ctx.strokeStyle='rgba(180,140,40,.5)'; ctx.lineWidth=1.5; ctx.stroke()
+          }
+          ctx.restore()
+        })
+      }
+
+      // ── OCEAN vlny (parallax medium) ──
+      for(let i=0;i<4;i++) {
+        const sh = Math.sin(f*.025+i)*.5+.5
+        ctx.fillStyle=`rgba(8,24,42,${.45+sh*.15})`
+        ctx.fillRect(0,H*.47+i*4,W,4)
+      }
+
+      // ── ROAD ──
+      const ry  = H*.63
+      const rh  = H*.27
+      const midY = ry + rh/2
+
+      ctx.fillStyle='#100c06'
+      ctx.beginPath()
+      ctx.moveTo(0,ry); ctx.lineTo(W,ry-8); ctx.lineTo(W,ry+rh); ctx.lineTo(0,ry+rh+8); ctx.fill()
+
+      // Mokrá silnice — odraz světel
+      const wetG = ctx.createLinearGradient(0,midY-4,0,midY+12)
+      wetG.addColorStop(0,'rgba(212,167,95,.02)')
+      wetG.addColorStop(.5,'rgba(212,167,95,.09)')
+      wetG.addColorStop(1,'rgba(212,167,95,0)')
+      ctx.fillStyle=wetG; ctx.fillRect(0,midY-4,W,16)
+
+      // GPS track
+      ctx.beginPath(); ctx.setLineDash([4,6])
+      ctx.strokeStyle='rgba(212,167,95,.2)'; ctx.lineWidth=.7
+      const carPx = carPosRef.current * W
+      ctx.moveTo(carPx+32,midY); ctx.lineTo(W*.92,midY-2); ctx.stroke(); ctx.setLineDash([])
+
+      // Road edge lines
+      ctx.strokeStyle='rgba(212,167,95,.1)'; ctx.lineWidth=.4
+      ctx.beginPath(); ctx.moveTo(0,ry); ctx.lineTo(W,ry-8); ctx.stroke()
+      ctx.beginPath(); ctx.moveTo(0,ry+rh+8); ctx.lineTo(W,ry+rh); ctx.stroke()
 
       // Road dashes
       roadOffsetRef.current = (roadOffsetRef.current + 1.5) % 60
-      ctx.strokeStyle = 'rgba(212,167,95,0.2)'; ctx.lineWidth = 1
-      ctx.setLineDash([18, 38]); ctx.lineDashOffset = -roadOffsetRef.current
-      ctx.beginPath(); ctx.moveTo(0, midY); ctx.lineTo(W, midY - 4); ctx.stroke()
-      ctx.setLineDash([])
+      ctx.strokeStyle='rgba(212,167,95,.18)'; ctx.lineWidth=.9
+      ctx.setLineDash([18,38]); ctx.lineDashOffset=-roadOffsetRef.current
+      ctx.beginPath(); ctx.moveTo(0,midY); ctx.lineTo(W,midY-4); ctx.stroke(); ctx.setLineDash([])
 
-      // Acacia trees
-      ;[0.12, 0.32, 0.58, 0.82].forEach(tx => {
-        const tx2 = tx * W, ty = ry - 6
-        ctx.fillStyle = 'rgba(12,8,2,0.9)'
-        ctx.fillRect(tx2 - 1.5, ty - 20, 3, 20)
-        ctx.beginPath(); ctx.ellipse(tx2, ty - 24, 18, 9, 0, 0, Math.PI * 2)
-        ctx.fillStyle = 'rgba(10,7,2,0.95)'; ctx.fill()
-        ctx.beginPath(); ctx.ellipse(tx2 + 10, ty - 19, 11, 6, 0, 0, Math.PI * 2)
-        ctx.fillStyle = 'rgba(14,9,3,0.9)'; ctx.fill()
+      // ── AKÁCIE (parallax medium) ──
+      const treeOffset = -parallax * 0.4
+      ;[0.1,0.28,0.54,0.78].forEach(tx => {
+        const ax = ((tx*W + treeOffset) % (W+50) + W+50) % (W+50) - 20
+        const ay = ry-6
+        ctx.fillStyle='rgba(212,167,95,.4)'; ctx.fillRect(ax-1.5,ay-22,3,22)
+        ctx.beginPath(); ctx.ellipse(ax,ay-26,16,8,0,0,Math.PI*2)
+        ctx.fillStyle='rgba(10,7,2,.96)'; ctx.fill()
+        ctx.beginPath(); ctx.ellipse(ax+9,ay-20,10,5.5,0,0,Math.PI*2); ctx.fill()
       })
 
-      // Car
+      // ── HOTEL (step 2-3) ──
+      if (step >= 2) {
+        const hx = W*.87
+        ctx.fillStyle='rgba(212,167,95,.2)'; ctx.fillRect(hx,ry-34,22,34); ctx.fillRect(hx+3,ry-42,16,10)
+        ;[[hx+2,ry-30],[hx+8,ry-30],[hx+14,ry-30],[hx+2,ry-22],[hx+8,ry-22],[hx+14,ry-22]].forEach(([wx,wy]) => {
+          const gl = Math.sin(f*.04+wx)*.2+.5
+          ctx.fillStyle=`rgba(255,200,80,${gl*.6})`; ctx.fillRect(wx,wy,3,3)
+        })
+      }
+
+      // ── FIREFLIES ──
+      if (f%16===0 && ffArr.length<14)
+        ffArr.push({x:Math.random()*W,y:ry+Math.random()*(H-ry)*.85,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.35,life:1,ph:Math.random()*Math.PI*2})
+      for(let i=ffArr.length-1;i>=0;i--) {
+        const p=ffArr[i]; p.x+=p.vx; p.y+=p.vy; p.ph+=.09; p.life-=.003
+        const g=Math.sin(p.ph)*.5+.5
+        ctx.beginPath(); ctx.arc(p.x,p.y,1.4,0,Math.PI*2)
+        ctx.fillStyle=`rgba(255,245,80,${g*p.life*.9})`; ctx.fill()
+        if(g>.75){ctx.beginPath();ctx.arc(p.x,p.y,3.5,0,Math.PI*2);ctx.fillStyle=`rgba(255,245,80,${g*p.life*.12})`;ctx.fill()}
+        if(p.life<=0) ffArr.splice(i,1)
+      }
+
+      // ── DUST za autem ──
+      const cx = carPosRef.current * W
+      const bobY = Math.sin(t*2.5)*1.8 // podvozek se houpá
+      const cy = midY - 16 + bobY
+      if(f%2===0){
+        dustArr.push({x:cx-26,y:cy+16,vx:-(Math.random()*2+.4),vy:-(Math.random()*.7-.1),life:1,sz:Math.random()*4+2})
+        dustArr.push({x:cx-22,y:cy+18,vx:-(Math.random()*1.5+.2),vy:(Math.random()*.4),life:.7,sz:Math.random()*3+1})
+      }
+      for(let i=dustArr.length-1;i>=0;i--) {
+        const d=dustArr[i]
+        ctx.beginPath(); ctx.arc(d.x,d.y,d.sz*d.life,0,Math.PI*2)
+        ctx.fillStyle=`rgba(150,100,25,${d.life*.2})`; ctx.fill()
+        d.x+=d.vx; d.y+=d.vy; d.vy+=.035; d.life-=.045
+        if(d.life<=0) dustArr.splice(i,1)
+      }
+
+      // ── DESTINATION PULSE ──
+      const dp = STEPS[activeRef.current].carX
+      if(dp>0.15 && dp<0.92) {
+        const dx2 = dp*W
+        const pulse = Math.sin(f*.1)*.5+.5
+        ctx.beginPath(); ctx.arc(dx2,midY-4,3,0,Math.PI*2)
+        ctx.fillStyle='rgba(212,167,95,.6)'; ctx.fill()
+        ctx.beginPath(); ctx.arc(dx2,midY-4,7+pulse*5,0,Math.PI*2)
+        ctx.strokeStyle=`rgba(212,167,95,${.12+pulse*.14})`; ctx.lineWidth=.6; ctx.stroke()
+      }
+
+      // ── CAR — Land Cruiser 4×4 ──
       const target = STEPS[activeRef.current].carX
       carPosRef.current += (target - carPosRef.current) * 0.03
-      const cx = carPosRef.current * W
-      const cy = midY - 16
-      const cw = 52, ch = 22
+      const cw=54, ch=22
 
-      // Headlight glow
-      const hg = ctx.createRadialGradient(cx + cw / 2 + 20, cy + ch / 2, 0, cx + cw / 2 + 20, cy + ch / 2, 70)
-      hg.addColorStop(0, 'rgba(212,167,95,0.1)'); hg.addColorStop(1, 'rgba(212,167,95,0)')
-      ctx.fillStyle = hg; ctx.fillRect(cx - 10, cy - 15, cw + 90, ch + 30)
-
-      // Body
-      ctx.fillStyle = '#221805'
-      ctx.beginPath(); ctx.roundRect(cx - cw/2, cy, cw, ch, 5); ctx.fill()
-      ctx.strokeStyle = 'rgba(212,167,95,0.25)'; ctx.lineWidth = 0.5; ctx.stroke()
-
-      // Roof
-      ctx.fillStyle = '#16100.4'
-      ctx.beginPath(); ctx.roundRect(cx - cw/2 + 7, cy - ch * 0.55, cw - 14, ch * 0.62, 4)
-      ctx.fillStyle = '#160f04'; ctx.fill()
-
-      // Windows
-      ctx.fillStyle = 'rgba(30,45,60,0.6)'
-      ctx.beginPath(); ctx.roundRect(cx - cw/2 + 10, cy - ch * 0.5 + 2, cw - 24, ch * 0.45, 2); ctx.fill()
-
-      // Wheels
-      ;[cx - cw/2 + 9, cx + cw/2 - 9].forEach(wx => {
-        ctx.beginPath(); ctx.arc(wx, cy + ch, 8, 0, Math.PI * 2)
-        ctx.fillStyle = '#080500'; ctx.fill()
-        ctx.strokeStyle = 'rgba(212,167,95,0.18)'; ctx.lineWidth = 0.5; ctx.stroke()
-        ctx.beginPath(); ctx.arc(wx, cy + ch, 3.5, 0, Math.PI * 2)
-        ctx.fillStyle = 'rgba(212,167,95,0.25)'; ctx.fill()
-      })
-
-      // Headlights
-      ctx.fillStyle = 'rgba(248,220,100,0.85)'
-      ctx.fillRect(cx + cw/2 - 3, cy + 5, 6, 5)
+      // Headlight beam — dlouhý realistický paprsek
+      const beamG=ctx.createRadialGradient(cx+40,cy+ch/2,0,cx+40,cy+ch/2,90)
+      beamG.addColorStop(0,'rgba(255,235,120,.12)'); beamG.addColorStop(1,'rgba(255,235,120,0)')
+      ctx.fillStyle=beamG; ctx.fillRect(cx+cw/2-5,cy-20,110,ch+40)
+      // Cone
       ctx.beginPath()
-      ctx.moveTo(cx + cw/2 + 3, cy + 5)
-      ctx.lineTo(cx + cw/2 + 50, cy - 1)
-      ctx.lineTo(cx + cw/2 + 50, cy + 14)
+      ctx.moveTo(cx+cw/2+2,cy+3); ctx.lineTo(cx+cw/2+90,cy-8); ctx.lineTo(cx+cw/2+90,cy+ch+2); ctx.closePath()
+      ctx.fillStyle='rgba(255,235,120,.04)'; ctx.fill()
+      ctx.beginPath()
+      ctx.moveTo(cx+cw/2+2,cy+5); ctx.lineTo(cx+cw/2+60,cy+1); ctx.lineTo(cx+cw/2+60,cy+ch-2); ctx.closePath()
+      ctx.fillStyle='rgba(255,235,120,.05)'; ctx.fill()
+
+      // Body — Land Cruiser silhouette
+      ctx.fillStyle='#1e1609'
+      ctx.beginPath()
+      ctx.moveTo(cx-cw/2,cy+ch)
+      ctx.lineTo(cx-cw/2,cy+6)
+      ctx.lineTo(cx-cw/2+6,cy+2)
+      ctx.lineTo(cx-cw/2+10,cy-ch*.5)
+      ctx.lineTo(cx-cw/2+18,cy-ch*.65)
+      ctx.lineTo(cx+cw/2-12,cy-ch*.65)
+      ctx.lineTo(cx+cw/2-4,cy-ch*.4)
+      ctx.lineTo(cx+cw/2+2,cy)
+      ctx.lineTo(cx+cw/2+4,cy+ch)
       ctx.closePath()
-      ctx.fillStyle = 'rgba(248,220,100,0.04)'; ctx.fill()
+      ctx.fill()
+      ctx.strokeStyle='rgba(212,167,95,.22)'; ctx.lineWidth=.5; ctx.stroke()
 
-      // Tail lights
-      ctx.fillStyle = 'rgba(160,50,10,0.7)'
-      ctx.fillRect(cx - cw/2 - 3, cy + 5, 4, 5)
+      // Střešní rack
+      ctx.fillStyle='rgba(212,167,95,.18)'; ctx.fillRect(cx-cw/2+14,cy-ch*.7,cw-22,2.5)
+      ctx.fillStyle='rgba(212,167,95,.12)'
+      for(let r=0;r<5;r++) ctx.fillRect(cx-cw/2+16+r*6,cy-ch*.72,1.5,2.5)
 
-      // Destination pulse
-      const dp = STEPS[activeRef.current].carX
-      if (dp > 0.15 && dp < 0.9) {
-        const dx2 = dp * W
-        const pulse = Math.sin(f * 0.1) * 0.5 + 0.5
-        ctx.beginPath(); ctx.arc(dx2, midY - 4, 3, 0, Math.PI * 2)
-        ctx.fillStyle = 'rgba(212,167,95,0.5)'; ctx.fill()
-        ctx.beginPath(); ctx.arc(dx2, midY - 4, 7 + pulse * 5, 0, Math.PI * 2)
-        ctx.strokeStyle = `rgba(212,167,95,${0.12 + pulse * 0.12})`; ctx.lineWidth = 0.5; ctx.stroke()
-      }
+      // Anténa
+      ctx.beginPath(); ctx.moveTo(cx-cw/2+18,cy-ch*.7); ctx.lineTo(cx-cw/2+16,cy-ch*.7-12)
+      ctx.strokeStyle='rgba(212,167,95,.2)'; ctx.lineWidth=.8; ctx.stroke()
+
+      // Okna
+      ctx.fillStyle='rgba(12,28,48,.8)'
+      ctx.beginPath()
+      ctx.moveTo(cx-cw/2+12,cy-ch*.58); ctx.lineTo(cx+cw/2-14,cy-ch*.58)
+      ctx.lineTo(cx+cw/2-10,cy-ch*.25); ctx.lineTo(cx-cw/2+11,cy-ch*.25); ctx.closePath()
+      ctx.fill()
+
+      // Přední světlo — xenon efekt
+      ctx.fillStyle='rgba(255,242,200,.95)'; ctx.fillRect(cx+cw/2-1,cy+3,7,5)
+      ctx.fillStyle='rgba(180,210,255,.6)'; ctx.fillRect(cx+cw/2-1,cy+1,4,2)
+      // DRL linka
+      ctx.strokeStyle='rgba(255,242,200,.4)'; ctx.lineWidth=1.2
+      ctx.beginPath(); ctx.moveTo(cx+cw/2-8,cy+1); ctx.lineTo(cx+cw/2+1,cy+1); ctx.stroke()
+
+      // Zadní světla — červená záře v noci
+      ctx.fillStyle='rgba(200,40,10,.9)'; ctx.fillRect(cx-cw/2-4,cy+3,4,6)
+      const rearG=ctx.createRadialGradient(cx-cw/2-2,cy+6,0,cx-cw/2-2,cy+6,12)
+      rearG.addColorStop(0,'rgba(200,40,10,.3)'); rearG.addColorStop(1,'rgba(200,40,10,0)')
+      ctx.fillStyle=rearG; ctx.fillRect(cx-cw/2-14,cy-2,16,16)
+
+      // Kola — otáčení s diskami
+      const rot = frameRef.current * 0.16
+      ;[cx-cw/2+10,cx+cw/2-10].forEach(wx => {
+        // Pneumatika
+        ctx.beginPath(); ctx.arc(wx,cy+ch,8.5,0,Math.PI*2)
+        ctx.fillStyle='#070502'; ctx.fill()
+        ctx.strokeStyle='rgba(212,167,95,.15)'; ctx.lineWidth=.5; ctx.stroke()
+        // Disk
+        ctx.beginPath(); ctx.arc(wx,cy+ch,5.5,0,Math.PI*2)
+        ctx.fillStyle='rgba(212,167,95,.12)'; ctx.fill()
+        // Paprsky disku
+        for(let s=0;s<6;s++) {
+          const sa=rot+s*Math.PI/3
+          ctx.beginPath(); ctx.moveTo(wx+Math.cos(sa)*2,cy+ch+Math.sin(sa)*2); ctx.lineTo(wx+Math.cos(sa)*5,cy+ch+Math.sin(sa)*5)
+          ctx.strokeStyle='rgba(212,167,95,.3)'; ctx.lineWidth=1.2; ctx.stroke()
+        }
+        // Střed
+        ctx.beginPath(); ctx.arc(wx,cy+ch,2,0,Math.PI*2)
+        ctx.fillStyle='rgba(212,167,95,.35)'; ctx.fill()
+      })
     }
     draw()
     return () => {
