@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useLang } from '@/context/LanguageContext'
 import { ContactMenu } from '@/components/ui/ContactMenu'
 import { Lang } from '@/lib/translations'
