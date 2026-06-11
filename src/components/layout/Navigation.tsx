@@ -169,6 +169,118 @@ function LionLogo() {
 }
 
 
+
+function KilimanjaroButton({ open, onClick }: { open: boolean; onClick: () => void }) {
+  const canvasRef = React.useRef<HTMLCanvasElement>(null)
+  const frameRef = React.useRef(0)
+  const rafRef = React.useRef<number>(0)
+  const openRef = React.useRef(open)
+  React.useEffect(() => { openRef.current = open }, [open])
+
+  React.useEffect(() => {
+    const cv = canvasRef.current
+    if (!cv) return
+    const ctx = cv.getContext('2d') as CanvasRenderingContext2D
+    if (!ctx) return
+
+    const draw = () => {
+      rafRef.current = requestAnimationFrame(draw)
+      frameRef.current++
+      const t = frameRef.current * 0.045
+      const W = 32, H = 26
+      ctx.clearRect(0, 0, W, H)
+
+      if (!openRef.current) {
+        // 3 plamenné čáry
+        const rows = [
+          { y: H * 0.2,  phase: 0,        width: W - 6 },
+          { y: H * 0.52, phase: Math.PI,   width: W - 10 },
+          { y: H * 0.82, phase: Math.PI/2, width: W - 6 },
+        ]
+        rows.forEach((row, i) => {
+          const flicker = Math.sin(t * 3.5 + i * 1.4 + row.phase) * 1.8
+          const alpha = 0.7 + Math.sin(t * 4 + i) * 0.25
+          ctx.strokeStyle = `rgba(212,167,95,${alpha})`
+          ctx.lineWidth = 1.6 - i * 0.1
+          ctx.lineCap = 'round'
+          ctx.beginPath()
+          ctx.moveTo(3, row.y + flicker * 0.4)
+          ctx.bezierCurveTo(
+            3 + row.width * 0.3, row.y + flicker,
+            3 + row.width * 0.7, row.y - flicker,
+            3 + row.width,       row.y + flicker * 0.3
+          )
+          ctx.stroke()
+          // Sparks — jiskry letí nahoru
+          if (Math.sin(t * 6 + i * 2.1) > 0.82) {
+            const sx = 3 + Math.random() * row.width
+            ctx.beginPath()
+            ctx.arc(sx, row.y - 3 - Math.random() * 3, 0.8, 0, Math.PI * 2)
+            ctx.fillStyle = `rgba(255,220,100,${0.4 + Math.random() * 0.4})`
+            ctx.fill()
+          }
+        })
+        // Kilimanjaro silueta — jemně v pozadí
+        ctx.save()
+        ctx.globalAlpha = 0.08 + Math.sin(t * 0.5) * 0.03
+        ctx.fillStyle = '#D4A75F'
+        ctx.beginPath()
+        ctx.moveTo(0, H)
+        ctx.lineTo(W * 0.2, H * 0.55)
+        ctx.lineTo(W * 0.35, H * 0.65)
+        ctx.lineTo(W * 0.5, H * 0.3)
+        ctx.lineTo(W * 0.65, H * 0.62)
+        ctx.lineTo(W * 0.8, H * 0.52)
+        ctx.lineTo(W, H)
+        ctx.closePath()
+        ctx.fill()
+        ctx.restore()
+      } else {
+        // X z plamenů — zavřít
+        const f1 = Math.sin(t * 4) * 1.5
+        const f2 = Math.sin(t * 3.5 + 1) * 1.5
+        ctx.lineCap = 'round'
+        ctx.lineWidth = 1.7
+        // Diagonála 1
+        ctx.strokeStyle = `rgba(212,167,95,${0.7 + Math.sin(t * 5) * 0.25})`
+        ctx.beginPath()
+        ctx.moveTo(5 + f1, 4)
+        ctx.bezierCurveTo(W * 0.3, H * 0.3 + f1, W * 0.7, H * 0.7 - f2, W - 5 - f2, H - 4)
+        ctx.stroke()
+        // Diagonála 2
+        ctx.strokeStyle = `rgba(212,167,95,${0.7 + Math.sin(t * 4.5 + 1) * 0.25})`
+        ctx.beginPath()
+        ctx.moveTo(W - 5 + f2, 4)
+        ctx.bezierCurveTo(W * 0.7, H * 0.3 - f1, W * 0.3, H * 0.7 + f2, 5 + f1, H - 4)
+        ctx.stroke()
+        // Jiskry kolem středu
+        for (let s = 0; s < 4; s++) {
+          const a = t * 2 + s * Math.PI / 2
+          const r = 4 + Math.sin(t * 5 + s) * 2
+          ctx.beginPath()
+          ctx.arc(W / 2 + Math.cos(a) * r, H / 2 + Math.sin(a) * r, 1, 0, Math.PI * 2)
+          ctx.fillStyle = `rgba(255,210,80,${0.3 + Math.sin(t * 4 + s) * 0.3})`
+          ctx.fill()
+        }
+      }
+    }
+    draw()
+    return () => cancelAnimationFrame(rafRef.current)
+  }, [])
+
+  return (
+    <button
+      onClick={onClick}
+      className="nav-burger"
+      style={{ background:'none', border:'none', cursor:'pointer', padding:'8px 4px', alignSelf:'center', display:'flex', alignItems:'center', justifyContent:'center' }}
+      aria-label="Menu"
+    >
+      <canvas ref={canvasRef} width={32} height={26} style={{ width:32, height:26, display:'block' }} />
+    </button>
+  )
+}
+
+
 export function Navigation() {
   const { lang, setLang, t } = useLang()
   const [scrolled, setScrolled] = useState(false)
@@ -266,16 +378,8 @@ export function Navigation() {
             style={{ display:'none', position:'relative', overflow:'hidden', fontSize:9, letterSpacing:'0.16em', color:'#F2E6D0', background:'rgba(255,255,255,0.04)', padding:'9px 20px', borderRadius:100, textDecoration:'none', textTransform:'uppercase', fontWeight:400, border:'0.5px solid rgba(242,230,208,0.18)', backdropFilter:'blur(12px)', WebkitBackdropFilter:'blur(12px)', boxShadow:'0 0 16px rgba(212,167,95,0.1), inset 0 0.5px 0 rgba(255,255,255,0.08)', transition:'all 0.3s ease' }}
           >{t('nav_book')}</a>
 
-          {/* Mobile burger */}
-          <button onClick={() => setOpen(o => !o)}
-            className="nav-burger"
-            style={{ background:'none', border:'none', cursor:'pointer', display:'flex', flexDirection:'column', gap:5, padding:'8px 4px', alignSelf:'center' }}
-            aria-label="Menu"
-          >
-            <span style={{ display:'block', width:22, height:'0.5px', background:'#D4A75F', transform:open?'rotate(45deg) translate(3.5px,3.5px)':'none', transition:'all 0.3s' }} />
-            <span style={{ display:'block', width:14, height:'0.5px', background:'rgba(212,167,95,0.6)', opacity:open?0:1, transition:'all 0.3s', marginLeft:'auto' }} />
-            <span style={{ display:'block', width:22, height:'0.5px', background:'#D4A75F', transform:open?'rotate(-45deg) translate(3.5px,-3.5px)':'none', transition:'all 0.3s' }} />
-          </button>
+          {/* Mobile burger — Oheň Kilimanjaro */}
+          <KilimanjaroButton open={open} onClick={() => setOpen(o => !o)} />
         </div>
       </nav>
 
