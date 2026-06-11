@@ -37,7 +37,7 @@ const FAQS = [
 
 export function FAQSection() {
   const { t } = useLang()
-  const [open, setOpen] = useState<number | null>(null)
+  const [open, setOpen] = useState(-1)
 
   return (
     <section id="faq" style={{
@@ -79,7 +79,7 @@ export function FAQSection() {
           >
             {/* Question */}
             <button
-              onClick={() => setOpen(open === i ? null : i)}
+              onClick={() => setOpen(open === i ? -1 : i)}
               style={{
                 width: '100%',
                 background: 'none',
