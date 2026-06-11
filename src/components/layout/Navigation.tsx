@@ -330,6 +330,7 @@ export function Navigation() {
   const { lang, setLang, t } = useLang()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const [langOpen, setLangOpen] = useState(false)
 
   const LINKS = [
     { key: 'nav_safaris',    href: '#safaris' },
@@ -403,18 +404,47 @@ export function Navigation() {
 
         {/* Right: lang switcher + CTA */}
         <div style={{ display:'flex', alignItems:'center', gap:12, zIndex:2 }}>
-          {/* Lang switcher */}
-          <div className="nav-desktop" style={{ display:'none', alignItems:'center', gap:4 }}>
-            {langs.map((l, i) => (
-              <button key={l} onClick={() => setLang(l)} style={{
-                fontSize:9, letterSpacing:'0.12em', fontWeight:500,
-                color: lang===l ? '#D4A75F' : 'rgba(242,230,208,0.3)',
-                background:'none', border:'none', cursor:'pointer',
-                padding:'4px 6px', transition:'color 0.2s',
-                borderRight: i < langs.length-1 ? '0.5px solid rgba(212,167,95,0.2)' : 'none',
-                textTransform:'uppercase',
-              }}>{l === 'sw' ? 'SW' : l === 'ar' ? 'AR' : l === 'pl' ? 'PL' : l === 'it' ? 'IT' : l === 'es' ? 'ES' : l.toUpperCase()}</button>
-            ))}
+          {/* Lang dropdown */}
+          <div className="nav-desktop" style={{ display:'none', position:'relative' }} onMouseEnter={() => setLangOpen(true)} onMouseLeave={() => setLangOpen(false)}>
+            <button style={{
+              display:'flex', alignItems:'center', gap:5,
+              fontSize:9, letterSpacing:'0.14em', fontWeight:500,
+              color:'#D4A75F', background:'rgba(212,167,95,0.06)',
+              border:'0.5px solid rgba(212,167,95,0.25)',
+              cursor:'pointer', padding:'6px 12px', borderRadius:100,
+              textTransform:'uppercase', transition:'all 0.2s',
+            }}>
+              {lang.toUpperCase()}
+              <svg width="8" height="8" viewBox="0 0 8 8" fill="none" style={{ transition:'transform 0.2s', transform: langOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+                <path d="M1 2.5L4 5.5L7 2.5" stroke="#D4A75F" strokeWidth="1.2" strokeLinecap="round"/>
+              </svg>
+            </button>
+            <div style={{
+              position:'absolute', top:'calc(100% + 8px)', right:0,
+              background:'rgba(8,6,4,0.97)', backdropFilter:'blur(40px)',
+              border:'0.5px solid rgba(212,167,95,0.15)',
+              borderRadius:12, padding:'6px',
+              opacity: langOpen ? 1 : 0,
+              pointerEvents: langOpen ? 'all' : 'none',
+              transform: langOpen ? 'translateY(0)' : 'translateY(-6px)',
+              transition:'all 0.2s cubic-bezier(0.16,1,0.3,1)',
+              minWidth:80, zIndex:100,
+            }}>
+              {langs.map(l => (
+                <button key={l} onClick={() => { setLang(l); setLangOpen(false) }} style={{
+                  display:'block', width:'100%', textAlign:'left',
+                  fontSize:9, letterSpacing:'0.14em', fontWeight:500,
+                  color: lang===l ? '#D4A75F' : 'rgba(242,230,208,0.45)',
+                  background: lang===l ? 'rgba(212,167,95,0.08)' : 'none',
+                  border:'none', cursor:'pointer',
+                  padding:'7px 12px', borderRadius:8,
+                  textTransform:'uppercase', transition:'all 0.15s',
+                }}
+                onMouseEnter={e => { if(lang!==l) (e.currentTarget as HTMLButtonElement).style.color='rgba(242,230,208,0.9)'; (e.currentTarget as HTMLButtonElement).style.background='rgba(212,167,95,0.05)' }}
+                onMouseLeave={e => { if(lang!==l) { (e.currentTarget as HTMLButtonElement).style.color='rgba(242,230,208,0.45)'; (e.currentTarget as HTMLButtonElement).style.background='none' }}}
+                >{l.toUpperCase()}</button>
+              ))}
+            </div>
           </div>
 
           {/* Desktop CTA */}
