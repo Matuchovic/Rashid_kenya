@@ -64,21 +64,23 @@ export function TransferSection() {
     const ffArr:    Firefly[]   = []
     const smokeTexts: SmokeText[] = []
     const SMOKE_WORDS = [
-      'Welcome','Rashodi','Jambo','No Worries','Bez starostí',
+      'Welcome','Rashidi','Jambo','No Worries','Bez starostí',
       'Keine Sorgen','لا تقلق','Hakuna Matata','Bez zmartwień',
       'Nessun Problema','Sin Preocupaciones','Karibu','Maisha Mazuri',
     ]
-    // Inicializuj smoke texty hned — rozprostřené po nebi
-    for(let i=0;i<SMOKE_WORDS.length;i++){
+    // Inicializuj smoke texty — rozprostřené po nebi s různými fázemi
+    // aby se všechna slova neobjevila najednou
+    for(let i = 0; i < SMOKE_WORDS.length; i++) {
+      const sz = 8 + Math.random() * 16
       smokeTexts.push({
-        x: (i/SMOKE_WORDS.length)*2400 - 200,
-        y: 15+Math.random()*130,
-        vx: (Math.random()-.5)*.28,
-        vy: -(Math.random()*.14+.04),
-        life: Math.random(),
-        sz: 7+Math.random()*20,
-        rot: (Math.random()-.5)*.25,
-        vrot: (Math.random()-.5)*.006
+        x:    (i / SMOKE_WORDS.length) * 1800 + Math.random() * 200,
+        y:    20 + Math.random() * (H * 0.45),
+        vx:   (Math.random() - 0.5) * 0.18,
+        vy:   -(0.25 + Math.random() * 0.35),
+        life: Math.random() * 0.9,  // různé fáze — ne všechna najednou
+        sz:   sz,
+        rot:  (Math.random() - 0.5) * 0.15,
+        vrot: (Math.random() - 0.5) * 0.003,
       })
     }
     const shootStars: {x:number;y:number;vx:number;vy:number;life:number}[] = []
@@ -119,54 +121,61 @@ export function TransferSection() {
       })
 
       // ── HAKUNA MATATA smoke texts ──
-      // Smoke words — respawn a render
-      while(smokeTexts.length < SMOKE_WORDS.length) {
-        const wi = smokeTexts.length
-        smokeTexts.push({
-          x:Math.random()*W, y:H*.5+Math.random()*50,
-          vx:(Math.random()-.5)*.28, vy:-(Math.random()*.13+.04),
-          life:0, sz:7+Math.random()*20,
-          rot:(Math.random()-.5)*.28, vrot:(Math.random()-.5)*.006
-        })
-      }
-      for(let i=0;i<smokeTexts.length;i++){
-        const st=smokeTexts[i]
-        st.x+=st.vx; st.y+=st.vy; st.life+=0.0025; st.rot+=st.vrot
-        // Jemný fade in a fade out
-        let alpha: number
-        if(st.life<0.18) alpha=st.life/0.18
-        else if(st.life>0.72) alpha=(1-st.life)/0.28
-        else alpha=1
-        // Různé velikosti mají různou průhlednost — větší = průhledněší
-        const sizeAlpha = 1 - (st.sz-7)/30
-        const finalAlpha = alpha * (0.08 + sizeAlpha*0.14)
-        if(finalAlpha<=0) continue
+      // ── FLOATING WORDS — cinematic smoke drift ──
+      // Profesionální systém: slova stoupají jako kouř z horizontu
+      // Každé slovo má unikátní trajektorii, velikost a fázi
+      const W_sm = W
+      const H_sm = H
+      // Respawn slov které dokončily cyklus
+      for(let i = 0; i < smokeTexts.length; i++) {
+        const st = smokeTexts[i]
+        // Posun
+        st.x  += st.vx + Math.sin(st.life * 3.5 + i) * 0.12  // sinusový drift
+        st.y  += st.vy
+        st.rot += st.vrot
+        st.life += 0.0018  // velmi pomalý life cycle
+        // Respawn na spodku když vyletí nahoru nebo ze stran
+        if (st.life >= 1 || st.y < -30 || st.x < -200 || st.x > W_sm + 200) {
+          const wi = i % SMOKE_WORDS.length
+          const newSz = 8 + Math.random() * 16  // 8–24px — nikdy obří
+          smokeTexts[i] = {
+            x:    Math.random() * W_sm,
+            y:    H_sm * 0.52 + Math.random() * 35,
+            vx:   (Math.random() - 0.5) * 0.18,
+            vy:   -(0.25 + Math.random() * 0.35),  // stoupá plynule
+            life: 0,
+            sz:   newSz,
+            rot:  (Math.random() - 0.5) * 0.15,
+            vrot: (Math.random() - 0.5) * 0.003,
+          }
+          continue
+        }
+        // Opacity křivka: fade-in (0→0.25), plateau, fade-out (0.75→1)
+        let t_life = st.life
+        let opacity: number
+        if      (t_life < 0.2)  opacity = t_life / 0.2           // fade in
+        else if (t_life < 0.75) opacity = 1                       // plateau
+        else                    opacity = (1 - t_life) / 0.25     // fade out
+        // Velikost → průhlednost: větší text = průhledněší (splyne s pozadím)
+        const sizeT   = (st.sz - 8) / 16                         // 0 pro malé, 1 pro velké
+        const baseAlpha = 0.06 + (1 - sizeT) * 0.10              // 0.06–0.16
+        const finalAlpha = opacity * baseAlpha
+        if (finalAlpha < 0.005) continue
+        // Render — pouze Cormorant Garamond, letter-spacing
         ctx.save()
         ctx.globalAlpha = finalAlpha
         ctx.translate(st.x, st.y)
         ctx.rotate(st.rot)
-        // Font — arabština větší, ostatní proporcionálně
         const word = SMOKE_WORDS[i % SMOKE_WORDS.length]
         const isArabic = /[؀-ۿ]/.test(word)
-        const fontSize = isArabic ? st.sz*1.3 : st.sz
-        ctx.font = `${fontSize}px 'Cormorant Garamond', Georgia, serif`
-        // Barva — mírně variuje kolem zlaté
-        const hue = 38 + Math.sin(st.life*4+i)*6
-        ctx.fillStyle = `hsl(${hue},65%,62%)`
+        const fs = isArabic ? st.sz * 1.25 : st.sz
+        ctx.font = `200 ${fs}px 'Cormorant Garamond', Georgia, serif`
+        ctx.fillStyle = '#D4A75F'
         ctx.textAlign = 'center'
+        ctx.textBaseline = 'middle'
         ctx.fillText(word, 0, 0)
         ctx.restore()
-        // Respawn
-        if(st.life>=1 || st.y<-30 || st.x<-150 || st.x>W+150){
-          smokeTexts[i]={
-            x:Math.random()*W, y:H*.48+Math.random()*60,
-            vx:(Math.random()-.5)*.28, vy:-(Math.random()*.13+.04),
-            life:0, sz:7+Math.random()*22,
-            rot:(Math.random()-.5)*.28, vrot:(Math.random()-.5)*.006
-          }
-        }
       }
-
       // ── SHOOTING STARS ──
       shootTimer--
       if (shootTimer < 0) {
