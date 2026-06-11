@@ -9,6 +9,7 @@ import { TransferSection } from '@/components/sections/TransferSection'
 import { ExperienceSection } from '@/components/sections/ExperienceSection'
 import { SocialSection } from '@/components/sections/SocialSection'
 import { Footer } from '@/components/layout/Footer'
+import { FAQSection } from '@/components/sections/FAQSection'
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <TransferSection />
       <ExperienceSection />
       <SocialSection />
+      <FAQSection />
       <Footer />
       <WhatsAppFAB />
     </>
