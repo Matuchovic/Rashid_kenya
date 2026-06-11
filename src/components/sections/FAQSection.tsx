@@ -1,6 +1,5 @@
 'use client'
 import { useState } from 'react'
-import { useLang } from '@/context/LanguageContext'
 
 const FAQS = [
   { q: 'When is the best time to visit Kenya?', a: 'The best time is during the dry seasons: January to February and June to October. July to September is peak season. Year-round is possible.', qKey: 'faq_q1', aKey: 'faq_a1' },
@@ -12,7 +11,6 @@ const FAQS = [
 ]
 
 export function FAQSection() {
-  const { t } = useLang()
   const [open, setOpen] = useState(-1)
 
   const toggle = (i: number) => setOpen(open === i ? -1 : i)
@@ -22,11 +20,11 @@ export function FAQSection() {
 
       <div style={{ textAlign: 'center', padding: '0 clamp(20px,5vw,48px)', marginBottom: 'clamp(40px,6vh,56px)' }}>
         <div style={{ fontSize: 7, letterSpacing: '0.22em', color: 'rgba(212,167,95,0.4)', textTransform: 'uppercase', marginBottom: 14 }}>
-          {t('faq_label') || 'Before You Go'}
+          {'Before You Go'}
         </div>
         <h2 style={{ fontFamily: "'Cormorant Garamond',Georgia,serif", fontSize: 'clamp(28px,5vw,48px)', fontWeight: 200, color: '#F2E6D0', lineHeight: 1, margin: 0 }}>
-          {t('faq_title') || 'Frequently Asked'}<br />
-          <em style={{ color: '#D4A75F', fontStyle: 'italic' }}>{t('faq_title_em') || 'Questions'}</em>
+          {'Frequently Asked'}<br />
+          <em style={{ color: '#D4A75F', fontStyle: 'italic' }}>{'Questions'}</em>
         </h2>
       </div>
 
@@ -39,7 +37,7 @@ export function FAQSection() {
               style={{ width: '100%', background: 'none', border: 'none', cursor: 'pointer', padding: 'clamp(18px,3vh,24px) 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16, textAlign: 'left' }}
             >
               <span style={{ fontFamily: "'Cormorant Garamond',Georgia,serif", fontSize: 'clamp(16px,2.5vw,20px)', fontWeight: 300, color: open === i ? '#D4A75F' : '#F2E6D0', lineHeight: 1.3, transition: 'color 0.3s ease' }}>
-                {t(faq.qKey) || faq.q}
+                {faq.q}
               </span>
               <span style={{ flexShrink: 0, width: 28, height: 28, borderRadius: '50%', border: open === i ? '0.5px solid rgba(212,167,95,0.6)' : '0.5px solid rgba(212,167,95,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s ease', background: open === i ? 'rgba(212,167,95,0.1)' : 'transparent' }}>
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -51,7 +49,7 @@ export function FAQSection() {
 
             <div style={{ maxHeight: open === i ? '300px' : '0', overflow: 'hidden', transition: 'max-height 0.45s cubic-bezier(0.16,1,0.3,1)' }}>
               <p style={{ fontSize: 'clamp(13px,1.8vw,15px)', color: 'rgba(242,230,208,0.55)', lineHeight: 1.75, margin: '0 0 clamp(18px,3vh,24px)', paddingRight: 44 }}>
-                {t(faq.aKey) || faq.a}
+                {faq.a}
               </p>
             </div>
 
@@ -61,10 +59,10 @@ export function FAQSection() {
 
       <div style={{ textAlign: 'center', marginTop: 'clamp(40px,6vh,56px)', padding: '0 clamp(20px,5vw,48px)' }}>
         <p style={{ fontSize: 'clamp(12px,1.6vw,14px)', color: 'rgba(242,230,208,0.25)', marginBottom: 20, letterSpacing: '0.04em' }}>
-          {t('faq_more') || 'Still have questions? Rashid answers personally.'}
+          {'Still have questions? Rashid answers personally.'}
         </p>
         <a href="https://wa.me/254718930587" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#F2E6D0', background: 'rgba(255,255,255,0.04)', padding: '12px 28px', borderRadius: 100, border: '0.5px solid rgba(242,230,208,0.15)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', textDecoration: 'none', transition: 'all 0.3s ease' }}>
-          {t('faq_cta') || 'Ask Rashid directly'} →
+          {'Ask Rashid directly'} →
         </a>
       </div>
 
