@@ -134,10 +134,9 @@ export function TransferSection() {
         st.life += 0.0018  // velmi pomalý life cycle
         // Respawn na spodku když vyletí nahoru nebo ze stran
         if (st.life >= 1 || st.y < -30 || st.x < -200 || st.x > W + 200) {
-          const wi = i % SMOKE_WORDS.length
           const newSz = 8 + Math.random() * 16  // 8–24px — nikdy obří
           smokeTexts[i] = {
-            x:    Math.random() * W_sm,
+            x:    Math.random() * W,
             y:    H * 0.52 + Math.random() * 35,
             vx:   (Math.random() - 0.5) * 0.18,
             vy:   -(0.25 + Math.random() * 0.35),  // stoupá plynule
