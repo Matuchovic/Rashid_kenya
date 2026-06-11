@@ -283,12 +283,14 @@ export function Navigation() {
       <div style={{
         position:'fixed', inset:0, zIndex:999,
         background:'rgba(3,2,1,0.98)', backdropFilter:'blur(40px)', overflowY:'auto',
-        display:'flex', flexDirection:'column', justifyContent:'flex-start', paddingTop:'clamp(80px,15vh,120px)',
-        padding:'0 clamp(28px,8vw,48px) clamp(40px,8vh,72px)',
+        display:'flex', flexDirection:'column', justifyContent:'flex-start',
+        paddingTop:'clamp(80px,15vh,120px)',
+        paddingLeft:'clamp(28px,8vw,48px)', paddingRight:'clamp(28px,8vw,48px)', paddingBottom:'clamp(40px,8vh,72px)',
+        boxSizing:'border-box', width:'100%', maxWidth:'100vw', overflowX:'hidden',
         opacity:open?1:0, pointerEvents:open?'all':'none',
         transition:'opacity 0.4s cubic-bezier(0.16,1,0.3,1)',
       }}>
-        <ul style={{ listStyle:'none', margin:0, padding:0, display:'flex', flexDirection:'column' }}>
+        <ul style={{ listStyle:'none', margin:0, padding:0, display:'flex', flexDirection:'column', width:'100%', overflowX:'hidden' }}>
           {LINKS.map((l, i) => (
             <li key={l.href} style={{ borderBottom:'0.5px solid rgba(212,167,95,0.07)' }}>
               <a href={l.href} onClick={e=>{e.preventDefault();setOpen(false);setTimeout(()=>scrollTo(l.href),300)}} style={{
@@ -304,15 +306,15 @@ export function Navigation() {
         </ul>
 
         {/* Mobile lang switcher */}
-        <div style={{ display:'flex', gap:12, marginTop:28, opacity:open?1:0, transition:'opacity 0.5s ease 0.4s' }}>
+        <div style={{ display:'flex', flexWrap:'wrap', gap:8, marginTop:28, opacity:open?1:0, transition:'opacity 0.5s ease 0.4s', width:'100%' }}>
           {langs.map(l => (
             <button key={l} onClick={() => setLang(l)} style={{
-              fontSize:11, letterSpacing:'0.14em', fontWeight:500,
+              fontSize:10, letterSpacing:'0.12em', fontWeight:500,
               color: lang===l ? '#D4A75F' : 'rgba(242,230,208,0.3)',
               background: lang===l ? 'rgba(212,167,95,0.1)' : 'none',
               border: lang===l ? '0.5px solid rgba(212,167,95,0.4)' : '0.5px solid rgba(255,255,255,0.1)',
-              cursor:'pointer', padding:'8px 16px', borderRadius:100,
-              textTransform:'uppercase', transition:'all 0.2s',
+              cursor:'pointer', padding:'7px 14px', borderRadius:100,
+              textTransform:'uppercase', transition:'all 0.2s', flexShrink:0,
             }}>{l === 'sw' ? 'SW' : l === 'ar' ? 'AR' : l === 'pl' ? 'PL' : l === 'it' ? 'IT' : l === 'es' ? 'ES' : l.toUpperCase()}</button>
           ))}
         </div>
