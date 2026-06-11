@@ -112,7 +112,7 @@ export function PackagesSection() {
     'African Pool & Starfish Beach Tour': t('name_pool'),
   }
 
-    const [filter, setFilter] = useState<'all' | 'safari' | 'excursion'>('all')
+  const [filter, setFilter] = useState<'all' | 'safari' | 'excursion'>('all')
   const [visible, setVisible] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
