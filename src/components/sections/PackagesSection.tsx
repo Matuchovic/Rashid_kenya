@@ -127,7 +127,7 @@ export function PackagesSection() {
   const filtered = PACKAGES.filter(p => filter === 'all' || p.category === filter)
 
   return (
-    <section id="all-packages" ref={ref} style={{ background:'#050505', padding:'clamp(60px,8vh,100px) 0', overflow:'hidden' }}>
+    <section id="all-packages" ref={ref} style={{ background:'#050505', padding:'clamp(60px,8vh,100px) 0', overflowX:'hidden', overflowY:'visible' }}>
 
       {/* Header */}
       <div style={{ textAlign:'center', padding:'0 clamp(20px,5vw,48px)', marginBottom:'clamp(36px,5vh,52px)',
@@ -270,13 +270,11 @@ export function PackagesSection() {
             scroll-snap-type: x mandatory !important;
             -webkit-overflow-scrolling: touch !important;
             gap: 12px !important;
-            padding: 0 16px 16px !important;
+            padding: 0 16px 20px !important;
             scrollbar-width: none !important;
             max-width: 100vw !important;
             grid-template-columns: unset !important;
             grid-auto-rows: unset !important;
-            height: 340px !important;
-            align-items: stretch !important;
           }
           .pkg-grid::-webkit-scrollbar { display: none !important; }
           .pkg-card-wrap {
@@ -285,6 +283,10 @@ export function PackagesSection() {
             height: 320px !important;
             flex-shrink: 0 !important;
             scroll-snap-align: start !important;
+            display: block !important;
+          }
+          .pkg-card-wrap > * {
+            height: 100% !important;
           }
         }
         .pkg-card:hover .pkg-photo { filter:brightness(0.55)!important; transform:scale(1.04); }
