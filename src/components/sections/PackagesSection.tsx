@@ -167,7 +167,8 @@ export function PackagesSection() {
       {/* Cards grid — desktop: grid, mobile: horizontal swipe */}
       <div className="pkg-grid" style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(280px,1fr))', gridAutoRows:'320px', gap:12, padding:'0 clamp(12px,4vw,48px)', maxWidth:1200, margin:'0 auto' }}>
         {filtered.map((pkg, idx) => (
-          <ContactMenu key={pkg.id}
+          <div key={pkg.id} className="pkg-card-wrap" style={{ height:"320px" }}>
+          <ContactMenu
             style={{
               position:'relative', overflow:'hidden',
               borderRadius:14,
