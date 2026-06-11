@@ -170,6 +170,51 @@ function LionLogo() {
 
 
 
+// Haptic feedback helper
+function haptic(ms: number = 8) {
+  if (typeof navigator !== 'undefined' && navigator.vibrate) {
+    navigator.vibrate(ms)
+  }
+}
+
+// Kenya time hook
+function useKenyaTime() {
+  const [time, setTime] = React.useState('')
+  React.useEffect(() => {
+    const update = () => {
+      const t = new Date().toLocaleTimeString('en-GB', {
+        timeZone: 'Africa/Nairobi',
+        hour: '2-digit',
+        minute: '2-digit',
+      })
+      setTime(t)
+    }
+    update()
+    const iv = setInterval(update, 1000)
+    return () => clearInterval(iv)
+  }, [])
+  return time
+}
+
+
+function KenyaTimeWidget() {
+  const time = useKenyaTime()
+  if (!time) return null
+  return (
+    <div style={{
+      display: 'flex', alignItems: 'center', gap: 4,
+      background: 'rgba(212,167,95,0.06)',
+      border: '0.5px solid rgba(212,167,95,0.15)',
+      borderRadius: 100, padding: '3px 8px',
+    }}>
+      <span style={{ fontSize: 7, color: 'rgba(212,167,95,0.4)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>NBI</span>
+      <span style={{ fontSize: 10, color: '#D4A75F', fontFamily: 'monospace', fontWeight: 500 }}>{time}</span>
+      <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'rgba(37,211,102,0.8)', display: 'inline-block', boxShadow: '0 0 4px rgba(37,211,102,0.5)' }} />
+    </div>
+  )
+}
+
+
 function KilimanjaroButton({ open, onClick }: { open: boolean; onClick: () => void }) {
   const canvasRef = React.useRef<HTMLCanvasElement>(null)
   const frameRef = React.useRef(0)
@@ -374,10 +419,12 @@ export function Navigation() {
 
           {/* Desktop CTA */}
           <a href="https://wa.me/254718930587" target="_blank" rel="noopener noreferrer"
-            className="nav-cta-desktop"
+            className="nav-cta-desktop" onClick={() => haptic(8)}
             style={{ display:'none', position:'relative', overflow:'hidden', fontSize:9, letterSpacing:'0.16em', color:'#F2E6D0', background:'rgba(255,255,255,0.04)', padding:'9px 20px', borderRadius:100, textDecoration:'none', textTransform:'uppercase', fontWeight:400, border:'0.5px solid rgba(242,230,208,0.18)', backdropFilter:'blur(12px)', WebkitBackdropFilter:'blur(12px)', boxShadow:'0 0 16px rgba(212,167,95,0.1), inset 0 0.5px 0 rgba(255,255,255,0.08)', transition:'all 0.3s ease' }}
           >{t('nav_book')}</a>
 
+          {/* Kenya time — mobile */}
+          <KenyaTimeWidget />
           {/* Mobile burger — Oheň Kilimanjaro */}
           <KilimanjaroButton open={open} onClick={() => setOpen(o => !o)} />
         </div>

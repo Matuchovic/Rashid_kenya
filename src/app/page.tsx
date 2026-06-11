@@ -1,4 +1,5 @@
 import { Navigation } from '@/components/layout/Navigation'
+import { WhatsAppFAB } from '@/components/ui/MobileUX'
 import { HeroSection } from '@/components/sections/HeroSection'
 import { BigFiveSection } from '@/components/sections/BigFiveSection'
 import { EarthSection } from '@/components/sections/EarthSection'
@@ -22,6 +23,7 @@ export default function Home() {
       <ExperienceSection />
       <SocialSection />
       <Footer />
+      <WhatsAppFAB />
     </>
   )
 }
