@@ -109,7 +109,7 @@ export function FAQSection() {
                 width: 28,
                 height: 28,
                 borderRadius: '50%',
-                border: '0.5px solid rgba(212,167,95,' + (open === i ? '0.6' : '0.2') + ')',
+                border: open === i ? '0.5px solid rgba(212,167,95,0.6)' : '0.5px solid rgba(212,167,95,0.2)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
