@@ -570,9 +570,9 @@ export function TransferSection() {
 
         // Kouřový efekt = 3 vrstvy s různým blur a alpha
         const layers = [
-          { blur: st.sz * 0.55, alpha: baseAlpha * env * 0.4  },  // vnější měkký halo
-          { blur: st.sz * 0.22, alpha: baseAlpha * env * 0.65 },  // střední
-          { blur: 0,            alpha: baseAlpha * env * 0.9  },  // ostrý střed
+          { blurPx: st.sz * 0.55, alpha: baseAlpha * env * 0.4  },  // vnější měkký halo
+          { blurPx: st.sz * 0.22, alpha: baseAlpha * env * 0.65 },  // střední
+          { blurPx: 0,            alpha: baseAlpha * env * 0.9  },  // ostrý střed
         ]
 
         const word = SMOKE_WORDS[i % SMOKE_WORDS.length]
@@ -588,8 +588,8 @@ export function TransferSection() {
 
         for(const layer of layers) {
           ctx.globalAlpha = layer.alpha
-          if (layer.blur > 0) {
-            ctx.filter = `blur(${layer.blur.toFixed(1)}px)`
+          if (layer.blurPx > 0) {
+            ctx.filter = `blur(${layer.blurPx.toFixed(1)}px)`
           } else {
             ctx.filter = 'none'
           }
