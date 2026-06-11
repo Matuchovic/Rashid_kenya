@@ -164,7 +164,7 @@ export function TransferSection() {
         ctx.translate(st.x, st.y)
         ctx.rotate(st.rot)
         const word = SMOKE_WORDS[i % SMOKE_WORDS.length]
-        const isArabic = /[؀-ۿ]/.test(word)
+        const isArabic = word.charCodeAt(0) >= 0x0600 && word.charCodeAt(0) <= 0x06FF
         const fs = isArabic ? st.sz * 1.25 : st.sz
         ctx.font = `200 ${fs}px 'Cormorant Garamond', Georgia, serif`
         ctx.fillStyle = '#D4A75F'
