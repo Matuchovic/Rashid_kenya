@@ -261,7 +261,9 @@ export function PackagesSection() {
       </div>
 
       <style>{`
+        .pkg-card-wrap { display: contents; }
         @media(max-width:768px){
+          .pkg-card-wrap { display: block !important; }
           .pkg-grid {
             display: flex !important;
             flex-direction: row !important;
