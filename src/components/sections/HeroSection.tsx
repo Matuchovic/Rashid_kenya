@@ -21,7 +21,22 @@ export function HeroSection() {
       <DustParticles />
       <div ref={titleRef} style={{ position:'absolute', inset:0, zIndex:10, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', textAlign:'center', padding:'0 clamp(16px,5vw,32px)', opacity:0, transform:'translateY(20px)', transition:'all 1.4s cubic-bezier(0.16,1,0.3,1)' }}>
         {greeting && (
-          <div style={{ fontSize:'clamp(8px,1.6vw,10px)', letterSpacing:'0.22em', color:'rgba(212,167,95,0.4)', textTransform:'uppercase', marginBottom:16, opacity:1 }}>
+          <div style={{
+            fontSize:'clamp(9px,1.8vw,11px)',
+            letterSpacing:'0.28em',
+            color:'#D4A75F',
+            textTransform:'uppercase',
+            marginBottom:20,
+            fontFamily:"'Inter',sans-serif",
+            fontWeight:400,
+            textShadow:'0 0 12px rgba(0,0,0,1), 0 0 24px rgba(0,0,0,1), 0 2px 4px rgba(0,0,0,1), 0 0 60px rgba(0,0,0,0.9)',
+            background:'rgba(0,0,0,0.35)',
+            backdropFilter:'blur(4px)',
+            WebkitBackdropFilter:'blur(4px)',
+            padding:'4px 14px',
+            borderRadius:100,
+            border:'0.5px solid rgba(212,167,95,0.2)',
+          }}>
             {greeting}
           </div>
         )}
